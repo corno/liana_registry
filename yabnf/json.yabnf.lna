@@ -1,39 +1,42 @@
 (
     `terminals`: {
-        '}': | `syntactic` | `symbol` ~
-        '{': | `syntactic` | `symbol` ~
-        '[': | `syntactic` | `symbol` ~
-        ']': | `syntactic` | `symbol` ~
-        ',': | `syntactic` | `symbol` ~
-        ':': | `syntactic` | `symbol` ~
-        'false': | `syntactic` | `word` ~
-        'true': | `syntactic` | `word` ~
-        'null': | `syntactic` | `word` ~
-        'string': | `semantic` ~
-        'number': | `semantic` ~
+        '}': ~
+        '{': ~
+        '[': ~
+        ']': ~
+        ',': ~
+        ':': ~
+        'identifier': ~
+        'string': ~
+        'number': ~
+    }
+    `keywords`: {
+        'false': "identifier"
+        'true': "identifier"
+        'null': "identifier"
     }
     `nonterminals`: {
         'Value': | `sequence` < {
             'type': | `alternation` < {
                 'array': | `sequence` < {
-                    '[': | `terminal reference` "["
-                    'items': | `repetition` < | `nonterminal reference` "Value" * < "," false > >
-                    ']': | `terminal reference` "]"
+                    '[': | `terminal` "["
+                    'items': | `repetition` < | `nonterminal` "Value" * < "," false > >
+                    ']': | `terminal` "]"
                 } >
-                'false': | `terminal reference` "false"
-                'null': | `terminal reference` "null"
-                'number': | `terminal reference` "number"
+                'false': | `keyword` "false"
+                'null': | `keyword` "null"
+                'number': | `terminal` "number"
                 'object': | `sequence` < {
-                    '{': | `terminal reference` "{"
+                    '{': | `terminal` "{"
                     'entries': | `repetition` < | `sequence` < {
-                        'key': | `terminal reference` "string"
-                        ':': | `terminal reference` ":"
-                        'value': | `nonterminal reference` "Value"
+                        'key': | `terminal` "string"
+                        ':': | `terminal` ":"
+                        'value': | `nonterminal` "Value"
                     } > * < "," false > >
-                    '}': | `terminal reference` "}"
+                    '}': | `terminal` "}"
                 } >
-                'string': | `terminal reference` "string"
-                'true': | `terminal reference` "true"
+                'string': | `terminal` "string"
+                'true': | `keyword` "true"
             } >
         } >
     }

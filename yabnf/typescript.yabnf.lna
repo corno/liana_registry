@@ -1,1632 +1,1634 @@
 (
     `terminals`: {
-        'abstract': | `syntactic` | `word` ~
-        'accessor': | `syntactic` | `word` ~
-        'any': | `syntactic` | `word` ~
-        'as': | `syntactic` | `word` ~
-        'asserts': | `syntactic` | `word` ~
-        'async': | `syntactic` | `word` ~
-        'await': | `syntactic` | `word` ~
-        'bigint': | `syntactic` | `word` ~
-        'boolean': | `syntactic` | `word` ~
-        'break': | `syntactic` | `word` ~
-        'case': | `syntactic` | `word` ~
-        'catch': | `syntactic` | `word` ~
-        'class': | `syntactic` | `word` ~
-        'const': | `syntactic` | `word` ~
-        'constructor': | `syntactic` | `word` ~
-        'continue': | `syntactic` | `word` ~
-        'debugger': | `syntactic` | `word` ~
-        'declare': | `syntactic` | `word` ~
-        'default': | `syntactic` | `word` ~
-        'defer': | `syntactic` | `word` ~
-        'delete': | `syntactic` | `word` ~
-        'do': | `syntactic` | `word` ~
-        'else': | `syntactic` | `word` ~
-        'enum': | `syntactic` | `word` ~
-        'export': | `syntactic` | `word` ~
-        'extends': | `syntactic` | `word` ~
-        'false': | `syntactic` | `word` ~
-        'finally': | `syntactic` | `word` ~
-        'for': | `syntactic` | `word` ~
-        'from': | `syntactic` | `word` ~
-        'function': | `syntactic` | `word` ~
-        'get': | `syntactic` | `word` ~
-        'global': | `syntactic` | `word` ~
-        'if': | `syntactic` | `word` ~
-        'implements': | `syntactic` | `word` ~
-        'import': | `syntactic` | `word` ~
-        'in': | `syntactic` | `word` ~
-        'infer': | `syntactic` | `word` ~
-        'instanceof': | `syntactic` | `word` ~
-        'interface': | `syntactic` | `word` ~
-        'intrinsic': | `syntactic` | `word` ~
-        'is': | `syntactic` | `word` ~
-        'keyof': | `syntactic` | `word` ~
-        'let': | `syntactic` | `word` ~
-        'module': | `syntactic` | `word` ~
-        'namespace': | `syntactic` | `word` ~
-        'never': | `syntactic` | `word` ~
-        'new': | `syntactic` | `word` ~
-        'null': | `syntactic` | `word` ~
-        'number': | `syntactic` | `word` ~
-        'object': | `syntactic` | `word` ~
-        'of': | `syntactic` | `word` ~
-        'out': | `syntactic` | `word` ~
-        'override': | `syntactic` | `word` ~
-        'private': | `syntactic` | `word` ~
-        'protected': | `syntactic` | `word` ~
-        'public': | `syntactic` | `word` ~
-        'readonly': | `syntactic` | `word` ~
-        'require': | `syntactic` | `word` ~
-        'return': | `syntactic` | `word` ~
-        'satisfies': | `syntactic` | `word` ~
-        'set': | `syntactic` | `word` ~
-        'static': | `syntactic` | `word` ~
-        'string': | `syntactic` | `word` ~
-        'super': | `syntactic` | `word` ~
-        'switch': | `syntactic` | `word` ~
-        'symbol': | `syntactic` | `word` ~
-        'this': | `syntactic` | `word` ~
-        'throw': | `syntactic` | `word` ~
-        'true': | `syntactic` | `word` ~
-        'try': | `syntactic` | `word` ~
-        'type': | `syntactic` | `word` ~
-        'typeof': | `syntactic` | `word` ~
-        'undefined': | `syntactic` | `word` ~
-        'unique': | `syntactic` | `word` ~
-        'unknown': | `syntactic` | `word` ~
-        'using': | `syntactic` | `word` ~
-        'var': | `syntactic` | `word` ~
-        'void': | `syntactic` | `word` ~
-        'while': | `syntactic` | `word` ~
-        'with': | `syntactic` | `word` ~
-        'yield': | `syntactic` | `word` ~
-        '--': | `syntactic` | `symbol` ~
-        '-': | `syntactic` | `symbol` ~
-        '-=': | `syntactic` | `symbol` ~
-        ',': | `syntactic` | `symbol` ~
-        ';': | `syntactic` | `symbol` ~
-        ':': | `syntactic` | `symbol` ~
-        '!': | `syntactic` | `symbol` ~
-        '!=': | `syntactic` | `symbol` ~
-        '!==': | `syntactic` | `symbol` ~
-        '??': | `syntactic` | `symbol` ~
-        '??=': | `syntactic` | `symbol` ~
-        '?.': | `syntactic` | `symbol` ~
-        '?': | `syntactic` | `symbol` ~
-        '...': | `syntactic` | `symbol` ~
-        '.': | `syntactic` | `symbol` ~
-        '(': | `syntactic` | `symbol` ~
-        ')': | `syntactic` | `symbol` ~
-        '[': | `syntactic` | `symbol` ~
-        ']': | `syntactic` | `symbol` ~
-        '{': | `syntactic` | `symbol` ~
-        '}': | `syntactic` | `symbol` ~
-        '@': | `syntactic` | `symbol` ~
-        '*': | `syntactic` | `symbol` ~
-        '**': | `syntactic` | `symbol` ~
-        '**=': | `syntactic` | `symbol` ~
-        '*=': | `syntactic` | `symbol` ~
-        '/': | `syntactic` | `symbol` ~
-        '/=': | `syntactic` | `symbol` ~
-        '&': | `syntactic` | `symbol` ~
-        '&&': | `syntactic` | `symbol` ~
-        '&&=': | `syntactic` | `symbol` ~
-        '&=': | `syntactic` | `symbol` ~
-        '%': | `syntactic` | `symbol` ~
-        '%=': | `syntactic` | `symbol` ~
-        '^': | `syntactic` | `symbol` ~
-        '^=': | `syntactic` | `symbol` ~
-        '+': | `syntactic` | `symbol` ~
-        '++': | `syntactic` | `symbol` ~
-        '+=': | `syntactic` | `symbol` ~
-        '<': | `syntactic` | `symbol` ~
-        '<<': | `syntactic` | `symbol` ~
-        '<<=': | `syntactic` | `symbol` ~
-        '<=': | `syntactic` | `symbol` ~
-        '=': | `syntactic` | `symbol` ~
-        '==': | `syntactic` | `symbol` ~
-        '===': | `syntactic` | `symbol` ~
-        '=>': | `syntactic` | `symbol` ~
-        '>': | `syntactic` | `symbol` ~
-        '>=': | `syntactic` | `symbol` ~
-        '>>': | `syntactic` | `symbol` ~
-        '>>=': | `syntactic` | `symbol` ~
-        '>>>': | `syntactic` | `symbol` ~
-        '>>>=': | `syntactic` | `symbol` ~
-        '|': | `syntactic` | `symbol` ~
-        '|=': | `syntactic` | `symbol` ~
-        '||': | `syntactic` | `symbol` ~
-        '||=': | `syntactic` | `symbol` ~
-        '~': | `syntactic` | `symbol` ~
-        // '"constructor"': | `semantic` ~
-        'Literal': | `semantic` ~
-        'Blob': | `semantic` ~
+        '--': ~
+        '-': ~
+        '-=': ~
+        ',': ~
+        ';': ~
+        ':': ~
+        '!': ~
+        '!=': ~
+        '!==': ~
+        '??': ~
+        '??=': ~
+        '?.': ~
+        '?': ~
+        '...': ~
+        '.': ~
+        '(': ~
+        ')': ~
+        '[': ~
+        ']': ~
+        '{': ~
+        '}': ~
+        '@': ~
+        '*': ~
+        '**': ~
+        '**=': ~
+        '*=': ~
+        '/': ~
+        '/=': ~
+        '&': ~
+        '&&': ~
+        '&&=': ~
+        '&=': ~
+        '%': ~
+        '%=': ~
+        '^': ~
+        '^=': ~
+        '+': ~
+        '++': ~
+        '+=': ~
+        '<': ~
+        '<<': ~
+        '<<=': ~
+        '<=': ~
+        '=': ~
+        '==': ~
+        '===': ~
+        '=>': ~
+        '>': ~
+        '>=': ~
+        '>>': ~
+        '>>=': ~
+        '>>>': ~
+        '>>>=': ~
+        '|': ~
+        '|=': ~
+        '||': ~
+        '||=': ~
+        '~': ~
+        'Literal': ~
+        'Blob': ~
+    }
+    `keywords`: {
+        'abstract': "Identifier"
+        'accessor': "Identifier"
+        'any': "Identifier"
+        'as': "Identifier"
+        'asserts': "Identifier"
+        'async': "Identifier"
+        'await': "Identifier"
+        'bigint': "Identifier"
+        'boolean': "Identifier"
+        'break': "Identifier"
+        'case': "Identifier"
+        'catch': "Identifier"
+        'class': "Identifier"
+        'const': "Identifier"
+        'constructor': "Identifier"
+        'continue': "Identifier"
+        'debugger': "Identifier"
+        'declare': "Identifier"
+        'default': "Identifier"
+        'defer': "Identifier"
+        'delete': "Identifier"
+        'do': "Identifier"
+        'else': "Identifier"
+        'enum': "Identifier"
+        'export': "Identifier"
+        'extends': "Identifier"
+        'false': "Identifier"
+        'finally': "Identifier"
+        'for': "Identifier"
+        'from': "Identifier"
+        'function': "Identifier"
+        'get': "Identifier"
+        'global': "Identifier"
+        'if': "Identifier"
+        'implements': "Identifier"
+        'import': "Identifier"
+        'in': "Identifier"
+        'infer': "Identifier"
+        'instanceof': "Identifier"
+        'interface': "Identifier"
+        'intrinsic': "Identifier"
+        'is': "Identifier"
+        'keyof': "Identifier"
+        'let': "Identifier"
+        'module': "Identifier"
+        'namespace': "Identifier"
+        'never': "Identifier"
+        'new': "Identifier"
+        'null': "Identifier"
+        'number': "Identifier"
+        'object': "Identifier"
+        'of': "Identifier"
+        'out': "Identifier"
+        'override': "Identifier"
+        'private': "Identifier"
+        'protected': "Identifier"
+        'public': "Identifier"
+        'readonly': "Identifier"
+        'require': "Identifier"
+        'return': "Identifier"
+        'satisfies': "Identifier"
+        'set': "Identifier"
+        'static': "Identifier"
+        'string': "Identifier"
+        'super': "Identifier"
+        'switch': "Identifier"
+        'symbol': "Identifier"
+        'this': "Identifier"
+        'throw': "Identifier"
+        'true': "Identifier"
+        'try': "Identifier"
+        'type': "Identifier"
+        'typeof': "Identifier"
+        'undefined': "Identifier"
+        'unique': "Identifier"
+        'unknown': "Identifier"
+        'using': "Identifier"
+        'var': "Identifier"
+        'void': "Identifier"
+        'while': "Identifier"
+        'with': "Identifier"
+        'yield': "Identifier"
+
     }
     `nonterminals`: {
         'Arguments': | `sequence` < {
-            'question dot token': | `optional` | `terminal reference` "?."
-            'type arguments': | `nonterminal reference` "Type Arguments"
-            'error recovery': | `nonterminal reference` "Error Recovery"
-            'open parenthesis token': | `terminal reference` "("
+            'question dot token': | `optional` | `terminal` "?."
+            'type arguments': | `nonterminal` "Type Arguments"
+            'error recovery': | `nonterminal` "Error Recovery"
+            'open parenthesis token': | `terminal` "("
             'arguments': | `repetition` < | `alternation` < {
-                'expression': | `nonterminal reference` "Expression"
+                'expression': | `nonterminal` "Expression"
                 'spread': | `sequence` < {
-                    'dot dot dot token': | `terminal reference` "..."
-                    'expression': | `nonterminal reference` "Expression"
+                    'dot dot dot token': | `terminal` "..."
+                    'expression': | `nonterminal` "Expression"
                 } >
             } > * < "," true > >
-            'close parenthesis token': | `terminal reference` ")"
+            'close parenthesis token': | `terminal` ")"
         } >
         'As Alias': | `sequence` < {
-            'as keyword': | `terminal reference` "as"
+            'as keyword': | `terminal` "as"
             'identifier': | `alternation` < {
-                'identifier': | `nonterminal reference` "Identifier"
-                'string literal': | `nonterminal reference` "String Literal"
+                'identifier': | `nonterminal` "Identifier"
+                'string literal': | `nonterminal` "String Literal"
             } >
         } >
         'Binding Pattern': | `sequence` < {
-            'jsdoc': | `nonterminal reference` "JSDoc"
+            'jsdoc': | `nonterminal` "JSDoc"
             'modifiers': | `optional` | `repetition` < | `alternation` < {
-                'async': | `terminal reference` "async"
-                'declare': | `terminal reference` "declare"
+                'async': | `terminal` "async"
+                'declare': | `terminal` "declare"
                 'decorator': | `sequence` < {
-                    'at token': | `terminal reference` "@"
-                    'expression': | `nonterminal reference` "Expression"
+                    'at token': | `terminal` "@"
+                    'expression': | `nonterminal` "Expression"
                 } >
-                'export': | `terminal reference` "export"
-                'override': | `terminal reference` "override"
-                'private': | `terminal reference` "private"
-                'protected': | `terminal reference` "protected"
-                'public': | `terminal reference` "public"
-                'readonly': | `terminal reference` "readonly"
-                'static': | `terminal reference` "static"
+                'export': | `terminal` "export"
+                'override': | `terminal` "override"
+                'private': | `terminal` "private"
+                'protected': | `terminal` "protected"
+                'public': | `terminal` "public"
+                'readonly': | `terminal` "readonly"
+                'static': | `terminal` "static"
             } > _ >
-            'dot dot dot token': | `optional` | `terminal reference` "..."
+            'dot dot dot token': | `optional` | `terminal` "..."
             'type': | `alternation` < {
                 'array binding pattern': | `sequence` < {
-                    'open bracket token': | `terminal reference` "["
+                    'open bracket token': | `terminal` "["
                     'elements': | `repetition` < | `optional` | `sequence` < {
-                        'dot dot dot token': | `optional` | `terminal reference` "..."
-                        'name': | `nonterminal reference` "Binding Pattern"
-                        'initializer': | `nonterminal reference` "Optional Initializer"
+                        'dot dot dot token': | `optional` | `terminal` "..."
+                        'name': | `nonterminal` "Binding Pattern"
+                        'initializer': | `nonterminal` "Optional Initializer"
                     } > * < "," true > >
-                    'close bracket token': | `terminal reference` "]"
+                    'close bracket token': | `terminal` "]"
                 } >
-                'identifier': | `nonterminal reference` "Identifier"
-                'number keyword': | `terminal reference` "number"
+                'identifier': | `nonterminal` "Identifier"
+                'number keyword': | `terminal` "number"
                 'object binding pattern': | `sequence` < {
-                    'open brace token': | `terminal reference` "{"
+                    'open brace token': | `terminal` "{"
                     'elements': | `repetition` < | `sequence` < {
-                        'dot dot dot token': | `optional` | `terminal reference` "..."
-                        'property name': | `nonterminal reference` "Property Name"
+                        'dot dot dot token': | `optional` | `terminal` "..."
+                        'property name': | `nonterminal` "Property Name"
                         'binding': | `optional` | `sequence` < {
-                            'colon token': | `terminal reference` ":"
-                            'pattern': | `nonterminal reference` "Binding Pattern"
+                            'colon token': | `terminal` ":"
+                            'pattern': | `nonterminal` "Binding Pattern"
                         } >
-                        'initializer': | `nonterminal reference` "Optional Initializer"
+                        'initializer': | `nonterminal` "Optional Initializer"
                     } > * < "," true > >
-                    'close brace token': | `terminal reference` "}"
+                    'close brace token': | `terminal` "}"
                 } >
-                'string keyword': | `terminal reference` "string"
+                'string keyword': | `terminal` "string"
             } >
         } >
         'Block': | `sequence` < {
-            'jsdoc': | `nonterminal reference` "JSDoc"
-            'open brace token': | `terminal reference` "{"
-            'statements': | `nonterminal reference` "Statements"
-            'close brace token': | `terminal reference` "}"
+            'jsdoc': | `nonterminal` "JSDoc"
+            'open brace token': | `terminal` "{"
+            'statements': | `nonterminal` "Statements"
+            'close brace token': | `terminal` "}"
         } >
         'Class': | `sequence` < {
-            'jsdoc': | `nonterminal reference` "JSDoc"
+            'jsdoc': | `nonterminal` "JSDoc"
             'modifiers': | `optional` | `repetition` < | `alternation` < {
-                'abstract': | `terminal reference` "abstract"
-                'declare': | `terminal reference` "declare"
+                'abstract': | `terminal` "abstract"
+                'declare': | `terminal` "declare"
                 'decorator': | `sequence` < {
-                    'at token': | `terminal reference` "@"
-                    'expression': | `nonterminal reference` "Expression"
+                    'at token': | `terminal` "@"
+                    'expression': | `nonterminal` "Expression"
                 } >
             } > _ >
-            'class keyword': | `terminal reference` "class"
-            'identifier': | `optional` | `nonterminal reference` "Identifier"
-            'type parameters': | `nonterminal reference` "Type Parameters"
-            'heritage': | `nonterminal reference` "Heritage"
-            'body': | `nonterminal reference` "Class Body"
+            'class keyword': | `terminal` "class"
+            'identifier': | `optional` | `nonterminal` "Identifier"
+            'type parameters': | `nonterminal` "Type Parameters"
+            'heritage': | `nonterminal` "Heritage"
+            'body': | `nonterminal` "Class Body"
         } >
         'Class Body': | `sequence` < {
-            'open brace token': | `terminal reference` "{"
+            'open brace token': | `terminal` "{"
             'members': | `repetition` < | `alternation` < {
                 'constructor': | `sequence` < {
-                    'jsdoc': | `nonterminal reference` "JSDoc"
-                    'modifiers': | `nonterminal reference` "Signature Modifiers"
+                    'jsdoc': | `nonterminal` "JSDoc"
+                    'modifiers': | `nonterminal` "Signature Modifiers"
                     'constructor keyword': | `alternation` < {
-                        'constructor keyword': | `terminal reference` "constructor"
-                        'constructor keyword as string literal': | `terminal reference` "\"constructor\""
+                        'constructor keyword': | `terminal` "constructor"
+                        'constructor keyword as string literal': | `terminal` "\"constructor\""
                     } >
-                    'type parameters': | `nonterminal reference` "Type Parameters"
-                    'parameters': | `nonterminal reference` "Parameters"
-                    'return type': | `nonterminal reference` "Return Type Annotation"
-                    'body': | `optional` | `nonterminal reference` "Block"
-                    'semicolon': | `nonterminal reference` "Semi Colon"
+                    'type parameters': | `nonterminal` "Type Parameters"
+                    'parameters': | `nonterminal` "Parameters"
+                    'return type': | `nonterminal` "Return Type Annotation"
+                    'body': | `optional` | `nonterminal` "Block"
+                    'semicolon': | `nonterminal` "Semi Colon"
                 } >
                 'get accessor': | `sequence` < {
-                    'jsdoc': | `nonterminal reference` "JSDoc"
-                    'modifiers': | `nonterminal reference` "Signature Modifiers"
-                    'get keyword': | `terminal reference` "get"
-                    'name': | `nonterminal reference` "Property Name"
-                    'type parameters': | `nonterminal reference` "Type Parameters"
-                    'parameters': | `nonterminal reference` "Parameters"
-                    'return type': | `nonterminal reference` "Return Type Annotation"
-                    'body': | `optional` | `nonterminal reference` "Block"
-                    'semicolon': | `nonterminal reference` "Semi Colon"
+                    'jsdoc': | `nonterminal` "JSDoc"
+                    'modifiers': | `nonterminal` "Signature Modifiers"
+                    'get keyword': | `terminal` "get"
+                    'name': | `nonterminal` "Property Name"
+                    'type parameters': | `nonterminal` "Type Parameters"
+                    'parameters': | `nonterminal` "Parameters"
+                    'return type': | `nonterminal` "Return Type Annotation"
+                    'body': | `optional` | `nonterminal` "Block"
+                    'semicolon': | `nonterminal` "Semi Colon"
                 } >
                 'index signature': | `sequence` < {
-                    'jsdoc': | `nonterminal reference` "JSDoc"
-                    'modifiers': | `nonterminal reference` "Signature Modifiers"
-                    'open bracket token': | `terminal reference` "["
+                    'jsdoc': | `nonterminal` "JSDoc"
+                    'modifiers': | `nonterminal` "Signature Modifiers"
+                    'open bracket token': | `terminal` "["
                     'parameter': | `repetition` < | `sequence` < {
-                        'jsdoc': | `nonterminal reference` "JSDoc"
-                        'modifiers': | `nonterminal reference` "Signature Modifiers"
-                        'dot dot dot token': | `optional` | `terminal reference` "..."
-                        'identifier': | `nonterminal reference` "Identifier"
-                        'question token': | `optional` | `terminal reference` "?"
+                        'jsdoc': | `nonterminal` "JSDoc"
+                        'modifiers': | `nonterminal` "Signature Modifiers"
+                        'dot dot dot token': | `optional` | `terminal` "..."
+                        'identifier': | `nonterminal` "Identifier"
+                        'question token': | `optional` | `terminal` "?"
                         'annotation': | `optional` | `sequence` < {
-                            'colon token': | `terminal reference` ":"
-                            'type': | `nonterminal reference` "Type"
+                            'colon token': | `terminal` ":"
+                            'type': | `nonterminal` "Type"
                         } >
-                        'initializer': | `nonterminal reference` "Optional Initializer"
+                        'initializer': | `nonterminal` "Optional Initializer"
                     } > * < "," false > >
-                    'close bracket token': | `terminal reference` "]"
-                    'return type': | `nonterminal reference` "Return Type Annotation"
-                    'semicolon': | `nonterminal reference` "Semi Colon"
-                    'comma': | `optional` | `terminal reference` ","
+                    'close bracket token': | `terminal` "]"
+                    'return type': | `nonterminal` "Return Type Annotation"
+                    'semicolon': | `nonterminal` "Semi Colon"
+                    'comma': | `optional` | `terminal` ","
                 } >
                 'method': | `sequence` < {
-                    'jsdoc': | `nonterminal reference` "JSDoc"
-                    'modifiers': | `nonterminal reference` "Signature Modifiers"
-                    'asterisk token': | `optional` | `terminal reference` "*"
-                    'name': | `nonterminal reference` "Property Name"
-                    'question token': | `optional` | `terminal reference` "?"
-                    'type parameters': | `nonterminal reference` "Type Parameters"
-                    'parameters': | `nonterminal reference` "Parameters"
-                    'return type': | `nonterminal reference` "Return Type Annotation"
-                    'body': | `optional` | `nonterminal reference` "Block"
-                    'semicolon': | `nonterminal reference` "Semi Colon"
+                    'jsdoc': | `nonterminal` "JSDoc"
+                    'modifiers': | `nonterminal` "Signature Modifiers"
+                    'asterisk token': | `optional` | `terminal` "*"
+                    'name': | `nonterminal` "Property Name"
+                    'question token': | `optional` | `terminal` "?"
+                    'type parameters': | `nonterminal` "Type Parameters"
+                    'parameters': | `nonterminal` "Parameters"
+                    'return type': | `nonterminal` "Return Type Annotation"
+                    'body': | `optional` | `nonterminal` "Block"
+                    'semicolon': | `nonterminal` "Semi Colon"
                 } >
                 'property': | `sequence` < {
-                    'jsdoc': | `nonterminal reference` "JSDoc"
-                    'modifiers': | `nonterminal reference` "Signature Modifiers"
-                    'name': | `nonterminal reference` "Property Name"
-                    'question token': | `optional` | `terminal reference` "?"
-                    'exclamation token': | `optional` | `terminal reference` "!"
-                    'type': | `nonterminal reference` "Optional Type"
-                    'initializer': | `nonterminal reference` "Optional Initializer"
-                    'semicolon': | `nonterminal reference` "Semi Colon"
+                    'jsdoc': | `nonterminal` "JSDoc"
+                    'modifiers': | `nonterminal` "Signature Modifiers"
+                    'name': | `nonterminal` "Property Name"
+                    'question token': | `optional` | `terminal` "?"
+                    'exclamation token': | `optional` | `terminal` "!"
+                    'type': | `nonterminal` "Optional Type"
+                    'initializer': | `nonterminal` "Optional Initializer"
+                    'semicolon': | `nonterminal` "Semi Colon"
                 } >
                 'semicolon element': | `sequence` < {
-                    'jsdoc': | `nonterminal reference` "JSDoc"
+                    'jsdoc': | `nonterminal` "JSDoc"
                 } >
                 'set accessor': | `sequence` < {
-                    'jsdoc': | `nonterminal reference` "JSDoc"
-                    'modifiers': | `nonterminal reference` "Signature Modifiers"
-                    'set keyword': | `terminal reference` "set"
-                    'name': | `nonterminal reference` "Property Name"
-                    'type parameters': | `nonterminal reference` "Type Parameters"
-                    'parameters': | `nonterminal reference` "Parameters"
-                    'return type': | `nonterminal reference` "Return Type Annotation"
-                    'body': | `optional` | `nonterminal reference` "Block"
-                    'semicolon': | `nonterminal reference` "Semi Colon"
+                    'jsdoc': | `nonterminal` "JSDoc"
+                    'modifiers': | `nonterminal` "Signature Modifiers"
+                    'set keyword': | `terminal` "set"
+                    'name': | `nonterminal` "Property Name"
+                    'type parameters': | `nonterminal` "Type Parameters"
+                    'parameters': | `nonterminal` "Parameters"
+                    'return type': | `nonterminal` "Return Type Annotation"
+                    'body': | `optional` | `nonterminal` "Block"
+                    'semicolon': | `nonterminal` "Semi Colon"
                 } >
                 'static block': | `sequence` < {
-                    'modifiers': | `nonterminal reference` "Statement Modifiers"
-                    'static keyword': | `terminal reference` "static"
-                    'body': | `nonterminal reference` "Block"
+                    'modifiers': | `nonterminal` "Statement Modifiers"
+                    'static keyword': | `terminal` "static"
+                    'body': | `nonterminal` "Block"
                 } >
             } > _ >
-            'close brace token': | `terminal reference` "}"
+            'close brace token': | `terminal` "}"
         } >
         'Entity Name': | `alternation` < {
-            'identifier': | `nonterminal reference` "Identifier"
-            'qualified name': | `nonterminal reference` "Qualified Name"
+            'identifier': | `nonterminal` "Identifier"
+            'qualified name': | `nonterminal` "Qualified Name"
         } >
         'Error Recovery': | `optional` | `sequence` < {
-            'entries': | `repetition` < | `nonterminal reference` "Type" * < "," false > >
-            'greater than token': | `optional` | `terminal reference` ">"
+            'entries': | `repetition` < | `nonterminal` "Type" * < "," false > >
+            'greater than token': | `optional` | `terminal` ">"
         } >
         'Expression': | `alternation` < {
             'array literal': | `sequence` < {
-                'open bracket token': | `terminal reference` "["
-                'elements': | `repetition` < | `optional` | `nonterminal reference` "Expression" * < "," true > >
-                'close bracket token': | `terminal reference` "]"
+                'open bracket token': | `terminal` "["
+                'elements': | `repetition` < | `optional` | `nonterminal` "Expression" * < "," true > >
+                'close bracket token': | `terminal` "]"
             } >
             'arrow function': | `sequence` < {
-                'jsdoc': | `nonterminal reference` "JSDoc"
+                'jsdoc': | `nonterminal` "JSDoc"
                 'parameters': | `alternation` < {
                     'with parentheses': | `sequence` < {
-                        'type parameters': | `nonterminal reference` "Type Parameters"
-                        'parameters': | `nonterminal reference` "Parameters"
+                        'type parameters': | `nonterminal` "Type Parameters"
+                        'parameters': | `nonterminal` "Parameters"
                     } >
                     'without parentheses': | `sequence` < {
                         'parameter': | `sequence` < {
-                            'jsdoc': | `nonterminal reference` "JSDoc"
-                            'name': | `nonterminal reference` "Binding Pattern"
-                            'type': | `nonterminal reference` "Optional Type"
+                            'jsdoc': | `nonterminal` "JSDoc"
+                            'name': | `nonterminal` "Binding Pattern"
+                            'type': | `nonterminal` "Optional Type"
                         } >
                     } >
                 } >
-                'type': | `nonterminal reference` "Return Type Annotation"
-                'equals greater than token': | `terminal reference` "=>"
+                'type': | `nonterminal` "Return Type Annotation"
+                'equals greater than token': | `terminal` "=>"
                 'body': | `alternation` < {
-                    'block': | `nonterminal reference` "Block"
-                    'expression': | `nonterminal reference` "Expression"
+                    'block': | `nonterminal` "Block"
+                    'expression': | `nonterminal` "Expression"
                 } >
             } >
             'assertion': | `sequence` < {
-                'less than token': | `terminal reference` "<"
-                'type': | `nonterminal reference` "Type"
-                'greater than token': | `terminal reference` ">"
-                'expression': | `nonterminal reference` "Expression"
+                'less than token': | `terminal` "<"
+                'type': | `nonterminal` "Type"
+                'greater than token': | `terminal` ">"
+                'expression': | `nonterminal` "Expression"
             } >
             'as expression': | `sequence` < {
-                'expression': | `nonterminal reference` "Expression"
-                'as keyword': | `terminal reference` "as"
-                'type': | `nonterminal reference` "Type"
+                'expression': | `nonterminal` "Expression"
+                'as keyword': | `terminal` "as"
+                'type': | `nonterminal` "Type"
             } >
             'await': | `sequence` < {
-                'await keyword': | `terminal reference` "await"
-                'expression': | `nonterminal reference` "Expression"
+                'await keyword': | `terminal` "await"
+                'expression': | `nonterminal` "Expression"
             } >
-            'big int literal': | `terminal reference` "Literal"
+            'big int literal': | `terminal` "Literal"
             'binary': | `sequence` < {
-                'left': | `nonterminal reference` "Expression"
+                'left': | `nonterminal` "Expression"
                 'operator token': | `alternation` < {
-                    '^': | `terminal reference` "^"
-                    '^=': | `terminal reference` "^="
-                    '-': | `terminal reference` "-"
-                    '-=': | `terminal reference` "-="
-                    '!=': | `terminal reference` "!="
-                    '!==': | `terminal reference` "!=="
-                    '??': | `terminal reference` "??"
-                    '??=': | `terminal reference` "??="
-                    '*': | `terminal reference` "*"
-                    '**': | `terminal reference` "**"
-                    '**=': | `terminal reference` "**="
-                    '*=': | `terminal reference` "*="
-                    '/': | `terminal reference` "/"
-                    '/=': | `terminal reference` "/="
-                    '&': | `terminal reference` "&"
-                    '&=': | `terminal reference` "&="
-                    '&&': | `terminal reference` "&&"
-                    '&&=': | `terminal reference` "&&="
-                    '%': | `terminal reference` "%"
-                    '%=': | `terminal reference` "%="
-                    '+': | `terminal reference` "+"
-                    '+=': | `terminal reference` "+="
-                    '<': | `terminal reference` "<"
-                    '<<': | `terminal reference` "<<"
-                    '<<=': | `terminal reference` "<<="
-                    '<=': | `terminal reference` "<="
-                    '=': | `terminal reference` "="
-                    '==': | `terminal reference` "=="
-                    '===': | `terminal reference` "==="
-                    '>': | `terminal reference` ">"
-                    '>=': | `terminal reference` ">="
-                    '>>': | `terminal reference` ">>"
-                    '>>=': | `terminal reference` ">>="
-                    '>>>=': | `terminal reference` ">>>="
-                    '>>>': | `terminal reference` ">>>"
-                    '|': | `terminal reference` "|"
-                    '|=': | `terminal reference` "|="
-                    '||': | `terminal reference` "||"
-                    '||=': | `terminal reference` "||="
-                    'in': | `terminal reference` "in"
-                    'instanceof': | `terminal reference` "instanceof"
-                    ',': | `terminal reference` ","
+                    '^': | `terminal` "^"
+                    '^=': | `terminal` "^="
+                    '-': | `terminal` "-"
+                    '-=': | `terminal` "-="
+                    '!=': | `terminal` "!="
+                    '!==': | `terminal` "!=="
+                    '??': | `terminal` "??"
+                    '??=': | `terminal` "??="
+                    '*': | `terminal` "*"
+                    '**': | `terminal` "**"
+                    '**=': | `terminal` "**="
+                    '*=': | `terminal` "*="
+                    '/': | `terminal` "/"
+                    '/=': | `terminal` "/="
+                    '&': | `terminal` "&"
+                    '&=': | `terminal` "&="
+                    '&&': | `terminal` "&&"
+                    '&&=': | `terminal` "&&="
+                    '%': | `terminal` "%"
+                    '%=': | `terminal` "%="
+                    '+': | `terminal` "+"
+                    '+=': | `terminal` "+="
+                    '<': | `terminal` "<"
+                    '<<': | `terminal` "<<"
+                    '<<=': | `terminal` "<<="
+                    '<=': | `terminal` "<="
+                    '=': | `terminal` "="
+                    '==': | `terminal` "=="
+                    '===': | `terminal` "==="
+                    '>': | `terminal` ">"
+                    '>=': | `terminal` ">="
+                    '>>': | `terminal` ">>"
+                    '>>=': | `terminal` ">>="
+                    '>>>=': | `terminal` ">>>="
+                    '>>>': | `terminal` ">>>"
+                    '|': | `terminal` "|"
+                    '|=': | `terminal` "|="
+                    '||': | `terminal` "||"
+                    '||=': | `terminal` "||="
+                    'in': | `terminal` "in"
+                    'instanceof': | `terminal` "instanceof"
+                    ',': | `terminal` ","
                 } >
-                'right': | `nonterminal reference` "Expression"
+                'right': | `nonterminal` "Expression"
             } >
             'call': | `sequence` < {
                 'callee': | `alternation` < {
-                    'import': | `terminal reference` "import"
-                    'expression': | `nonterminal reference` "Expression"
-                    'super': | `terminal reference` "super"
+                    'import': | `terminal` "import"
+                    'expression': | `nonterminal` "Expression"
+                    'super': | `terminal` "super"
                 } >
-                'type arguments': | `nonterminal reference` "Type Arguments"
-                'arguments': | `nonterminal reference` "Arguments"
+                'type arguments': | `nonterminal` "Type Arguments"
+                'arguments': | `nonterminal` "Arguments"
             } >
-            'class': | `nonterminal reference` "Class"
+            'class': | `nonterminal` "Class"
             'conditional': | `sequence` < {
-                'condition': | `nonterminal reference` "Expression"
-                'question token': | `terminal reference` "?"
-                'when true': | `nonterminal reference` "Expression"
-                'colon token': | `terminal reference` ":"
-                'when false': | `nonterminal reference` "Expression"
+                'condition': | `nonterminal` "Expression"
+                'question token': | `terminal` "?"
+                'when true': | `nonterminal` "Expression"
+                'colon token': | `terminal` ":"
+                'when false': | `nonterminal` "Expression"
             } >
             'delete': | `sequence` < {
-                'delete keyword': | `terminal reference` "delete"
-                'expression': | `nonterminal reference` "Expression"
+                'delete keyword': | `terminal` "delete"
+                'expression': | `nonterminal` "Expression"
             } >
             'element access': | `sequence` < {
-                'expression': | `nonterminal reference` "Expression"
-                'question dot token': | `optional` | `terminal reference` "?."
-                'open bracket token': | `terminal reference` "["
-                'argument expression': | `nonterminal reference` "Expression"
-                'close bracket token': | `terminal reference` "]"
+                'expression': | `nonterminal` "Expression"
+                'question dot token': | `optional` | `terminal` "?."
+                'open bracket token': | `terminal` "["
+                'argument expression': | `nonterminal` "Expression"
+                'close bracket token': | `terminal` "]"
             } >
             'external module reference': | `sequence` < {
-                'require keyword': | `terminal reference` "require"
-                'open parenthesis token': | `terminal reference` "("
-                'module name': | `nonterminal reference` "String Literal"
-                'close parenthesis token': | `terminal reference` ")"
+                'require keyword': | `terminal` "require"
+                'open parenthesis token': | `terminal` "("
+                'module name': | `nonterminal` "String Literal"
+                'close parenthesis token': | `terminal` ")"
             } >
-            'false keyword': | `terminal reference` "false"
+            'false keyword': | `terminal` "false"
             'function': | `sequence` < {
-                'jsdoc': | `nonterminal reference` "JSDoc"
-                'modifiers': | `optional` | `repetition` < | `terminal reference` "async" _ >
-                'function keyword': | `terminal reference` "function"
-                'asterisk token': | `optional` | `terminal reference` "*"
-                'name': | `optional` | `nonterminal reference` "Identifier"
-                'type parameters': | `nonterminal reference` "Type Parameters"
-                'parameters': | `nonterminal reference` "Parameters"
-                'return type': | `nonterminal reference` "Return Type Annotation"
-                'body': | `nonterminal reference` "Block"
+                'jsdoc': | `nonterminal` "JSDoc"
+                'modifiers': | `optional` | `repetition` < | `terminal` "async" _ >
+                'function keyword': | `terminal` "function"
+                'asterisk token': | `optional` | `terminal` "*"
+                'name': | `optional` | `nonterminal` "Identifier"
+                'type parameters': | `nonterminal` "Type Parameters"
+                'parameters': | `nonterminal` "Parameters"
+                'return type': | `nonterminal` "Return Type Annotation"
+                'body': | `nonterminal` "Block"
             } >
-            'identifier': | `nonterminal reference` "Identifier"
-            'import keyword': | `terminal reference` "import"
-            'jsdoc': | `terminal reference` "Blob"
+            'identifier': | `nonterminal` "Identifier"
+            'import keyword': | `terminal` "import"
+            'jsdoc': | `terminal` "Blob"
             'meta property': | `sequence` < {
                 'new keyword': | `alternation` < {
-                    'new keyword': | `terminal reference` "new"
-                    'import keyword': | `terminal reference` "import"
+                    'new keyword': | `terminal` "new"
+                    'import keyword': | `terminal` "import"
                 } >
-                'dot token': | `terminal reference` "."
-                'identifier': | `nonterminal reference` "Identifier"
+                'dot token': | `terminal` "."
+                'identifier': | `nonterminal` "Identifier"
             } >
             'new': | `sequence` < {
-                'new keyword': | `terminal reference` "new"
-                'expression': | `nonterminal reference` "Expression"
-                'arguments': | `optional` | `nonterminal reference` "Arguments"
+                'new keyword': | `terminal` "new"
+                'expression': | `nonterminal` "Expression"
+                'arguments': | `optional` | `nonterminal` "Arguments"
             } >
-            'no substitution template literal': | `terminal reference` "Literal"
+            'no substitution template literal': | `terminal` "Literal"
             'non null': | `sequence` < {
-                'expression': | `nonterminal reference` "Expression"
-                'exclamation token': | `terminal reference` "!"
+                'expression': | `nonterminal` "Expression"
+                'exclamation token': | `terminal` "!"
             } >
-            'null keyword': | `terminal reference` "null"
-            'numeric literal': | `terminal reference` "Literal"
+            'null keyword': | `terminal` "null"
+            'numeric literal': | `terminal` "Literal"
             'object literal': | `sequence` < {
-                'open brace token': | `terminal reference` "{"
+                'open brace token': | `terminal` "{"
                 'properties': | `repetition` < | `alternation` < {
                             'property': | `sequence` < {
-                                'jsdoc': | `nonterminal reference` "JSDoc"
-                                'name': | `nonterminal reference` "Property Name"
-                                'question token': | `optional` | `terminal reference` "?"
-                                'colon token': | `terminal reference` ":"
-                                'initializer': | `nonterminal reference` "Expression"
+                                'jsdoc': | `nonterminal` "JSDoc"
+                                'name': | `nonterminal` "Property Name"
+                                'question token': | `optional` | `terminal` "?"
+                                'colon token': | `terminal` ":"
+                                'initializer': | `nonterminal` "Expression"
                             } >
                             'shorthand property': | `sequence` < {
-                                'jsdoc': | `nonterminal reference` "JSDoc"
-                                'name': | `nonterminal reference` "Identifier"
+                                'jsdoc': | `nonterminal` "JSDoc"
+                                'name': | `nonterminal` "Identifier"
                                 'initializer': | `optional` | `sequence` < {
-                                    'equals token': | `terminal reference` "="
-                                    'expression': | `nonterminal reference` "Expression"
+                                    'equals token': | `terminal` "="
+                                    'expression': | `nonterminal` "Expression"
                                 } >
-                                'question token': | `optional` | `terminal reference` "?"
-                                'exclamation token': | `optional` | `terminal reference` "!"
+                                'question token': | `optional` | `terminal` "?"
+                                'exclamation token': | `optional` | `terminal` "!"
                             } >
                             'method': | `sequence` < {
-                                'jsdoc': | `nonterminal reference` "JSDoc"
-                                'modifiers': | `nonterminal reference` "Signature Modifiers"
-                                'asterisk token': | `optional` | `terminal reference` "*"
-                                'name': | `nonterminal reference` "Property Name"
-                                'question token': | `optional` | `terminal reference` "?"
-                                'exclamation token': | `optional` | `terminal reference` "!"
-                                'type parameters': | `nonterminal reference` "Type Parameters"
-                                'parameters': | `nonterminal reference` "Parameters"
-                                'return type': | `nonterminal reference` "Return Type Annotation"
-                                'body': | `optional` | `nonterminal reference` "Block"
-                                'semicolon': | `nonterminal reference` "Semi Colon"
+                                'jsdoc': | `nonterminal` "JSDoc"
+                                'modifiers': | `nonterminal` "Signature Modifiers"
+                                'asterisk token': | `optional` | `terminal` "*"
+                                'name': | `nonterminal` "Property Name"
+                                'question token': | `optional` | `terminal` "?"
+                                'exclamation token': | `optional` | `terminal` "!"
+                                'type parameters': | `nonterminal` "Type Parameters"
+                                'parameters': | `nonterminal` "Parameters"
+                                'return type': | `nonterminal` "Return Type Annotation"
+                                'body': | `optional` | `nonterminal` "Block"
+                                'semicolon': | `nonterminal` "Semi Colon"
                             } >
                             'spread': | `sequence` < {
-                                'dot dot dot token': | `terminal reference` "..."
-                                'expression': | `nonterminal reference` "Expression"
+                                'dot dot dot token': | `terminal` "..."
+                                'expression': | `nonterminal` "Expression"
                             } >
                             'get accessor': | `sequence` < {
-                                'jsdoc': | `nonterminal reference` "JSDoc"
-                                'modifiers': | `nonterminal reference` "Signature Modifiers"
-                                'get keyword': | `terminal reference` "get"
-                                'name': | `nonterminal reference` "Property Name"
-                                'parameters': | `nonterminal reference` "Parameters"
-                                'return type': | `nonterminal reference` "Return Type Annotation"
-                                'body': | `optional` | `nonterminal reference` "Block"
+                                'jsdoc': | `nonterminal` "JSDoc"
+                                'modifiers': | `nonterminal` "Signature Modifiers"
+                                'get keyword': | `terminal` "get"
+                                'name': | `nonterminal` "Property Name"
+                                'parameters': | `nonterminal` "Parameters"
+                                'return type': | `nonterminal` "Return Type Annotation"
+                                'body': | `optional` | `nonterminal` "Block"
                             } >
                             'set accessor': | `sequence` < {
-                                'jsdoc': | `nonterminal reference` "JSDoc"
-                                'set keyword': | `terminal reference` "set"
-                                'name': | `nonterminal reference` "Property Name"
-                                'parameters': | `nonterminal reference` "Parameters"
-                                'return type': | `nonterminal reference` "Return Type Annotation"
-                                'body': | `optional` | `nonterminal reference` "Block"
+                                'jsdoc': | `nonterminal` "JSDoc"
+                                'set keyword': | `terminal` "set"
+                                'name': | `nonterminal` "Property Name"
+                                'parameters': | `nonterminal` "Parameters"
+                                'return type': | `nonterminal` "Return Type Annotation"
+                                'body': | `optional` | `nonterminal` "Block"
                             } >
                 } > * < "," true > >
-                'close brace token': | `terminal reference` "}"
+                'close brace token': | `terminal` "}"
             } >
-            'omitted expression': | `terminal reference` ","
+            'omitted expression': | `terminal` ","
             'parenthesized': | `sequence` < {
-                'jsdoc': | `nonterminal reference` "JSDoc"
-                'open parenthesis token': | `terminal reference` "("
-                'expression': | `nonterminal reference` "Expression"
-                'close parenthesis token': | `terminal reference` ")"
+                'jsdoc': | `nonterminal` "JSDoc"
+                'open parenthesis token': | `terminal` "("
+                'expression': | `nonterminal` "Expression"
+                'close parenthesis token': | `terminal` ")"
             } >
             'postfix unary': | `sequence` < {
-                'operand': | `nonterminal reference` "Expression"
+                'operand': | `nonterminal` "Expression"
                 'operator token': | `alternation` < {
-                    '--': | `terminal reference` "--"
-                    '++': | `terminal reference` "++"
+                    '--': | `terminal` "--"
+                    '++': | `terminal` "++"
                 } >
             } >
             'prefix unary': | `sequence` < {
                 'operator token': | `alternation` < {
-                    '--': | `terminal reference` "--"
-                    '-': | `terminal reference` "-"
-                    '!': | `terminal reference` "!"
-                    '+': | `terminal reference` "+"
-                    '++': | `terminal reference` "++"
-                    '~': | `terminal reference` "~"
+                    '--': | `terminal` "--"
+                    '-': | `terminal` "-"
+                    '!': | `terminal` "!"
+                    '+': | `terminal` "+"
+                    '++': | `terminal` "++"
+                    '~': | `terminal` "~"
                 } >
-                'operand': | `nonterminal reference` "Expression"
+                'operand': | `nonterminal` "Expression"
             } >
-            'private identifier': | `terminal reference` "Literal"
+            'private identifier': | `terminal` "Literal"
             'property access': | `sequence` < {
-                'expression': | `nonterminal reference` "Expression"
+                'expression': | `nonterminal` "Expression"
                 'dot token': | `alternation` < {
-                    '.': | `terminal reference` "."
-                    '?.': | `terminal reference` "?."
+                    '.': | `terminal` "."
+                    '?.': | `terminal` "?."
                 } >
                 'identifier': | `alternation` < {
-                    'named': | `nonterminal reference` "Identifier"
-                    'private': | `nonterminal reference` "Identifier"
+                    'named': | `nonterminal` "Identifier"
+                    'private': | `nonterminal` "Identifier"
                 } >
             } >
-            'qualified name': | `nonterminal reference` "Qualified Name"
-            'regular expression literal': | `terminal reference` "Literal"
+            'qualified name': | `nonterminal` "Qualified Name"
+            'regular expression literal': | `terminal` "Literal"
             'satisfies': | `sequence` < {
-                'expression': | `nonterminal reference` "Expression"
-                'satisfies keyword': | `terminal reference` "satisfies"
-                'type': | `nonterminal reference` "Type"
+                'expression': | `nonterminal` "Expression"
+                'satisfies keyword': | `terminal` "satisfies"
+                'type': | `nonterminal` "Type"
             } >
-            'string literal': | `nonterminal reference` "String Literal"
-            'super': | `terminal reference` "super"
+            'string literal': | `nonterminal` "String Literal"
+            'super': | `terminal` "super"
             'tagged template': | `sequence` < {
-                'tag': | `nonterminal reference` "Expression"
-                'question dot token': | `optional` | `terminal reference` "?."
-                'type arguments': | `nonterminal reference` "Type Arguments"
+                'tag': | `nonterminal` "Expression"
+                'question dot token': | `optional` | `terminal` "?."
+                'type arguments': | `nonterminal` "Type Arguments"
                 'template': | `alternation` < {
-                    'no substitution template literal': | `terminal reference` "Literal"
+                    'no substitution template literal': | `terminal` "Literal"
                     'template': | `sequence` < {
-                        'head': | `terminal reference` "Literal"
+                        'head': | `terminal` "Literal"
                         'template spans': | `repetition` < | `sequence` < {
-                            'expression': | `nonterminal reference` "Expression"
+                            'expression': | `nonterminal` "Expression"
                             'suffix': | `alternation` < {
-                                'middle': | `terminal reference` "Literal"
-                                'tail': | `terminal reference` "Literal"
+                                'middle': | `terminal` "Literal"
+                                'tail': | `terminal` "Literal"
                             } >
                         } > _ >
                     } >
                 } >
             } >
             'template': | `sequence` < {
-                'head': | `terminal reference` "Literal"
+                'head': | `terminal` "Literal"
                 'template spans': | `repetition` < | `sequence` < {
-                    'expression': | `nonterminal reference` "Expression"
+                    'expression': | `nonterminal` "Expression"
                     'suffix': | `alternation` < {
-                        'middle': | `terminal reference` "Literal"
-                        'tail': | `terminal reference` "Literal"
+                        'middle': | `terminal` "Literal"
+                        'tail': | `terminal` "Literal"
                     } >
                 } > _ >
             } >
-            'this': | `terminal reference` "this"
-            'true keyword': | `terminal reference` "true"
+            'this': | `terminal` "this"
+            'true keyword': | `terminal` "true"
             'type of': | `sequence` < {
-                'type of keyword': | `terminal reference` "typeof"
-                'expression': | `nonterminal reference` "Expression"
+                'type of keyword': | `terminal` "typeof"
+                'expression': | `nonterminal` "Expression"
             } >
             'void': | `sequence` < {
-                'void keyword': | `terminal reference` "void"
+                'void keyword': | `terminal` "void"
             } >
             'yield': | `sequence` < {
-                'yield keyword': | `terminal reference` "yield"
-                'asterisk token': | `optional` | `terminal reference` "*"
-                'expression': | `optional` | `nonterminal reference` "Expression"
+                'yield keyword': | `terminal` "yield"
+                'asterisk token': | `optional` | `terminal` "*"
+                'expression': | `optional` | `nonterminal` "Expression"
             } >
             'spread element': | `sequence` < {
-                'dot dot dot token': | `terminal reference` "..."
-                'expression': | `nonterminal reference` "Expression"
+                'dot dot dot token': | `terminal` "..."
+                'expression': | `nonterminal` "Expression"
             } >
-            'with type arguments': | `nonterminal reference` "Expression With Type Arguments"
+            'with type arguments': | `nonterminal` "Expression With Type Arguments"
         } >
         'Expression With Type Arguments': | `sequence` < {
-            'expression': | `nonterminal reference` "Expression"
-            'type arguments': | `nonterminal reference` "Type Arguments"
+            'expression': | `nonterminal` "Expression"
+            'type arguments': | `nonterminal` "Type Arguments"
         } >
         'Heritage': | `optional` | `repetition` < | `sequence` < {
             'extends or implements keyword': | `alternation` < {
-                'extends': | `terminal reference` "extends"
-                'implements': | `terminal reference` "implements"
+                'extends': | `terminal` "extends"
+                'implements': | `terminal` "implements"
             } >
-            'types': | `repetition` < | `nonterminal reference` "Expression With Type Arguments" * < "," false > >
+            'types': | `repetition` < | `nonterminal` "Expression With Type Arguments" * < "," false > >
         } > _ >
-        'Identifier': | `terminal reference` "Literal"
+        'Identifier': | `terminal` "Literal"
         'Import Attributes': | `sequence` < {
-            'open brace token': | `terminal reference` "{"
+            'open brace token': | `terminal` "{"
             'entries': | `repetition` < | `sequence` < {
-                'name': | `nonterminal reference` "Property Name"
-                'colon token': | `terminal reference` ":"
-                'value': | `nonterminal reference` "Expression"
+                'name': | `nonterminal` "Property Name"
+                'colon token': | `terminal` ":"
+                'value': | `nonterminal` "Expression"
             } > * < "," false > >
-            'close brace token': | `terminal reference` "}"
+            'close brace token': | `terminal` "}"
         } >
         'Initializer': | `sequence` < {
-            'equals token': | `terminal reference` "="
-            'expression': | `nonterminal reference` "Expression"
+            'equals token': | `terminal` "="
+            'expression': | `nonterminal` "Expression"
         } >
-        'JSDoc': | `repetition` < | `terminal reference` "Blob" _ >
+        'JSDoc': | `repetition` < | `terminal` "Blob" _ >
         'Module Body': | `alternation` < {
-            'module block': | `nonterminal reference` "Block"
+            'module block': | `nonterminal` "Block"
             'dotted': | `sequence` < {
-                'dot token': | `terminal reference` "."
+                'dot token': | `terminal` "."
                 'module declaration': | `sequence` < {
-                    'name': | `nonterminal reference` "Identifier"
-                    'block': | `nonterminal reference` "Module Body"
+                    'name': | `nonterminal` "Identifier"
+                    'block': | `nonterminal` "Module Body"
                 } >
             } >
-            'shorthand': | `nonterminal reference` "Semi Colon"
+            'shorthand': | `nonterminal` "Semi Colon"
         } >
-        'Numeric Literal': | `terminal reference` "Literal"
+        'Numeric Literal': | `terminal` "Literal"
         'Object Type': | `sequence` < {
-            'open brace token': | `terminal reference` "{"
+            'open brace token': | `terminal` "{"
             'signatures': | `repetition` < | `alternation` < {
                 'call': | `sequence` < {
-                    'jsdoc': | `nonterminal reference` "JSDoc"
-                    'type parameters': | `nonterminal reference` "Type Parameters"
-                    'parameters': | `nonterminal reference` "Parameters"
-                    'type': | `nonterminal reference` "Optional Type"
-                    'semicolon': | `nonterminal reference` "Semi Colon"
-                    'comma': | `optional` | `terminal reference` ","
+                    'jsdoc': | `nonterminal` "JSDoc"
+                    'type parameters': | `nonterminal` "Type Parameters"
+                    'parameters': | `nonterminal` "Parameters"
+                    'type': | `nonterminal` "Optional Type"
+                    'semicolon': | `nonterminal` "Semi Colon"
+                    'comma': | `optional` | `terminal` ","
                 } >
                 'construct': | `sequence` < {
-                    'jsdoc': | `nonterminal reference` "JSDoc"
-                    'new keyword': | `terminal reference` "new"
-                    'type parameters': | `nonterminal reference` "Type Parameters"
-                    'parameters': | `nonterminal reference` "Parameters"
-                    'type': | `nonterminal reference` "Optional Type"
-                    'semicolon': | `nonterminal reference` "Semi Colon"
-                    'comma': | `optional` | `terminal reference` ","
+                    'jsdoc': | `nonterminal` "JSDoc"
+                    'new keyword': | `terminal` "new"
+                    'type parameters': | `nonterminal` "Type Parameters"
+                    'parameters': | `nonterminal` "Parameters"
+                    'type': | `nonterminal` "Optional Type"
+                    'semicolon': | `nonterminal` "Semi Colon"
+                    'comma': | `optional` | `terminal` ","
                 } >
                 'get accessor': | `sequence` < {
-                    'jsdoc': | `nonterminal reference` "JSDoc"
-                    'get keyword': | `terminal reference` "get"
-                    'name': | `nonterminal reference` "Property Name"
-                    'parameters': | `nonterminal reference` "Parameters"
-                    'return type': | `nonterminal reference` "Return Type Annotation"
-                    'body': | `optional` | `nonterminal reference` "Block"
-                    'semicolon': | `nonterminal reference` "Semi Colon"
-                    'comma': | `optional` | `terminal reference` ","
+                    'jsdoc': | `nonterminal` "JSDoc"
+                    'get keyword': | `terminal` "get"
+                    'name': | `nonterminal` "Property Name"
+                    'parameters': | `nonterminal` "Parameters"
+                    'return type': | `nonterminal` "Return Type Annotation"
+                    'body': | `optional` | `nonterminal` "Block"
+                    'semicolon': | `nonterminal` "Semi Colon"
+                    'comma': | `optional` | `terminal` ","
                 } >
                 'index': | `sequence` < {
-                    'jsdoc': | `nonterminal reference` "JSDoc"
-                    'modifiers': | `nonterminal reference` "Signature Modifiers"
-                    'open bracket token': | `terminal reference` "["
+                    'jsdoc': | `nonterminal` "JSDoc"
+                    'modifiers': | `nonterminal` "Signature Modifiers"
+                    'open bracket token': | `terminal` "["
                     'parameter': | `repetition` < | `sequence` < {
-                        'jsdoc': | `nonterminal reference` "JSDoc"
-                        'modifiers': | `nonterminal reference` "Signature Modifiers"
-                        'dot dot dot token': | `optional` | `terminal reference` "..."
-                        'identifier': | `nonterminal reference` "Identifier"
-                        'question token': | `optional` | `terminal reference` "?"
+                        'jsdoc': | `nonterminal` "JSDoc"
+                        'modifiers': | `nonterminal` "Signature Modifiers"
+                        'dot dot dot token': | `optional` | `terminal` "..."
+                        'identifier': | `nonterminal` "Identifier"
+                        'question token': | `optional` | `terminal` "?"
                         'annotation': | `optional` | `sequence` < {
-                            'colon token': | `terminal reference` ":"
-                            'type': | `nonterminal reference` "Type"
+                            'colon token': | `terminal` ":"
+                            'type': | `nonterminal` "Type"
                         } >
-                        'initializer': | `nonterminal reference` "Optional Initializer"
+                        'initializer': | `nonterminal` "Optional Initializer"
                     } > * < "," false > >
-                    'close bracket token': | `terminal reference` "]"
-                    'return type': | `nonterminal reference` "Return Type Annotation"
-                    'semicolon': | `nonterminal reference` "Semi Colon"
-                    'comma': | `optional` | `terminal reference` ","
+                    'close bracket token': | `terminal` "]"
+                    'return type': | `nonterminal` "Return Type Annotation"
+                    'semicolon': | `nonterminal` "Semi Colon"
+                    'comma': | `optional` | `terminal` ","
                 } >
                 'method': | `sequence` < {
-                    'jsdoc': | `nonterminal reference` "JSDoc"
-                    'identifier': | `nonterminal reference` "Property Name"
-                    'question token': | `optional` | `terminal reference` "?"
-                    'type parameters': | `nonterminal reference` "Type Parameters"
-                    'parameters': | `nonterminal reference` "Parameters"
-                    'return type': | `nonterminal reference` "Return Type Annotation"
-                    'semicolon': | `nonterminal reference` "Semi Colon"
-                    'comma': | `optional` | `terminal reference` ","
+                    'jsdoc': | `nonterminal` "JSDoc"
+                    'identifier': | `nonterminal` "Property Name"
+                    'question token': | `optional` | `terminal` "?"
+                    'type parameters': | `nonterminal` "Type Parameters"
+                    'parameters': | `nonterminal` "Parameters"
+                    'return type': | `nonterminal` "Return Type Annotation"
+                    'semicolon': | `nonterminal` "Semi Colon"
+                    'comma': | `optional` | `terminal` ","
                 } >
                 'property': | `sequence` < {
-                    'jsdoc': | `nonterminal reference` "JSDoc"
-                    'modifiers': | `nonterminal reference` "Signature Modifiers"
-                    'id': | `nonterminal reference` "Property Name"
-                    'question token': | `optional` | `terminal reference` "?"
-                    'type annotation': | `nonterminal reference` "Optional Type"
-                    'initializer': | `nonterminal reference` "Optional Initializer"
-                    'comma token': | `optional` | `terminal reference` ","
-                    'semicolon token': | `nonterminal reference` "Semi Colon"
+                    'jsdoc': | `nonterminal` "JSDoc"
+                    'modifiers': | `nonterminal` "Signature Modifiers"
+                    'id': | `nonterminal` "Property Name"
+                    'question token': | `optional` | `terminal` "?"
+                    'type annotation': | `nonterminal` "Optional Type"
+                    'initializer': | `nonterminal` "Optional Initializer"
+                    'comma token': | `optional` | `terminal` ","
+                    'semicolon token': | `nonterminal` "Semi Colon"
                 } >
                 'set accessor': | `sequence` < {
-                    'jsdoc': | `nonterminal reference` "JSDoc"
-                    'set keyword': | `terminal reference` "set"
-                    'name': | `nonterminal reference` "Property Name"
-                    'parameters': | `nonterminal reference` "Parameters"
-                    'return type': | `nonterminal reference` "Return Type Annotation"
-                    'body': | `optional` | `nonterminal reference` "Block"
-                    'semicolon': | `nonterminal reference` "Semi Colon"
+                    'jsdoc': | `nonterminal` "JSDoc"
+                    'set keyword': | `terminal` "set"
+                    'name': | `nonterminal` "Property Name"
+                    'parameters': | `nonterminal` "Parameters"
+                    'return type': | `nonterminal` "Return Type Annotation"
+                    'body': | `optional` | `nonterminal` "Block"
+                    'semicolon': | `nonterminal` "Semi Colon"
                 } >
             } > _ >
-            'close brace token': | `terminal reference` "}"
+            'close brace token': | `terminal` "}"
         } >
-        'Optional Initializer': | `optional` | `nonterminal reference` "Initializer"
+        'Optional Initializer': | `optional` | `nonterminal` "Initializer"
         'Optional Type': | `optional` | `sequence` < {
-            'colon token': | `terminal reference` ":"
-            'type': | `nonterminal reference` "Type"
+            'colon token': | `terminal` ":"
+            'type': | `nonterminal` "Type"
         } >
         'Parameters': | `sequence` < {
-            'jsdoc': | `nonterminal reference` "JSDoc"
-            'open parenthesis token': | `terminal reference` "("
+            'jsdoc': | `nonterminal` "JSDoc"
+            'open parenthesis token': | `terminal` "("
             'entries': | `repetition` < | `sequence` < {
-                'jsdoc': | `nonterminal reference` "JSDoc"
-                'dot dot dot token': | `optional` | `terminal reference` "..."
-                'name': | `nonterminal reference` "Binding Pattern"
-                'question token': | `optional` | `terminal reference` "?"
-                'type': | `nonterminal reference` "Optional Type"
-                'initializer': | `nonterminal reference` "Optional Initializer"
+                'jsdoc': | `nonterminal` "JSDoc"
+                'dot dot dot token': | `optional` | `terminal` "..."
+                'name': | `nonterminal` "Binding Pattern"
+                'question token': | `optional` | `terminal` "?"
+                'type': | `nonterminal` "Optional Type"
+                'initializer': | `nonterminal` "Optional Initializer"
             } > * < "," true > >
-            'close parenthesis token': | `terminal reference` ")"
+            'close parenthesis token': | `terminal` ")"
         } >
         'Property Name': | `sequence` < {
-            'jsdoc': | `nonterminal reference` "JSDoc"
+            'jsdoc': | `nonterminal` "JSDoc"
             'modifiers': | `optional` | `repetition` < | `alternation` < {
-                'abstract': | `terminal reference` "abstract"
-                'async': | `terminal reference` "async"
-                'export': | `terminal reference` "export"
-                'override': | `terminal reference` "override"
-                'private': | `terminal reference` "private"
-                'protected': | `terminal reference` "protected"
-                'public': | `terminal reference` "public"
+                'abstract': | `terminal` "abstract"
+                'async': | `terminal` "async"
+                'export': | `terminal` "export"
+                'override': | `terminal` "override"
+                'private': | `terminal` "private"
+                'protected': | `terminal` "protected"
+                'public': | `terminal` "public"
             } > _ >
             'type': | `alternation` < {
-                'big int literal': | `terminal reference` "Literal"
+                'big int literal': | `terminal` "Literal"
                 'computed': | `sequence` < {
-                    'open bracket token': | `terminal reference` "["
-                    'expression': | `nonterminal reference` "Expression"
-                    'close bracket token': | `terminal reference` "]"
+                    'open bracket token': | `terminal` "["
+                    'expression': | `nonterminal` "Expression"
+                    'close bracket token': | `terminal` "]"
                 } >
-                'identifier': | `nonterminal reference` "Identifier"
-                'numeric literal': | `nonterminal reference` "Numeric Literal"
-                'private identifier': | `nonterminal reference` "Identifier"
-                'string literal': | `nonterminal reference` "String Literal"
+                'identifier': | `nonterminal` "Identifier"
+                'numeric literal': | `nonterminal` "Numeric Literal"
+                'private identifier': | `nonterminal` "Identifier"
+                'string literal': | `nonterminal` "String Literal"
             } >
         } >
         'Qualified Name': | `sequence` < {
-            'first': | `nonterminal reference` "Entity Name"
-            'dot token': | `terminal reference` "."
-            'second': | `nonterminal reference` "Identifier"
+            'first': | `nonterminal` "Entity Name"
+            'dot token': | `terminal` "."
+            'second': | `nonterminal` "Identifier"
         } >
         'Return Type Annotation': | `optional` | `sequence` < {
-            'colon token': | `terminal reference` ":"
+            'colon token': | `terminal` ":"
             'kind': | `alternation` < {
-                'type': | `nonterminal reference` "Type"
-                'type predicate': | `nonterminal reference` "Type Predicate"
+                'type': | `nonterminal` "Type"
+                'type predicate': | `nonterminal` "Type Predicate"
             } >
         } >
-        'Semi Colon': | `optional` | `terminal reference` ";"
+        'Semi Colon': | `optional` | `terminal` ";"
         'Signature Modifiers': | `optional` | `repetition` < | `alternation` < {
-            'abstract': | `terminal reference` "abstract"
-            'accessor': | `terminal reference` "accessor"
-            'async': | `terminal reference` "async"
-            'const': | `terminal reference` "const"
-            'declare': | `terminal reference` "declare"
-            'in': | `terminal reference` "in"
-            'out': | `terminal reference` "out"
+            'abstract': | `terminal` "abstract"
+            'accessor': | `terminal` "accessor"
+            'async': | `terminal` "async"
+            'const': | `terminal` "const"
+            'declare': | `terminal` "declare"
+            'in': | `terminal` "in"
+            'out': | `terminal` "out"
             'decorator': | `sequence` < {
-                'at token': | `terminal reference` "@"
-                'expression': | `nonterminal reference` "Expression"
+                'at token': | `terminal` "@"
+                'expression': | `nonterminal` "Expression"
             } >
-            'export': | `terminal reference` "export"
-            'override': | `terminal reference` "override"
-            'private': | `terminal reference` "private"
-            'protected': | `terminal reference` "protected"
-            'public': | `terminal reference` "public"
-            'readonly': | `terminal reference` "readonly"
-            'static': | `terminal reference` "static"
+            'export': | `terminal` "export"
+            'override': | `terminal` "override"
+            'private': | `terminal` "private"
+            'protected': | `terminal` "protected"
+            'public': | `terminal` "public"
+            'readonly': | `terminal` "readonly"
+            'static': | `terminal` "static"
         } > _ >
         'Source File': | `sequence` < {
-            'statements': | `nonterminal reference` "Statements"
+            'statements': | `nonterminal` "Statements"
             'end of file': | `sequence` < {
-                'jsdoc': | `nonterminal reference` "JSDoc"
+                'jsdoc': | `nonterminal` "JSDoc"
             } >
         } >
         'Statement': | `alternation` < {
-            'block': | `nonterminal reference` "Block"
+            'block': | `nonterminal` "Block"
             'break': | `sequence` < {
-                'jsdoc': | `nonterminal reference` "JSDoc"
-                'break keyword': | `terminal reference` "break"
-                'identifier': | `optional` | `nonterminal reference` "Identifier"
-                'semicolon': | `nonterminal reference` "Semi Colon"
+                'jsdoc': | `nonterminal` "JSDoc"
+                'break keyword': | `terminal` "break"
+                'identifier': | `optional` | `nonterminal` "Identifier"
+                'semicolon': | `nonterminal` "Semi Colon"
             } >
             'class': | `sequence` < {
-                'jsdoc': | `nonterminal reference` "JSDoc"
-                'modifiers': | `nonterminal reference` "Statement Modifiers"
-                'class': | `nonterminal reference` "Class"
-                'semicolon': | `nonterminal reference` "Semi Colon"
+                'jsdoc': | `nonterminal` "JSDoc"
+                'modifiers': | `nonterminal` "Statement Modifiers"
+                'class': | `nonterminal` "Class"
+                'semicolon': | `nonterminal` "Semi Colon"
             } >
             'continue': | `sequence` < {
-                'jsdoc': | `nonterminal reference` "JSDoc"
-                'continue keyword': | `terminal reference` "continue"
-                'label': | `optional` | `nonterminal reference` "Identifier"
-                'semicolon': | `nonterminal reference` "Semi Colon"
+                'jsdoc': | `nonterminal` "JSDoc"
+                'continue keyword': | `terminal` "continue"
+                'label': | `optional` | `nonterminal` "Identifier"
+                'semicolon': | `nonterminal` "Semi Colon"
             } >
             'debugger': | `sequence` < {
-                'jsdoc': | `nonterminal reference` "JSDoc"
-                'debugger keyword': | `terminal reference` "debugger"
-                'semicolon': | `nonterminal reference` "Semi Colon"
+                'jsdoc': | `nonterminal` "JSDoc"
+                'debugger keyword': | `terminal` "debugger"
+                'semicolon': | `nonterminal` "Semi Colon"
             } >
             'do': | `sequence` < {
-                'jsdoc': | `nonterminal reference` "JSDoc"
-                'do keyword': | `terminal reference` "do"
-                'statement': | `nonterminal reference` "Statement"
-                'while keyword': | `terminal reference` "while"
-                'open parenthesis token': | `terminal reference` "("
-                'expression': | `nonterminal reference` "Expression"
-                'close parenthesis token': | `terminal reference` ")"
-                'semicolon': | `nonterminal reference` "Semi Colon"
+                'jsdoc': | `nonterminal` "JSDoc"
+                'do keyword': | `terminal` "do"
+                'statement': | `nonterminal` "Statement"
+                'while keyword': | `terminal` "while"
+                'open parenthesis token': | `terminal` "("
+                'expression': | `nonterminal` "Expression"
+                'close parenthesis token': | `terminal` ")"
+                'semicolon': | `nonterminal` "Semi Colon"
             } >
             'empty': | `sequence` < {
-                'jsdoc': | `nonterminal reference` "JSDoc"
-                'semicolon token': | `terminal reference` ";"
+                'jsdoc': | `nonterminal` "JSDoc"
+                'semicolon token': | `terminal` ";"
             } >
             'enum': | `sequence` < {
-                'jsdoc': | `nonterminal reference` "JSDoc"
-                'modifiers': | `nonterminal reference` "Statement Modifiers"
-                'enum keyword': | `terminal reference` "enum"
-                'identifier': | `nonterminal reference` "Identifier"
-                'open brace token': | `terminal reference` "{"
+                'jsdoc': | `nonterminal` "JSDoc"
+                'modifiers': | `nonterminal` "Statement Modifiers"
+                'enum keyword': | `terminal` "enum"
+                'identifier': | `nonterminal` "Identifier"
+                'open brace token': | `terminal` "{"
                 'members': | `repetition` < | `sequence` < {
-                    'jsdoc': | `nonterminal reference` "JSDoc"
-                    'name': | `nonterminal reference` "Property Name"
-                    'initializer': | `nonterminal reference` "Optional Initializer"
+                    'jsdoc': | `nonterminal` "JSDoc"
+                    'name': | `nonterminal` "Property Name"
+                    'initializer': | `nonterminal` "Optional Initializer"
                 } > * < "," true > >
-                'close brace token': | `terminal reference` "}"
-                'semicolon': | `nonterminal reference` "Semi Colon"
+                'close brace token': | `terminal` "}"
+                'semicolon': | `nonterminal` "Semi Colon"
             } >
             'export assignment': | `sequence` < {
-                'jsdoc': | `nonterminal reference` "JSDoc"
-                'modifiers': | `nonterminal reference` "Statement Modifiers"
-                'export keyword': | `terminal reference` "export"
+                'jsdoc': | `nonterminal` "JSDoc"
+                'modifiers': | `nonterminal` "Statement Modifiers"
+                'export keyword': | `terminal` "export"
                 'type': | `alternation` < {
                     'default': | `sequence` < {
-                        'default keyword': | `terminal reference` "default"
-                        'expression': | `nonterminal reference` "Expression"
+                        'default keyword': | `terminal` "default"
+                        'expression': | `nonterminal` "Expression"
                     } >
-                    'equals': | `nonterminal reference` "Initializer"
+                    'equals': | `nonterminal` "Initializer"
                 } >
-                'semicolon': | `nonterminal reference` "Semi Colon"
+                'semicolon': | `nonterminal` "Semi Colon"
             } >
             'export declaration': | `sequence` < {
-                'jsdoc': | `nonterminal reference` "JSDoc"
-                'modifiers': | `nonterminal reference` "Statement Modifiers"
-                'export keyword': | `terminal reference` "export"
-                'type keyword': | `optional` | `terminal reference` "type"
+                'jsdoc': | `nonterminal` "JSDoc"
+                'modifiers': | `nonterminal` "Statement Modifiers"
+                'export keyword': | `terminal` "export"
+                'type keyword': | `optional` | `terminal` "type"
                 'type': | `alternation` < {
                     'all': | `sequence` < {
-                        'asterisk token': | `terminal reference` "*"
-                        'as': | `optional` | `nonterminal reference` "As Alias"
+                        'asterisk token': | `terminal` "*"
+                        'as': | `optional` | `nonterminal` "As Alias"
                     } >
                     'named': | `sequence` < {
-                        'open brace token': | `terminal reference` "{"
+                        'open brace token': | `terminal` "{"
                         'exports': | `repetition` < | `sequence` < {
-                            'type keyword': | `optional` | `terminal reference` "type"
-                            'identifier': | `nonterminal reference` "Identifier"
-                            'as': | `optional` | `nonterminal reference` "As Alias"
+                            'type keyword': | `optional` | `terminal` "type"
+                            'identifier': | `nonterminal` "Identifier"
+                            'as': | `optional` | `nonterminal` "As Alias"
                         } > * < "," true > >
-                        'close brace token': | `terminal reference` "}"
+                        'close brace token': | `terminal` "}"
                     } >
                     'namespace': | `sequence` < {
-                        'asterisk token': | `terminal reference` "*"
-                        'as keyword': | `terminal reference` "as"
-                        'identifier': | `nonterminal reference` "Identifier"
+                        'asterisk token': | `terminal` "*"
+                        'as keyword': | `terminal` "as"
+                        'identifier': | `nonterminal` "Identifier"
                     } >
                 } >
                 'from clause': | `optional` | `sequence` < {
-                    'from keyword': | `terminal reference` "from"
-                    'module specifier': | `nonterminal reference` "Module Specifier"
+                    'from keyword': | `terminal` "from"
+                    'module specifier': | `nonterminal` "Module Specifier"
                 } >
                 'import attributes': | `optional` | `sequence` < {
-                    'with keyword': | `terminal reference` "with"
-                    'open brace token': | `terminal reference` "{"
+                    'with keyword': | `terminal` "with"
+                    'open brace token': | `terminal` "{"
                     'elements': | `repetition` < | `sequence` < {
-                        'name': | `nonterminal reference` "Identifier"
-                        'colon token': | `terminal reference` ":"
-                        'value': | `nonterminal reference` "Expression"
+                        'name': | `nonterminal` "Identifier"
+                        'colon token': | `terminal` ":"
+                        'value': | `nonterminal` "Expression"
                     } > * < "," false > >
-                    'close brace token': | `terminal reference` "}"
+                    'close brace token': | `terminal` "}"
                 } >
-                'semicolon': | `nonterminal reference` "Semi Colon"
+                'semicolon': | `nonterminal` "Semi Colon"
             } >
             'expression': | `sequence` < {
-                'jsdoc': | `nonterminal reference` "JSDoc"
-                'expression': | `nonterminal reference` "Expression"
-                'semicolon': | `nonterminal reference` "Semi Colon"
+                'jsdoc': | `nonterminal` "JSDoc"
+                'expression': | `nonterminal` "Expression"
+                'semicolon': | `nonterminal` "Semi Colon"
             } >
             'for': | `sequence` < {
-                'jsdoc': | `nonterminal reference` "JSDoc"
-                'for keyword': | `terminal reference` "for"
-                'open parenthesis token': | `terminal reference` "("
+                'jsdoc': | `nonterminal` "JSDoc"
+                'for keyword': | `terminal` "for"
+                'open parenthesis token': | `terminal` "("
                 'initializer': | `optional` | `alternation` < {
-                    'variable declaration list': | `nonterminal reference` "Variable Declaration List"
-                    'expression': | `nonterminal reference` "Expression"
+                    'variable declaration list': | `nonterminal` "Variable Declaration List"
+                    'expression': | `nonterminal` "Expression"
                 } >
-                'semicolon token': | `terminal reference` ";"
-                'condition': | `optional` | `nonterminal reference` "Expression"
-                'semicolon token 2': | `terminal reference` ";"
-                'incrementor': | `optional` | `nonterminal reference` "Expression"
-                'close parenthesis token': | `terminal reference` ")"
-                'statement': | `nonterminal reference` "Statement"
-                'semicolon': | `nonterminal reference` "Semi Colon"
+                'semicolon token': | `terminal` ";"
+                'condition': | `optional` | `nonterminal` "Expression"
+                'semicolon token 2': | `terminal` ";"
+                'incrementor': | `optional` | `nonterminal` "Expression"
+                'close parenthesis token': | `terminal` ")"
+                'statement': | `nonterminal` "Statement"
+                'semicolon': | `nonterminal` "Semi Colon"
             } >
             'for in': | `sequence` < {
-                'jsdoc': | `nonterminal reference` "JSDoc"
-                'for keyword': | `terminal reference` "for"
-                'open parenthesis token': | `terminal reference` "("
+                'jsdoc': | `nonterminal` "JSDoc"
+                'for keyword': | `terminal` "for"
+                'open parenthesis token': | `terminal` "("
                 'initializer': | `alternation` < {
-                    'variable declaration list': | `nonterminal reference` "Variable Declaration List"
-                    'expression': | `nonterminal reference` "Expression"
+                    'variable declaration list': | `nonterminal` "Variable Declaration List"
+                    'expression': | `nonterminal` "Expression"
                 } >
-                'in keyword': | `terminal reference` "in"
-                'expression': | `nonterminal reference` "Expression"
-                'close parenthesis token': | `terminal reference` ")"
-                'statement': | `nonterminal reference` "Statement"
-                'semicolon': | `nonterminal reference` "Semi Colon"
+                'in keyword': | `terminal` "in"
+                'expression': | `nonterminal` "Expression"
+                'close parenthesis token': | `terminal` ")"
+                'statement': | `nonterminal` "Statement"
+                'semicolon': | `nonterminal` "Semi Colon"
             } >
             'for of': | `sequence` < {
-                'jsdoc': | `nonterminal reference` "JSDoc"
-                'for keyword': | `terminal reference` "for"
-                'await keyword': | `optional` | `terminal reference` "await"
-                'open parenthesis token': | `terminal reference` "("
+                'jsdoc': | `nonterminal` "JSDoc"
+                'for keyword': | `terminal` "for"
+                'await keyword': | `optional` | `terminal` "await"
+                'open parenthesis token': | `terminal` "("
                 'initializer': | `alternation` < {
-                    'variable declaration list': | `nonterminal reference` "Variable Declaration List"
-                    'expression': | `nonterminal reference` "Expression"
+                    'variable declaration list': | `nonterminal` "Variable Declaration List"
+                    'expression': | `nonterminal` "Expression"
                 } >
-                'of keyword': | `terminal reference` "of"
-                'expression': | `nonterminal reference` "Expression"
-                'close parenthesis token': | `terminal reference` ")"
-                'statement': | `nonterminal reference` "Statement"
-                'semicolon': | `nonterminal reference` "Semi Colon"
+                'of keyword': | `terminal` "of"
+                'expression': | `nonterminal` "Expression"
+                'close parenthesis token': | `terminal` ")"
+                'statement': | `nonterminal` "Statement"
+                'semicolon': | `nonterminal` "Semi Colon"
             } >
             'function': | `sequence` < {
-                'jsdoc': | `nonterminal reference` "JSDoc"
-                'modifiers': | `nonterminal reference` "Statement Modifiers"
-                'function keyword': | `terminal reference` "function"
-                'asterisk token': | `optional` | `terminal reference` "*"
-                'identifier': | `optional` | `nonterminal reference` "Identifier"
-                'type parameters': | `nonterminal reference` "Type Parameters"
-                'parameters': | `nonterminal reference` "Parameters"
-                'return type annotation': | `nonterminal reference` "Return Type Annotation"
-                'body': | `optional` | `nonterminal reference` "Block"
-                'semicolon': | `nonterminal reference` "Semi Colon"
+                'jsdoc': | `nonterminal` "JSDoc"
+                'modifiers': | `nonterminal` "Statement Modifiers"
+                'function keyword': | `terminal` "function"
+                'asterisk token': | `optional` | `terminal` "*"
+                'identifier': | `optional` | `nonterminal` "Identifier"
+                'type parameters': | `nonterminal` "Type Parameters"
+                'parameters': | `nonterminal` "Parameters"
+                'return type annotation': | `nonterminal` "Return Type Annotation"
+                'body': | `optional` | `nonterminal` "Block"
+                'semicolon': | `nonterminal` "Semi Colon"
             } >
             'if': | `sequence` < {
-                'jsdoc': | `nonterminal reference` "JSDoc"
-                'if keyword': | `terminal reference` "if"
-                'open parenthesis token': | `terminal reference` "("
-                'expression': | `nonterminal reference` "Expression"
-                'close parenthesis token': | `terminal reference` ")"
-                'then statement': | `nonterminal reference` "Statement"
+                'jsdoc': | `nonterminal` "JSDoc"
+                'if keyword': | `terminal` "if"
+                'open parenthesis token': | `terminal` "("
+                'expression': | `nonterminal` "Expression"
+                'close parenthesis token': | `terminal` ")"
+                'then statement': | `nonterminal` "Statement"
                 'else': | `optional` | `sequence` < {
-                    'else keyword': | `terminal reference` "else"
-                    'statement': | `nonterminal reference` "Statement"
+                    'else keyword': | `terminal` "else"
+                    'statement': | `nonterminal` "Statement"
                 } >
-                'semicolon': | `nonterminal reference` "Semi Colon"
+                'semicolon': | `nonterminal` "Semi Colon"
             } >
             'import': | `sequence` < {
-                'jsdoc': | `nonterminal reference` "JSDoc"
-                'modifiers': | `nonterminal reference` "Statement Modifiers"
-                'import keyword': | `terminal reference` "import"
+                'jsdoc': | `nonterminal` "JSDoc"
+                'modifiers': | `nonterminal` "Statement Modifiers"
+                'import keyword': | `terminal` "import"
                 'clause': | `optional` | `sequence` < {
-                    'type keyword': | `optional` | `terminal reference` "type"
+                    'type keyword': | `optional` | `terminal` "type"
                     'type': | `alternation` < {
                         'named imports': | `sequence` < {
-                            'open brace token': | `terminal reference` "{"
+                            'open brace token': | `terminal` "{"
                             'entries': | `repetition` < | `sequence` < {
-                                'type keyword': | `optional` | `terminal reference` "type"
-                                'identifier': | `nonterminal reference` "Identifier"
-                                'as': | `optional` | `nonterminal reference` "As Alias"
+                                'type keyword': | `optional` | `terminal` "type"
+                                'identifier': | `nonterminal` "Identifier"
+                                'as': | `optional` | `nonterminal` "As Alias"
                             } > * < "," true > >
-                            'close brace token': | `terminal reference` "}"
+                            'close brace token': | `terminal` "}"
                         } >
                         'namespace import': | `sequence` < {
-                            'asterisk token': | `terminal reference` "*"
-                            'as keyword': | `terminal reference` "as"
-                            'identifier': | `nonterminal reference` "Identifier"
+                            'asterisk token': | `terminal` "*"
+                            'as keyword': | `terminal` "as"
+                            'identifier': | `nonterminal` "Identifier"
                         } >
                         'identifier': | `sequence` < {
-                            'identifier': | `nonterminal reference` "Identifier"
+                            'identifier': | `nonterminal` "Identifier"
                             'named': | `optional` | `sequence` < {
-                                'comma token': | `terminal reference` ","
+                                'comma token': | `terminal` ","
                                 'bindings': | `alternation` < {
                                     'named imports': | `sequence` < {
-                                        'open brace token': | `terminal reference` "{"
+                                        'open brace token': | `terminal` "{"
                                         'entries': | `repetition` < | `sequence` < {
-                                            'type keyword': | `optional` | `terminal reference` "type"
-                                            'identifier': | `nonterminal reference` "Identifier"
-                                            'as': | `optional` | `nonterminal reference` "As Alias"
+                                            'type keyword': | `optional` | `terminal` "type"
+                                            'identifier': | `nonterminal` "Identifier"
+                                            'as': | `optional` | `nonterminal` "As Alias"
                                         } > * < "," true > >
-                                        'close brace token': | `terminal reference` "}"
+                                        'close brace token': | `terminal` "}"
                                     } >
                                     'namespace import': | `sequence` < {
-                                        'asterisk token': | `terminal reference` "*"
-                                        'as keyword': | `terminal reference` "as"
-                                        'identifier': | `nonterminal reference` "Identifier"
+                                        'asterisk token': | `terminal` "*"
+                                        'as keyword': | `terminal` "as"
+                                        'identifier': | `nonterminal` "Identifier"
                                     } >
                                 } >
                             } >
                         } >
                         'defer': | `sequence` < {
-                            'defer keyword': | `terminal reference` "defer"
+                            'defer keyword': | `terminal` "defer"
                             'import': | `alternation` < {
-                                'identifier': | `nonterminal reference` "Identifier"
+                                'identifier': | `nonterminal` "Identifier"
                                 'namespace import': | `sequence` < {
-                                    'asterisk token': | `terminal reference` "*"
-                                    'as keyword': | `terminal reference` "as"
-                                    'identifier': | `nonterminal reference` "Identifier"
+                                    'asterisk token': | `terminal` "*"
+                                    'as keyword': | `terminal` "as"
+                                    'identifier': | `nonterminal` "Identifier"
                                 } >
                                 'named imports': | `sequence` < {
-                                    'open brace token': | `terminal reference` "{"
+                                    'open brace token': | `terminal` "{"
                                     'entries': | `repetition` < | `sequence` < {
-                                        'type keyword': | `optional` | `terminal reference` "type"
-                                        'identifier': | `nonterminal reference` "Identifier"
-                                        'as': | `optional` | `nonterminal reference` "As Alias"
+                                        'type keyword': | `optional` | `terminal` "type"
+                                        'identifier': | `nonterminal` "Identifier"
+                                        'as': | `optional` | `nonterminal` "As Alias"
                                     } > * < "," true > >
-                                    'close brace token': | `terminal reference` "}"
+                                    'close brace token': | `terminal` "}"
                                 } >
                             } >
                         } >
                     } >
                 } >
-                'from keyword': | `optional` | `terminal reference` "from"
-                'module specifier': | `nonterminal reference` "Module Specifier"
+                'from keyword': | `optional` | `terminal` "from"
+                'module specifier': | `nonterminal` "Module Specifier"
                 'import attributes': | `optional` | `sequence` < {
-                    'with keyword': | `terminal reference` "with"
-                    'open brace token': | `terminal reference` "{"
+                    'with keyword': | `terminal` "with"
+                    'open brace token': | `terminal` "{"
                     'elements': | `repetition` < | `sequence` < {
-                        'name': | `nonterminal reference` "Identifier"
-                        'colon token': | `terminal reference` ":"
-                        'value': | `nonterminal reference` "Expression"
+                        'name': | `nonterminal` "Identifier"
+                        'colon token': | `terminal` ":"
+                        'value': | `nonterminal` "Expression"
                     } > * < "," false > >
-                    'close brace token': | `terminal reference` "}"
+                    'close brace token': | `terminal` "}"
                 } >
-                'semicolon': | `nonterminal reference` "Semi Colon"
+                'semicolon': | `nonterminal` "Semi Colon"
             } >
             'import equals': | `sequence` < {
-                'jsdoc': | `nonterminal reference` "JSDoc"
-                'modifiers': | `nonterminal reference` "Statement Modifiers"
-                'import keyword': | `terminal reference` "import"
-                'type keyword': | `optional` | `terminal reference` "type"
-                'identifier': | `nonterminal reference` "Identifier"
-                'initializer': | `nonterminal reference` "Initializer"
-                'semicolon': | `nonterminal reference` "Semi Colon"
+                'jsdoc': | `nonterminal` "JSDoc"
+                'modifiers': | `nonterminal` "Statement Modifiers"
+                'import keyword': | `terminal` "import"
+                'type keyword': | `optional` | `terminal` "type"
+                'identifier': | `nonterminal` "Identifier"
+                'initializer': | `nonterminal` "Initializer"
+                'semicolon': | `nonterminal` "Semi Colon"
             } >
             'interface': | `sequence` < {
-                'jsdoc': | `nonterminal reference` "JSDoc"
-                'modifiers': | `nonterminal reference` "Statement Modifiers"
-                'interface keyword': | `terminal reference` "interface"
-                'identifier': | `nonterminal reference` "Identifier"
-                'type parameters': | `nonterminal reference` "Type Parameters"
-                'heritage': | `nonterminal reference` "Heritage"
-                'body': | `nonterminal reference` "Object Type"
-                'semicolon': | `nonterminal reference` "Semi Colon"
+                'jsdoc': | `nonterminal` "JSDoc"
+                'modifiers': | `nonterminal` "Statement Modifiers"
+                'interface keyword': | `terminal` "interface"
+                'identifier': | `nonterminal` "Identifier"
+                'type parameters': | `nonterminal` "Type Parameters"
+                'heritage': | `nonterminal` "Heritage"
+                'body': | `nonterminal` "Object Type"
+                'semicolon': | `nonterminal` "Semi Colon"
             } >
             'labeled': | `sequence` < {
-                'jsdoc': | `nonterminal reference` "JSDoc"
-                'identifier': | `nonterminal reference` "Identifier"
-                'colon token': | `terminal reference` ":"
-                'statement': | `nonterminal reference` "Statement"
+                'jsdoc': | `nonterminal` "JSDoc"
+                'identifier': | `nonterminal` "Identifier"
+                'colon token': | `terminal` ":"
+                'statement': | `nonterminal` "Statement"
             } >
             'module': | `sequence` < {
-                'jsdoc': | `nonterminal reference` "JSDoc"
-                'modifiers': | `nonterminal reference` "Statement Modifiers"
+                'jsdoc': | `nonterminal` "JSDoc"
+                'modifiers': | `nonterminal` "Statement Modifiers"
                 'type': | `alternation` < {
-                    'global': | `nonterminal reference` "Identifier"
+                    'global': | `nonterminal` "Identifier"
                     'module': | `sequence` < {
-                        'keyword': | `terminal reference` "module"
-                        'name': | `nonterminal reference` "Property Name"
+                        'keyword': | `terminal` "module"
+                        'name': | `nonterminal` "Property Name"
                     } >
                     'namespace': | `sequence` < {
-                        'keyword': | `terminal reference` "namespace"
-                        'name': | `nonterminal reference` "Identifier"
+                        'keyword': | `terminal` "namespace"
+                        'name': | `nonterminal` "Identifier"
                     } >
                 } >
-                'block': | `optional` | `nonterminal reference` "Module Body"
-                'semicolon': | `nonterminal reference` "Semi Colon"
+                'block': | `optional` | `nonterminal` "Module Body"
+                'semicolon': | `nonterminal` "Semi Colon"
             } >
             'namespace export': | `sequence` < {
-                'jsdoc': | `nonterminal reference` "JSDoc"
-                'export keyword': | `terminal reference` "export"
-                'as keyword': | `terminal reference` "as"
-                'namespace keyword': | `terminal reference` "namespace"
-                'identifier': | `nonterminal reference` "Identifier"
-                'semicolon': | `nonterminal reference` "Semi Colon"
+                'jsdoc': | `nonterminal` "JSDoc"
+                'export keyword': | `terminal` "export"
+                'as keyword': | `terminal` "as"
+                'namespace keyword': | `terminal` "namespace"
+                'identifier': | `nonterminal` "Identifier"
+                'semicolon': | `nonterminal` "Semi Colon"
             } >
             'return': | `sequence` < {
-                'jsdoc': | `nonterminal reference` "JSDoc"
-                'return keyword': | `terminal reference` "return"
-                'expression': | `optional` | `nonterminal reference` "Expression"
-                'semicolon': | `nonterminal reference` "Semi Colon"
+                'jsdoc': | `nonterminal` "JSDoc"
+                'return keyword': | `terminal` "return"
+                'expression': | `optional` | `nonterminal` "Expression"
+                'semicolon': | `nonterminal` "Semi Colon"
             } >
             'switch': | `sequence` < {
-                'jsdoc': | `nonterminal reference` "JSDoc"
-                'switch keyword': | `terminal reference` "switch"
-                'open parenthesis token': | `terminal reference` "("
-                'expression': | `nonterminal reference` "Expression"
-                'close parenthesis token': | `terminal reference` ")"
+                'jsdoc': | `nonterminal` "JSDoc"
+                'switch keyword': | `terminal` "switch"
+                'open parenthesis token': | `terminal` "("
+                'expression': | `nonterminal` "Expression"
+                'close parenthesis token': | `terminal` ")"
                 'case block': | `sequence` < {
-                    'open brace token': | `terminal reference` "{"
+                    'open brace token': | `terminal` "{"
                     'clauses': | `repetition` < | `alternation` < {
                         'case': | `sequence` < {
-                            'case keyword': | `terminal reference` "case"
-                            'expression': | `nonterminal reference` "Expression"
-                            'colon token': | `terminal reference` ":"
-                            'statements': | `nonterminal reference` "Statements"
+                            'case keyword': | `terminal` "case"
+                            'expression': | `nonterminal` "Expression"
+                            'colon token': | `terminal` ":"
+                            'statements': | `nonterminal` "Statements"
                         } >
                         'default': | `sequence` < {
-                            'default keyword': | `terminal reference` "default"
-                            'colon token': | `terminal reference` ":"
-                            'statements': | `nonterminal reference` "Statements"
+                            'default keyword': | `terminal` "default"
+                            'colon token': | `terminal` ":"
+                            'statements': | `nonterminal` "Statements"
                         } >
                     } > _ >
-                    'close brace token': | `terminal reference` "}"
+                    'close brace token': | `terminal` "}"
                 } >
-                'semicolon': | `nonterminal reference` "Semi Colon"
+                'semicolon': | `nonterminal` "Semi Colon"
             } >
             'throw': | `sequence` < {
-                'jsdoc': | `nonterminal reference` "JSDoc"
-                'throw keyword': | `terminal reference` "throw"
-                'expression': | `nonterminal reference` "Expression"
-                'semicolon': | `nonterminal reference` "Semi Colon"
+                'jsdoc': | `nonterminal` "JSDoc"
+                'throw keyword': | `terminal` "throw"
+                'expression': | `nonterminal` "Expression"
+                'semicolon': | `nonterminal` "Semi Colon"
             } >
             'try': | `sequence` < {
-                'jsdoc': | `nonterminal reference` "JSDoc"
-                'try keyword': | `terminal reference` "try"
-                'try block': | `nonterminal reference` "Block"
+                'jsdoc': | `nonterminal` "JSDoc"
+                'try keyword': | `terminal` "try"
+                'try block': | `nonterminal` "Block"
                 'catch clause': | `optional` | `sequence` < {
-                    'catch keyword': | `terminal reference` "catch"
+                    'catch keyword': | `terminal` "catch"
                     'binding': | `optional` | `sequence` < {
-                        'open parenthesis token': | `terminal reference` "("
-                        'variable declaration': | `nonterminal reference` "Variable Declaration"
-                        'close parenthesis token': | `terminal reference` ")"
+                        'open parenthesis token': | `terminal` "("
+                        'variable declaration': | `nonterminal` "Variable Declaration"
+                        'close parenthesis token': | `terminal` ")"
                     } >
-                    'block': | `nonterminal reference` "Block"
+                    'block': | `nonterminal` "Block"
                 } >
                 'finally block': | `optional` | `sequence` < {
-                    'finally keyword': | `terminal reference` "finally"
-                    'block': | `nonterminal reference` "Block"
+                    'finally keyword': | `terminal` "finally"
+                    'block': | `nonterminal` "Block"
                 } >
-                'semicolon': | `nonterminal reference` "Semi Colon"
+                'semicolon': | `nonterminal` "Semi Colon"
             } >
             'type alias': | `sequence` < {
-                'jsdoc': | `nonterminal reference` "JSDoc"
-                'modifiers': | `nonterminal reference` "Statement Modifiers"
-                'type keyword': | `terminal reference` "type"
-                'identifier': | `nonterminal reference` "Identifier"
-                'type parameters': | `nonterminal reference` "Type Parameters"
-                'equals token': | `terminal reference` "="
-                'type': | `nonterminal reference` "Type"
-                'semicolon': | `nonterminal reference` "Semi Colon"
+                'jsdoc': | `nonterminal` "JSDoc"
+                'modifiers': | `nonterminal` "Statement Modifiers"
+                'type keyword': | `terminal` "type"
+                'identifier': | `nonterminal` "Identifier"
+                'type parameters': | `nonterminal` "Type Parameters"
+                'equals token': | `terminal` "="
+                'type': | `nonterminal` "Type"
+                'semicolon': | `nonterminal` "Semi Colon"
             } >
             'variable': | `sequence` < {
-                'jsdoc': | `nonterminal reference` "JSDoc"
-                'modifiers': | `nonterminal reference` "Statement Modifiers"
-                'variable declaration list': | `nonterminal reference` "Variable Declaration List"
-                'semicolon': | `nonterminal reference` "Semi Colon"
+                'jsdoc': | `nonterminal` "JSDoc"
+                'modifiers': | `nonterminal` "Statement Modifiers"
+                'variable declaration list': | `nonterminal` "Variable Declaration List"
+                'semicolon': | `nonterminal` "Semi Colon"
             } >
             'while': | `sequence` < {
-                'jsdoc': | `nonterminal reference` "JSDoc"
-                'while keyword': | `terminal reference` "while"
-                'open parenthesis token': | `terminal reference` "("
-                'expression': | `nonterminal reference` "Expression"
-                'close parenthesis token': | `terminal reference` ")"
-                'statement': | `nonterminal reference` "Statement"
+                'jsdoc': | `nonterminal` "JSDoc"
+                'while keyword': | `terminal` "while"
+                'open parenthesis token': | `terminal` "("
+                'expression': | `nonterminal` "Expression"
+                'close parenthesis token': | `terminal` ")"
+                'statement': | `nonterminal` "Statement"
             } >
             'with': | `sequence` < {
-                'jsdoc': | `nonterminal reference` "JSDoc"
-                'with keyword': | `terminal reference` "with"
-                'open parenthesis token': | `terminal reference` "("
-                'expression': | `nonterminal reference` "Expression"
-                'close parenthesis token': | `terminal reference` ")"
-                'statement': | `nonterminal reference` "Statement"
+                'jsdoc': | `nonterminal` "JSDoc"
+                'with keyword': | `terminal` "with"
+                'open parenthesis token': | `terminal` "("
+                'expression': | `nonterminal` "Expression"
+                'close parenthesis token': | `terminal` ")"
+                'statement': | `nonterminal` "Statement"
             } >
         } >
         'Statement Modifiers': | `optional` | `repetition` < | `alternation` < {
-            'abstract': | `terminal reference` "abstract"
-            'accessor': | `terminal reference` "accessor"
-            'async': | `terminal reference` "async"
-            'const': | `terminal reference` "const"
-            'declare': | `terminal reference` "declare"
+            'abstract': | `terminal` "abstract"
+            'accessor': | `terminal` "accessor"
+            'async': | `terminal` "async"
+            'const': | `terminal` "const"
+            'declare': | `terminal` "declare"
             'decorator': | `sequence` < {
-                'at token': | `terminal reference` "@"
-                'expression': | `nonterminal reference` "Expression"
+                'at token': | `terminal` "@"
+                'expression': | `nonterminal` "Expression"
             } >
-            'default': | `terminal reference` "default"
-            'export': | `terminal reference` "export"
-            'private': | `terminal reference` "private"
-            'protected': | `terminal reference` "protected"
-            'public': | `terminal reference` "public"
-            'readonly': | `terminal reference` "readonly"
-            'static': | `terminal reference` "static"
+            'default': | `terminal` "default"
+            'export': | `terminal` "export"
+            'private': | `terminal` "private"
+            'protected': | `terminal` "protected"
+            'public': | `terminal` "public"
+            'readonly': | `terminal` "readonly"
+            'static': | `terminal` "static"
         } > _ >
-        'Statements': | `repetition` < | `nonterminal reference` "Statement" _ >
-        'String Literal': | `terminal reference` "Literal"
+        'Statements': | `repetition` < | `nonterminal` "Statement" _ >
+        'String Literal': | `terminal` "Literal"
         'Module Specifier': | `alternation` < {
-            'identifier': | `nonterminal reference` "Identifier"
-            'string literal': | `nonterminal reference` "String Literal"
+            'identifier': | `nonterminal` "Identifier"
+            'string literal': | `nonterminal` "String Literal"
             'template': | `sequence` < {
-                'head': | `terminal reference` "Literal"
+                'head': | `terminal` "Literal"
                 'template spans': | `repetition` < | `sequence` < {
-                    'type': | `nonterminal reference` "Expression"
+                    'type': | `nonterminal` "Expression"
                     'suffix': | `alternation` < {
-                        'middle': | `terminal reference` "Literal"
-                        'tail': | `terminal reference` "Literal"
+                        'middle': | `terminal` "Literal"
+                        'tail': | `terminal` "Literal"
                     } >
                 } > _ >
             } >
         } >
         'Type': | `alternation` < {
-            'any': | `terminal reference` "any"
+            'any': | `terminal` "any"
             'array': | `sequence` < {
-                'element type': | `nonterminal reference` "Type"
-                'open bracket token': | `terminal reference` "["
-                'close bracket token': | `terminal reference` "]"
+                'element type': | `nonterminal` "Type"
+                'open bracket token': | `terminal` "["
+                'close bracket token': | `terminal` "]"
             } >
-            'big int': | `terminal reference` "bigint"
-            'boolean': | `terminal reference` "boolean"
+            'big int': | `terminal` "bigint"
+            'boolean': | `terminal` "boolean"
             'conditional': | `sequence` < {
-                'check type': | `nonterminal reference` "Type"
-                'extends keyword': | `terminal reference` "extends"
-                'extends type': | `nonterminal reference` "Type"
-                'question token': | `terminal reference` "?"
-                'true type': | `nonterminal reference` "Type"
-                'colon token': | `terminal reference` ":"
-                'false type': | `nonterminal reference` "Type"
+                'check type': | `nonterminal` "Type"
+                'extends keyword': | `terminal` "extends"
+                'extends type': | `nonterminal` "Type"
+                'question token': | `terminal` "?"
+                'true type': | `nonterminal` "Type"
+                'colon token': | `terminal` ":"
+                'false type': | `nonterminal` "Type"
             } >
             'constructor': | `sequence` < {
-                'modifiers': | `nonterminal reference` "Signature Modifiers"
-                'new keyword': | `terminal reference` "new"
-                'type parameters': | `nonterminal reference` "Type Parameters"
-                'parameters': | `nonterminal reference` "Parameters"
-                'equals greater than token': | `terminal reference` "=>"
-                'type': | `nonterminal reference` "Type"
+                'modifiers': | `nonterminal` "Signature Modifiers"
+                'new keyword': | `terminal` "new"
+                'type parameters': | `nonterminal` "Type Parameters"
+                'parameters': | `nonterminal` "Parameters"
+                'equals greater than token': | `terminal` "=>"
+                'type': | `nonterminal` "Type"
             } >
             'function': | `sequence` < {
-                'type parameters': | `nonterminal reference` "Type Parameters"
-                'parameters': | `nonterminal reference` "Parameters"
-                'type': | `nonterminal reference` "Optional Type"
-                'equals greater than token': | `terminal reference` "=>"
-                'return type': | `nonterminal reference` "Type"
+                'type parameters': | `nonterminal` "Type Parameters"
+                'parameters': | `nonterminal` "Parameters"
+                'type': | `nonterminal` "Optional Type"
+                'equals greater than token': | `terminal` "=>"
+                'return type': | `nonterminal` "Type"
             } >
             'import type': | `sequence` < {
-                'typeof keyword': | `optional` | `terminal reference` "typeof"
-                'import keyword': | `terminal reference` "import"
-                'open parenthesis token': | `terminal reference` "("
-                'argument': | `nonterminal reference` "Type"
+                'typeof keyword': | `optional` | `terminal` "typeof"
+                'import keyword': | `terminal` "import"
+                'open parenthesis token': | `terminal` "("
+                'argument': | `nonterminal` "Type"
                 'attributes': | `optional` | `sequence` < {
-                    'comma token': | `terminal reference` ","
-                    'open brace token': | `terminal reference` "{"
-                    'with keyword': | `terminal reference` "with"
-                    'colon token': | `terminal reference` ":"
-                    'import attributes': | `nonterminal reference` "Import Attributes"
-                    'close brace token': | `terminal reference` "}"
+                    'comma token': | `terminal` ","
+                    'open brace token': | `terminal` "{"
+                    'with keyword': | `terminal` "with"
+                    'colon token': | `terminal` ":"
+                    'import attributes': | `nonterminal` "Import Attributes"
+                    'close brace token': | `terminal` "}"
                 } >
-                'close parenthesis token': | `terminal reference` ")"
+                'close parenthesis token': | `terminal` ")"
                 'qualifier': | `optional` | `sequence` < {
-                    'dot token': | `terminal reference` "."
-                    'name': | `nonterminal reference` "Entity Name"
+                    'dot token': | `terminal` "."
+                    'name': | `nonterminal` "Entity Name"
                 } >
-                'type arguments': | `nonterminal reference` "Type Arguments"
-                'error recovery': | `nonterminal reference` "Error Recovery"
+                'type arguments': | `nonterminal` "Type Arguments"
+                'error recovery': | `nonterminal` "Error Recovery"
             } >
             'indexed access': | `sequence` < {
-                'object type': | `nonterminal reference` "Type"
-                'open bracket token': | `terminal reference` "["
-                'index type': | `nonterminal reference` "Type"
-                'close bracket token': | `terminal reference` "]"
+                'object type': | `nonterminal` "Type"
+                'open bracket token': | `terminal` "["
+                'index type': | `nonterminal` "Type"
+                'close bracket token': | `terminal` "]"
             } >
             'infer': | `sequence` < {
-                'infer keyword': | `terminal reference` "infer"
+                'infer keyword': | `terminal` "infer"
                 'type parameter': | `sequence` < {
-                    'identifier': | `nonterminal reference` "Identifier"
+                    'identifier': | `nonterminal` "Identifier"
                     'extends': | `optional` | `sequence` < {
-                        'extends keyword': | `terminal reference` "extends"
-                        'type': | `nonterminal reference` "Type"
+                        'extends keyword': | `terminal` "extends"
+                        'type': | `nonterminal` "Type"
                     } >
                 } >
             } >
-            'intrinsic': | `terminal reference` "intrinsic"
+            'intrinsic': | `terminal` "intrinsic"
             'intersection': | `sequence` < {
-                'members': | `repetition` < | `nonterminal reference` "Type" * < "&" false > >
+                'members': | `repetition` < | `nonterminal` "Type" * < "&" false > >
             } >
             'jsdoc all': | `sequence` < {
-                'asterisk token': | `terminal reference` "*"
+                'asterisk token': | `terminal` "*"
             } >
             'jsdoc function': | `sequence` < {
-                'function keyword': | `terminal reference` "function"
-                'parameters': | `nonterminal reference` "Parameters"
-                'type': | `nonterminal reference` "Optional Type"
+                'function keyword': | `terminal` "function"
+                'parameters': | `nonterminal` "Parameters"
+                'type': | `nonterminal` "Optional Type"
             } >
             'jsdoc non nullable': | `sequence` < {
-                'exclamation token before': | `optional` | `terminal reference` "!"
-                'type': | `nonterminal reference` "Type"
-                'exclamation token after': | `optional` | `terminal reference` "!"
+                'exclamation token before': | `optional` | `terminal` "!"
+                'type': | `nonterminal` "Type"
+                'exclamation token after': | `optional` | `terminal` "!"
             } >
             'jsdoc nullable': | `sequence` < {
-                'question token before': | `optional` | `terminal reference` "?"
-                'type': | `nonterminal reference` "Type"
-                'question token after': | `optional` | `terminal reference` "?"
+                'question token before': | `optional` | `terminal` "?"
+                'type': | `nonterminal` "Type"
+                'question token after': | `optional` | `terminal` "?"
             } >
             'jsdoc unknown': | `sequence` < {
-                'question token': | `terminal reference` "?"
+                'question token': | `terminal` "?"
             } >
             'literal type': | `sequence` < {
                 'type': | `alternation` < {
-                    'bigint literal': | `terminal reference` "Literal"
-                    'false keyword': | `terminal reference` "false"
+                    'bigint literal': | `terminal` "Literal"
+                    'false keyword': | `terminal` "false"
                     'negative numeric literal': | `sequence` < {
-                        'minus token': | `terminal reference` "-"
-                        'value': | `nonterminal reference` "Numeric Literal"
+                        'minus token': | `terminal` "-"
+                        'value': | `nonterminal` "Numeric Literal"
                     } >
-                    'no substitution template literal': | `terminal reference` "Literal"
-                    'null': | `terminal reference` "null"
-                    'numeric literal': | `nonterminal reference` "Numeric Literal"
-                    'string literal': | `nonterminal reference` "String Literal"
-                    'true keyword': | `terminal reference` "true"
+                    'no substitution template literal': | `terminal` "Literal"
+                    'null': | `terminal` "null"
+                    'numeric literal': | `nonterminal` "Numeric Literal"
+                    'string literal': | `nonterminal` "String Literal"
+                    'true keyword': | `terminal` "true"
                 } >
             } >
             'mapped': | `sequence` < {
-                'open brace token': | `terminal reference` "{"
+                'open brace token': | `terminal` "{"
                 'readonly modifier': | `optional` | `sequence` < {
-                    'modifier': | `optional` | `terminal reference` "Literal"
-                    'readonly keyword': | `terminal reference` "readonly"
+                    'modifier': | `optional` | `terminal` "Literal"
+                    'readonly keyword': | `terminal` "readonly"
                 } >
-                'open bracket token': | `terminal reference` "["
+                'open bracket token': | `terminal` "["
                 'type parameter': | `sequence` < {
-                    'identifier': | `nonterminal reference` "Identifier"
-                    'in keyword': | `terminal reference` "in"
-                    'constraint': | `nonterminal reference` "Type"
+                    'identifier': | `nonterminal` "Identifier"
+                    'in keyword': | `terminal` "in"
+                    'constraint': | `nonterminal` "Type"
                 } >
                 'as': | `optional` | `sequence` < {
-                    'as keyword': | `terminal reference` "as"
-                    'type': | `nonterminal reference` "Type"
+                    'as keyword': | `terminal` "as"
+                    'type': | `nonterminal` "Type"
                 } >
-                'close bracket token': | `terminal reference` "]"
-                'question modifier minus': | `optional` | `terminal reference` "-"
-                'question modifier plus': | `optional` | `terminal reference` "+"
-                'question modifier question': | `optional` | `terminal reference` "?"
+                'close bracket token': | `terminal` "]"
+                'question modifier minus': | `optional` | `terminal` "-"
+                'question modifier plus': | `optional` | `terminal` "+"
+                'question modifier question': | `optional` | `terminal` "?"
                 'body': | `optional` | `sequence` < {
-                    'colon token': | `terminal reference` ":"
-                    'type': | `nonterminal reference` "Type"
-                    'semicolon': | `nonterminal reference` "Semi Colon"
+                    'colon token': | `terminal` ":"
+                    'type': | `nonterminal` "Type"
+                    'semicolon': | `nonterminal` "Semi Colon"
                 } >
                 'dummy syntax list': | `repetition` < | `alternation` < {
                     'call': | `sequence` < {
-                        'jsdoc': | `nonterminal reference` "JSDoc"
-                        'type parameters': | `nonterminal reference` "Type Parameters"
-                        'parameters': | `nonterminal reference` "Parameters"
-                        'type': | `nonterminal reference` "Optional Type"
-                        'semicolon': | `nonterminal reference` "Semi Colon"
-                        'comma': | `optional` | `terminal reference` ","
+                        'jsdoc': | `nonterminal` "JSDoc"
+                        'type parameters': | `nonterminal` "Type Parameters"
+                        'parameters': | `nonterminal` "Parameters"
+                        'type': | `nonterminal` "Optional Type"
+                        'semicolon': | `nonterminal` "Semi Colon"
+                        'comma': | `optional` | `terminal` ","
                     } >
                     'construct': | `sequence` < {
-                        'jsdoc': | `nonterminal reference` "JSDoc"
-                        'new keyword': | `terminal reference` "new"
-                        'type parameters': | `nonterminal reference` "Type Parameters"
-                        'parameters': | `nonterminal reference` "Parameters"
-                        'type': | `nonterminal reference` "Optional Type"
-                        'semicolon': | `nonterminal reference` "Semi Colon"
-                        'comma': | `optional` | `terminal reference` ","
+                        'jsdoc': | `nonterminal` "JSDoc"
+                        'new keyword': | `terminal` "new"
+                        'type parameters': | `nonterminal` "Type Parameters"
+                        'parameters': | `nonterminal` "Parameters"
+                        'type': | `nonterminal` "Optional Type"
+                        'semicolon': | `nonterminal` "Semi Colon"
+                        'comma': | `optional` | `terminal` ","
                     } >
                     'get accessor': | `sequence` < {
-                        'jsdoc': | `nonterminal reference` "JSDoc"
-                        'get keyword': | `terminal reference` "get"
-                        'name': | `nonterminal reference` "Property Name"
-                        'parameters': | `nonterminal reference` "Parameters"
-                        'return type': | `nonterminal reference` "Return Type Annotation"
-                        'body': | `optional` | `nonterminal reference` "Block"
-                        'semicolon': | `nonterminal reference` "Semi Colon"
-                        'comma': | `optional` | `terminal reference` ","
+                        'jsdoc': | `nonterminal` "JSDoc"
+                        'get keyword': | `terminal` "get"
+                        'name': | `nonterminal` "Property Name"
+                        'parameters': | `nonterminal` "Parameters"
+                        'return type': | `nonterminal` "Return Type Annotation"
+                        'body': | `optional` | `nonterminal` "Block"
+                        'semicolon': | `nonterminal` "Semi Colon"
+                        'comma': | `optional` | `terminal` ","
                     } >
                     'index': | `sequence` < {
-                        'jsdoc': | `nonterminal reference` "JSDoc"
-                        'modifiers': | `nonterminal reference` "Signature Modifiers"
-                        'open bracket token': | `terminal reference` "["
+                        'jsdoc': | `nonterminal` "JSDoc"
+                        'modifiers': | `nonterminal` "Signature Modifiers"
+                        'open bracket token': | `terminal` "["
                         'parameter': | `repetition` < | `sequence` < {
-                            'jsdoc': | `nonterminal reference` "JSDoc"
-                            'modifiers': | `nonterminal reference` "Signature Modifiers"
-                            'dot dot dot token': | `optional` | `terminal reference` "..."
-                            'identifier': | `nonterminal reference` "Identifier"
-                            'question token': | `optional` | `terminal reference` "?"
+                            'jsdoc': | `nonterminal` "JSDoc"
+                            'modifiers': | `nonterminal` "Signature Modifiers"
+                            'dot dot dot token': | `optional` | `terminal` "..."
+                            'identifier': | `nonterminal` "Identifier"
+                            'question token': | `optional` | `terminal` "?"
                             'annotation': | `optional` | `sequence` < {
-                                'colon token': | `terminal reference` ":"
-                                'type': | `nonterminal reference` "Type"
+                                'colon token': | `terminal` ":"
+                                'type': | `nonterminal` "Type"
                             } >
-                            'initializer': | `nonterminal reference` "Optional Initializer"
+                            'initializer': | `nonterminal` "Optional Initializer"
                         } > * < "," false > >
-                        'close bracket token': | `terminal reference` "]"
-                        'return type': | `nonterminal reference` "Return Type Annotation"
-                        'semicolon': | `nonterminal reference` "Semi Colon"
-                        'comma': | `optional` | `terminal reference` ","
+                        'close bracket token': | `terminal` "]"
+                        'return type': | `nonterminal` "Return Type Annotation"
+                        'semicolon': | `nonterminal` "Semi Colon"
+                        'comma': | `optional` | `terminal` ","
                     } >
                     'method': | `sequence` < {
-                        'jsdoc': | `nonterminal reference` "JSDoc"
-                        'identifier': | `nonterminal reference` "Property Name"
-                        'question token': | `optional` | `terminal reference` "?"
-                        'type parameters': | `nonterminal reference` "Type Parameters"
-                        'parameters': | `nonterminal reference` "Parameters"
-                        'return type': | `nonterminal reference` "Return Type Annotation"
-                        'semicolon': | `nonterminal reference` "Semi Colon"
-                        'comma': | `optional` | `terminal reference` ","
+                        'jsdoc': | `nonterminal` "JSDoc"
+                        'identifier': | `nonterminal` "Property Name"
+                        'question token': | `optional` | `terminal` "?"
+                        'type parameters': | `nonterminal` "Type Parameters"
+                        'parameters': | `nonterminal` "Parameters"
+                        'return type': | `nonterminal` "Return Type Annotation"
+                        'semicolon': | `nonterminal` "Semi Colon"
+                        'comma': | `optional` | `terminal` ","
                     } >
                     'property': | `sequence` < {
-                        'jsdoc': | `nonterminal reference` "JSDoc"
-                        'modifiers': | `nonterminal reference` "Signature Modifiers"
-                        'id': | `nonterminal reference` "Property Name"
-                        'question token': | `optional` | `terminal reference` "?"
-                        'type annotation': | `nonterminal reference` "Optional Type"
-                        'initializer': | `nonterminal reference` "Optional Initializer"
-                        'comma token': | `optional` | `terminal reference` ","
-                        'semicolon token': | `nonterminal reference` "Semi Colon"
+                        'jsdoc': | `nonterminal` "JSDoc"
+                        'modifiers': | `nonterminal` "Signature Modifiers"
+                        'id': | `nonterminal` "Property Name"
+                        'question token': | `optional` | `terminal` "?"
+                        'type annotation': | `nonterminal` "Optional Type"
+                        'initializer': | `nonterminal` "Optional Initializer"
+                        'comma token': | `optional` | `terminal` ","
+                        'semicolon token': | `nonterminal` "Semi Colon"
                     } >
                     'set accessor': | `sequence` < {
-                        'jsdoc': | `nonterminal reference` "JSDoc"
-                        'set keyword': | `terminal reference` "set"
-                        'name': | `nonterminal reference` "Property Name"
-                        'parameters': | `nonterminal reference` "Parameters"
-                        'return type': | `nonterminal reference` "Return Type Annotation"
-                        'body': | `optional` | `nonterminal reference` "Block"
-                        'semicolon': | `nonterminal reference` "Semi Colon"
+                        'jsdoc': | `nonterminal` "JSDoc"
+                        'set keyword': | `terminal` "set"
+                        'name': | `nonterminal` "Property Name"
+                        'parameters': | `nonterminal` "Parameters"
+                        'return type': | `nonterminal` "Return Type Annotation"
+                        'body': | `optional` | `nonterminal` "Block"
+                        'semicolon': | `nonterminal` "Semi Colon"
                     } >
                 } > _ >
-                'close brace token': | `terminal reference` "}"
+                'close brace token': | `terminal` "}"
             } >
-            'never': | `terminal reference` "never"
-            'number': | `terminal reference` "number"
-            'object': | `terminal reference` "object"
+            'never': | `terminal` "never"
+            'number': | `terminal` "number"
+            'object': | `terminal` "object"
             'optional type': | `sequence` < {
-                'type': | `nonterminal reference` "Type"
-                'question token': | `terminal reference` "?"
+                'type': | `nonterminal` "Type"
+                'question token': | `terminal` "?"
             } >
             'parenthesized': | `sequence` < {
-                'open parenthesis token': | `terminal reference` "("
-                'type': | `nonterminal reference` "Type"
-                'close parenthesis token': | `terminal reference` ")"
+                'open parenthesis token': | `terminal` "("
+                'type': | `nonterminal` "Type"
+                'close parenthesis token': | `terminal` ")"
             } >
             'query': | `sequence` < {
-                'typeof keyword': | `terminal reference` "typeof"
-                'name': | `nonterminal reference` "Entity Name"
-                'type arguments': | `nonterminal reference` "Type Arguments"
+                'typeof keyword': | `terminal` "typeof"
+                'name': | `nonterminal` "Entity Name"
+                'type arguments': | `nonterminal` "Type Arguments"
             } >
-            'string': | `terminal reference` "string"
-            'symbol': | `terminal reference` "symbol"
-            'this': | `terminal reference` "this"
+            'string': | `terminal` "string"
+            'symbol': | `terminal` "symbol"
+            'this': | `terminal` "this"
             'tuple type': | `sequence` < {
-                'open bracket token': | `terminal reference` "["
+                'open bracket token': | `terminal` "["
                 'elements': | `repetition` < | `alternation` < {
                     'named': | `sequence` < {
-                        'jsdoc': | `nonterminal reference` "JSDoc"
-                        'dot dot dot token': | `optional` | `terminal reference` "..."
-                        'name': | `nonterminal reference` "Identifier"
-                        'question token': | `optional` | `terminal reference` "?"
-                        'colon token': | `terminal reference` ":"
-                        'type': | `nonterminal reference` "Type"
+                        'jsdoc': | `nonterminal` "JSDoc"
+                        'dot dot dot token': | `optional` | `terminal` "..."
+                        'name': | `nonterminal` "Identifier"
+                        'question token': | `optional` | `terminal` "?"
+                        'colon token': | `terminal` ":"
+                        'type': | `nonterminal` "Type"
                     } >
-                    'regular': | `nonterminal reference` "Type"
+                    'regular': | `nonterminal` "Type"
                 } > * < "," true > >
-                'close bracket token': | `terminal reference` "]"
+                'close bracket token': | `terminal` "]"
             } >
             'template literal type': | `sequence` < {
-                'head': | `terminal reference` "Literal"
+                'head': | `terminal` "Literal"
                 'template spans': | `repetition` < | `sequence` < {
-                    'type': | `nonterminal reference` "Type"
+                    'type': | `nonterminal` "Type"
                     'suffix': | `alternation` < {
-                        'middle': | `terminal reference` "Literal"
-                        'tail': | `terminal reference` "Literal"
+                        'middle': | `terminal` "Literal"
+                        'tail': | `terminal` "Literal"
                     } >
                 } > _ >
             } >
-            'type literal': | `nonterminal reference` "Object Type"
+            'type literal': | `nonterminal` "Object Type"
             'type operator': | `sequence` < {
                 'operator': | `alternation` < {
-                    'key of': | `terminal reference` "keyof"
-                    'unique': | `terminal reference` "unique"
-                    'readonly': | `terminal reference` "readonly"
+                    'key of': | `terminal` "keyof"
+                    'unique': | `terminal` "unique"
+                    'readonly': | `terminal` "readonly"
                 } >
-                'type': | `nonterminal reference` "Type"
+                'type': | `nonterminal` "Type"
             } >
-            'type predicate': | `nonterminal reference` "Type Predicate"
+            'type predicate': | `nonterminal` "Type Predicate"
             'type reference': | `sequence` < {
-                'entity name': | `nonterminal reference` "Entity Name"
-                'dot token': | `optional` | `terminal reference` "."
-                'type arguments': | `nonterminal reference` "Type Arguments"
-                'error recovery': | `nonterminal reference` "Error Recovery"
+                'entity name': | `nonterminal` "Entity Name"
+                'dot token': | `optional` | `terminal` "."
+                'type arguments': | `nonterminal` "Type Arguments"
+                'error recovery': | `nonterminal` "Error Recovery"
             } >
             'rest type': | `sequence` < {
-                'dot dot dot token': | `terminal reference` "..."
-                'type': | `nonterminal reference` "Type"
+                'dot dot dot token': | `terminal` "..."
+                'type': | `nonterminal` "Type"
             } >
             'union type': | `sequence` < {
-                'members': | `repetition` < | `nonterminal reference` "Type" * < "|" false > >
+                'members': | `repetition` < | `nonterminal` "Type" * < "|" false > >
             } >
-            'undefined': | `terminal reference` "undefined"
-            'unknown': | `terminal reference` "unknown"
-            'void': | `terminal reference` "void"
+            'undefined': | `terminal` "undefined"
+            'unknown': | `terminal` "unknown"
+            'void': | `terminal` "void"
         } >
         'Type Predicate': | `sequence` < {
-            'asserts keyword': | `optional` | `terminal reference` "asserts"
+            'asserts keyword': | `optional` | `terminal` "asserts"
             'parameter name': | `alternation` < {
-                'identifier': | `nonterminal reference` "Identifier"
-                'this': | `terminal reference` "this"
+                'identifier': | `nonterminal` "Identifier"
+                'this': | `terminal` "this"
             } >
             'is predicate': | `optional` | `sequence` < {
-                'is keyword': | `terminal reference` "is"
-                'type': | `nonterminal reference` "Type"
+                'is keyword': | `terminal` "is"
+                'type': | `nonterminal` "Type"
             } >
         } >
         'Type Arguments': | `optional` | `sequence` < {
-            'less than token': | `terminal reference` "<"
-            'entries': | `repetition` < | `nonterminal reference` "Type" * < "," false > >
-            'greater than token': | `terminal reference` ">"
+            'less than token': | `terminal` "<"
+            'entries': | `repetition` < | `nonterminal` "Type" * < "," false > >
+            'greater than token': | `terminal` ">"
         } >
         'Type Parameters': | `optional` | `sequence` < {
-            'less than token': | `terminal reference` "<"
+            'less than token': | `terminal` "<"
             'entries': | `repetition` < | `sequence` < {
                 'modifiers': | `optional` | `repetition` < | `alternation` < {
-                    'const': | `terminal reference` "const"
-                    'in': | `terminal reference` "in"
-                    'out': | `terminal reference` "out"
-                    'public': | `terminal reference` "public"
+                    'const': | `terminal` "const"
+                    'in': | `terminal` "in"
+                    'out': | `terminal` "out"
+                    'public': | `terminal` "public"
                 } > _ >
-                'identifier': | `nonterminal reference` "Identifier"
+                'identifier': | `nonterminal` "Identifier"
                 'extends': | `optional` | `sequence` < {
-                    'extends keyword': | `terminal reference` "extends"
-                    'type': | `nonterminal reference` "Type"
+                    'extends keyword': | `terminal` "extends"
+                    'type': | `nonterminal` "Type"
                 } >
                 'default': | `optional` | `sequence` < {
-                    'equals token': | `terminal reference` "="
-                    'type': | `nonterminal reference` "Type"
+                    'equals token': | `terminal` "="
+                    'type': | `nonterminal` "Type"
                 } >
             } > * < "," false > >
-            'greater than token': | `terminal reference` ">"
+            'greater than token': | `terminal` ">"
         } >
         'Variable Declaration': | `sequence` < {
-            'name': | `nonterminal reference` "Binding Pattern"
-            'exclamation token': | `optional` | `terminal reference` "!"
-            'type': | `nonterminal reference` "Optional Type"
+            'name': | `nonterminal` "Binding Pattern"
+            'exclamation token': | `optional` | `terminal` "!"
+            'type': | `nonterminal` "Optional Type"
             'assignment': | `optional` | `sequence` < {
-                'initializer': | `nonterminal reference` "Initializer"
+                'initializer': | `nonterminal` "Initializer"
             } >
         } >
         'Variable Declaration List': | `sequence` < {
             'mutability': | `alternation` < {
                 'await using': | `sequence` < {
-                    'await keyword': | `terminal reference` "await"
-                    'using keyword': | `terminal reference` "using"
+                    'await keyword': | `terminal` "await"
+                    'using keyword': | `terminal` "using"
                 } >
-                'const': | `terminal reference` "const"
-                'let': | `terminal reference` "let"
-                'using': | `terminal reference` "using"
-                'var': | `terminal reference` "var"
+                'const': | `terminal` "const"
+                'let': | `terminal` "let"
+                'using': | `terminal` "using"
+                'var': | `terminal` "var"
             } >
-            'declarations': | `repetition` < | `nonterminal reference` "Variable Declaration" * < "," false > >
+            'declarations': | `repetition` < | `nonterminal` "Variable Declaration" * < "," false > >
         } >
     }
 )

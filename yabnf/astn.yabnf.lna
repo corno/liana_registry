@@ -1,90 +1,93 @@
 (
     `terminals`: {
-        '!': | `syntactic` | `symbol` ~
-        '_': | `syntactic` | `symbol` ~
-        '(': | `syntactic` | `symbol` ~
-        ')': | `syntactic` | `symbol` ~
-        '[': | `syntactic` | `symbol` ~
-        ']': | `syntactic` | `symbol` ~
-        '{': | `syntactic` | `symbol` ~
-        '}': | `syntactic` | `symbol` ~
-        '@': | `syntactic` | `symbol` ~
-        '*': | `syntactic` | `symbol` ~
-        '#': | `syntactic` | `symbol` ~
-        '<': | `syntactic` | `symbol` ~
-        '>': | `syntactic` | `symbol` ~
-        '|': | `syntactic` | `symbol` ~
-        '~': | `syntactic` | `symbol` ~
-        ':': | `syntactic` | `symbol` ~
-        'Text': | `semantic` ~
+        '!': ~
+        '_': ~
+        '(': ~
+        ')': ~
+        '[': ~
+        ']': ~
+        '{': ~
+        '}': ~
+        '@': ~
+        '*': ~
+        '#': ~
+        '<': ~
+        '>': ~
+        '|': ~
+        '~': ~
+        ':': ~
+        'Text': ~
+    }
+    `keywords`: {
+
     }
     `nonterminals`: {
         'Document': | `sequence` < {
             'header': | `optional` | `sequence` < {
-                'token': | `terminal reference` "!"
-                'value': | `nonterminal reference` "Value"
+                'token': | `terminal` "!"
+                'value': | `nonterminal` "Value"
             } >
-            'content': | `nonterminal reference` "Value"
+            'content': | `nonterminal` "Value"
         } >
         'ID Value Pairs': | `repetition` < | `sequence` < {
-            'id': | `terminal reference` "Text"
-            'token': | `terminal reference` ":"
-            'value': | `nonterminal reference` "Value"
+            'id': | `terminal` "Text"
+            'token': | `terminal` ":"
+            'value': | `nonterminal` "Value"
         } > _ >
-        'Items': | `repetition` < | `nonterminal reference` "Value" _ >
+        'Items': | `repetition` < | `nonterminal` "Value" _ >
         'Value': | `sequence` < {
             'type': | `alternation` < {
                 'concrete': | `alternation` < {
                     'dictionary': | `sequence` < {
-                        'open token': | `terminal reference` "{"
-                        'entries': | `nonterminal reference` "ID Value Pairs"
-                        'close token': | `terminal reference` "}"
+                        'open token': | `terminal` "{"
+                        'entries': | `nonterminal` "ID Value Pairs"
+                        'close token': | `terminal` "}"
                     } >
                     'group': | `alternation` < {
                         'concise': | `sequence` < {
-                            'open token': | `terminal reference` "<"
-                            'properties': | `nonterminal reference` "Items"
-                            'close token': | `terminal reference` ">"
+                            'open token': | `terminal` "<"
+                            'properties': | `nonterminal` "Items"
+                            'close token': | `terminal` ">"
                         } >
                         'verbose': | `sequence` < {
-                            'open token': | `terminal reference` "("
-                            'properties': | `nonterminal reference` "ID Value Pairs"
-                            'close token': | `terminal reference` ")"
+                            'open token': | `terminal` "("
+                            'properties': | `nonterminal` "ID Value Pairs"
+                            'close token': | `terminal` ")"
                         } >
                     } >
                     'list': | `sequence` < {
-                        'open token': | `terminal reference` "["
-                        'items': | `nonterminal reference` "Items"
-                        'close token': | `terminal reference` "]"
+                        'open token': | `terminal` "["
+                        'items': | `nonterminal` "Items"
+                        'close token': | `terminal` "]"
                     } >
                     'nothing': | `sequence` < {
-                        'token': | `terminal reference` "~"
+                        'token': | `terminal` "~"
                     } >
                     'optional': | `alternation` < {
                         'set': | `sequence` < {
-                            'token': | `terminal reference` "*"
-                            'value': | `nonterminal reference` "Value"
+                            'token': | `terminal` "*"
+                            'value': | `nonterminal` "Value"
                         } >
-                        'not set': | `terminal reference` "_"
+                        'not set': | `terminal` "_"
                     } >
                     'state': | `sequence` < {
-                        'token': | `terminal reference` "|"
+                        'token': | `terminal` "|"
                         'status': | `alternation` < {
-                            'missing': | `terminal reference` "#"
+                            'missing': | `terminal` "#"
                             'set': | `sequence` < {
-                                'option': | `terminal reference` "Text"
-                                'value': | `nonterminal reference` "Value"
+                                'option': | `terminal` "Text"
+                                'value': | `nonterminal` "Value"
                             } >
                         } >
                     } >
-                    'text': | `terminal reference` "Text"
+                    'text': | `terminal` "Text"
                 } >
                 'include': | `sequence` < {
-                    'token': | `terminal reference` "@"
-                    'path': | `terminal reference` "Text"
+                    'token': | `terminal` "@"
+                    'path': | `terminal` "Text"
                 } >
                 'missing': | `sequence` < {
-                    'token': | `terminal reference` "#"
+                    'token': | `terminal` "#"
                 } >
             } >
         } >
