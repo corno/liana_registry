@@ -1,0 +1,92 @@
+(
+    `terminals`: {
+        '!': | `syntactic` | `symbol` ~
+        '_': | `syntactic` | `symbol` ~
+        '(': | `syntactic` | `symbol` ~
+        ')': | `syntactic` | `symbol` ~
+        '[': | `syntactic` | `symbol` ~
+        ']': | `syntactic` | `symbol` ~
+        '{': | `syntactic` | `symbol` ~
+        '}': | `syntactic` | `symbol` ~
+        '@': | `syntactic` | `symbol` ~
+        '*': | `syntactic` | `symbol` ~
+        '#': | `syntactic` | `symbol` ~
+        '<': | `syntactic` | `symbol` ~
+        '>': | `syntactic` | `symbol` ~
+        '|': | `syntactic` | `symbol` ~
+        '~': | `syntactic` | `symbol` ~
+        ':': | `syntactic` | `symbol` ~
+        'Text': | `semantic` ~
+    }
+    `nonterminals`: {
+        'Document': | `sequence` < {
+            'header': | `optional` | `sequence` < {
+                'token': | `terminal reference` "!"
+                'value': | `nonterminal reference` "Value"
+            } >
+            'content': | `nonterminal reference` "Value"
+        } >
+        'ID Value Pairs': | `repetition` < | `sequence` < {
+            'id': | `terminal reference` "Text"
+            'token': | `terminal reference` ":"
+            'value': | `nonterminal reference` "Value"
+        } > _ >
+        'Items': | `repetition` < | `nonterminal reference` "Value" _ >
+        'Value': | `sequence` < {
+            'type': | `alternation` < {
+                'concrete': | `alternation` < {
+                    'dictionary': | `sequence` < {
+                        'open token': | `terminal reference` "{"
+                        'entries': | `nonterminal reference` "ID Value Pairs"
+                        'close token': | `terminal reference` "}"
+                    } >
+                    'group': | `alternation` < {
+                        'concise': | `sequence` < {
+                            'open token': | `terminal reference` "<"
+                            'properties': | `nonterminal reference` "Items"
+                            'close token': | `terminal reference` ">"
+                        } >
+                        'verbose': | `sequence` < {
+                            'open token': | `terminal reference` "("
+                            'properties': | `nonterminal reference` "ID Value Pairs"
+                            'close token': | `terminal reference` ")"
+                        } >
+                    } >
+                    'list': | `sequence` < {
+                        'open token': | `terminal reference` "["
+                        'items': | `nonterminal reference` "Items"
+                        'close token': | `terminal reference` "]"
+                    } >
+                    'nothing': | `sequence` < {
+                        'token': | `terminal reference` "~"
+                    } >
+                    'optional': | `alternation` < {
+                        'set': | `sequence` < {
+                            'token': | `terminal reference` "*"
+                            'value': | `nonterminal reference` "Value"
+                        } >
+                        'not set': | `terminal reference` "_"
+                    } >
+                    'state': | `sequence` < {
+                        'token': | `terminal reference` "|"
+                        'status': | `alternation` < {
+                            'missing': | `terminal reference` "#"
+                            'set': | `sequence` < {
+                                'option': | `terminal reference` "Text"
+                                'value': | `nonterminal reference` "Value"
+                            } >
+                        } >
+                    } >
+                    'text': | `terminal reference` "Text"
+                } >
+                'include': | `sequence` < {
+                    'token': | `terminal reference` "@"
+                    'path': | `terminal reference` "Text"
+                } >
+                'missing': | `sequence` < {
+                    'token': | `terminal reference` "#"
+                } >
+            } >
+        } >
+    }
+)

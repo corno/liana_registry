@@ -1,0 +1,92 @@
+(
+    `tokens`: {
+        'exclamation': | `syntactic` | `symbol` ~
+        'underscore': | `syntactic` | `symbol` ~
+        'open_paren': | `syntactic` | `symbol` ~
+        'close_paren': | `syntactic` | `symbol` ~
+        'open_bracket': | `syntactic` | `symbol` ~
+        'close_bracket': | `syntactic` | `symbol` ~
+        'open_brace': | `syntactic` | `symbol` ~
+        'close_brace': | `syntactic` | `symbol` ~
+        'at': | `syntactic` | `symbol` ~
+        'asterisk': | `syntactic` | `symbol` ~
+        'hash': | `syntactic` | `symbol` ~
+        'less_than': | `syntactic` | `symbol` ~
+        'greater_than': | `syntactic` | `symbol` ~
+        'pipe': | `syntactic` | `symbol` ~
+        'tilde': | `syntactic` | `symbol` ~
+        'colon': | `syntactic` | `symbol` ~
+        'Text': | `semantic` ~
+    }
+    `productions`: {
+        'Document': | `group` < {
+            'header': | `optional` | `group` < {
+                'exclamation': | `token` "exclamation"
+                'value': | `component` "Value"
+            } >
+            'content': | `component` "Value"
+        } >
+        'ID_Value_Pairs': | `list` < | `group` < {
+            'id': | `token` "Text"
+            ':': | `token` "colon"
+            'value': | `component` "Value"
+        } > _ >
+        'Items': | `list` < | `component` "Value" _ >
+        'Value': | `group` < {
+            'type': | `state` < {
+                'concrete': | `state` < {
+                    'dictionary': | `group` < {
+                        '{': | `token` "open_brace"
+                        'entries': | `component` "ID_Value_Pairs"
+                        '}': | `token` "close_brace"
+                    } >
+                    'group': | `state` < {
+                        'concise': | `group` < {
+                            '<': | `token` "less_than"
+                            'properties': | `component` "Items"
+                            '>': | `token` "greater_than"
+                        } >
+                        'verbose': | `group` < {
+                            '(': | `token` "open_paren"
+                            'properties': | `component` "ID_Value_Pairs"
+                            ')': | `token` "close_paren"
+                        } >
+                    } >
+                    'list': | `group` < {
+                        '[': | `token` "open_bracket"
+                        'items': | `component` "Items"
+                        ']': | `token` "close_bracket"
+                    } >
+                    'nothing': | `group` < {
+                        '~': | `token` "tilde"
+                    } >
+                    'optional': | `state` < {
+                        'set': | `group` < {
+                            'asterisk': | `token` "asterisk"
+                            'value': | `component` "Value"
+                        } >
+                        'not set': | `token` "underscore"
+                    } >
+                    'state': | `group` < {
+                        '|': | `token` "pipe"
+                        'status': | `state` < {
+                            'missing': | `token` "hash"
+                            'set': | `group` < {
+                                'option': | `token` "Text"
+                                'value': | `component` "Value"
+                            } >
+                        } >
+                    } >
+                    'text': | `token` "Text"
+                } >
+                'include': | `group` < {
+                    'at': | `token` "at"
+                    'path': | `token` "Text"
+                } >
+                'missing': | `group` < {
+                    'hash': | `token` "hash"
+                } >
+            } >
+        } >
+    }
+)

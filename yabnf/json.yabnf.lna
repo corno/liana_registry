@@ -1,0 +1,40 @@
+(
+    `terminals`: {
+        '}': | `syntactic` | `symbol` ~
+        '{': | `syntactic` | `symbol` ~
+        '[': | `syntactic` | `symbol` ~
+        ']': | `syntactic` | `symbol` ~
+        ',': | `syntactic` | `symbol` ~
+        ':': | `syntactic` | `symbol` ~
+        'false': | `syntactic` | `word` ~
+        'true': | `syntactic` | `word` ~
+        'null': | `syntactic` | `word` ~
+        'string': | `semantic` ~
+        'number': | `semantic` ~
+    }
+    `nonterminals`: {
+        'Value': | `sequence` < {
+            'type': | `alternation` < {
+                'array': | `sequence` < {
+                    '[': | `terminal reference` "["
+                    'items': | `repetition` < | `nonterminal reference` "Value" * < "," false > >
+                    ']': | `terminal reference` "]"
+                } >
+                'false': | `terminal reference` "false"
+                'null': | `terminal reference` "null"
+                'number': | `terminal reference` "number"
+                'object': | `sequence` < {
+                    '{': | `terminal reference` "{"
+                    'entries': | `repetition` < | `sequence` < {
+                        'key': | `terminal reference` "string"
+                        ':': | `terminal reference` ":"
+                        'value': | `nonterminal reference` "Value"
+                    } > * < "," false > >
+                    '}': | `terminal reference` "}"
+                } >
+                'string': | `terminal reference` "string"
+                'true': | `terminal reference` "true"
+            } >
+        } >
+    }
+)
