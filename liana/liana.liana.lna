@@ -1,0 +1,1346 @@
+(
+    `schema`: | `set` {
+        'schema': | `schema` (
+            `schema imports`: {}
+            `resolver imports`: {}
+            `globals`: (
+                `complexity`: | `constrained` ~
+                `text types`: {
+                    'multi line text': < | `multi line` ~ | `no` ~ >
+                    'text': < | `single line` ~ | `no` ~ >
+                }
+                `simple types`: {
+                    'Natural': < | `number` < | `exact` < _ | `natural` ~ > > >
+                    'boolean': < | `boolean` ~ >
+                }
+            )
+            `modules`: {
+                'Package': < | `group` {
+                    'omit (de)serializer': < _ | `simple` | `global` 'boolean' >
+                    'schema tree': < _ | `component` < | `internal` 'Schema Tree' _ > >
+                } >
+                'Schemas': < | `dictionary` < | `component` < | `internal` 'Schema Tree' _ > > >
+                'Schema': < | `group` {
+                    'schema imports': < _ | `component` < | `internal` 'Schema Imports' _ > >
+                    'resolver imports': < _ | `component` < | `internal` 'Resolver Imports' _ > >
+                    'globals': < _ | `component` < | `internal` 'Globals' _ > >
+                    'modules': < _ | `component` < | `internal` 'Modules' _ > >
+                    'complexity': < * "Whether this schema includes resolver definitions" | `state` < {
+                        'constrained': < _ * "Schema has resolvers for validation and transformation" | `component` < | `internal` 'Resolver' _ > >
+                        'unconstrained': < _ * "Schema only defines structure, no resolvers" | `nothing` ~ >
+                    } _ > >
+                } >
+                'Schema Imports': < | `dictionary` < | `group` {
+                    'schema set child': < _ | `reference` < < < | `internal` 'Schemas' ~ > < [ ] ~ > > | `selected` < ~ | `stack` ~ * {
+                        'schema': < < | `internal` 'Schema' ~ > < [ ] ~ > >
+                    } > > >
+                    'schema': < _ | `reference` < < < | `internal` 'Schema' ~ > < [ ] ~ > > | `derived` ~ > >
+                } > >
+                'Modules': < | `dictionary` < | `component` < | `internal` 'Module' _ > > >
+                'Globals': < | `group` {
+                    'complexity': < _ | `state` < {
+                        'constrained': < _ _ | `nothing` ~ >
+                        'unconstrained': < _ _ | `nothing` ~ >
+                    } _ > >
+                    'text types': < _ | `dictionary` < | `component` < | `internal` 'Text Type' _ > > >
+                    'simple types': < _ | `dictionary` < | `component` < | `internal` 'Simple Type' _ > > >
+                } >
+                'Dictionary': < | `group` {
+                    'value': < * "The type of each entry in this dictionary" | `component` < | `internal` 'Value' _ > >
+                } >
+                'Value': < | `state` < {
+                    'component': < _ * "Reference to another type defined in a module (reusable named type)" | `group` {
+                        'type': < _ | `state` < {
+                            'external': < _ * "Reference a type from an imported schema" | `group` {
+                                'import': < _ | `reference` < < < | `internal` 'Schema Imports' ~ > < [ ] ~ > > | `selected` < ~ | `acyclic` ~ _ > > >
+                                'module': < _ | `reference` < < < | `internal` 'Modules' ~ > < [ ] ~ > > | `selected` < ~ | `acyclic` ~ _ > > >
+                            } >
+                            'internal': < _ * "Reference a type within the same schema (allows cycles)" | `reference` < < < | `internal` 'Modules' ~ > < [ ] ~ > > | `selected` < ~ | `cyclic` ~ _ > > >
+                            'internal acyclic': < _ * "Reference a type within the same schema (no cycles)" | `reference` < < < | `internal` 'Modules' ~ > < [ ] ~ > > | `selected` < ~ | `acyclic` ~ _ > > >
+                        } _ > >
+                        'results': < _ | `component` < | `internal` 'Value Results' _ > >
+                    } >
+                    'dictionary': < _ * "Indexed collection of named values (like a map or hash table)" | `component` < | `internal` 'Dictionary' _ > >
+                    'group': < _ * "Ordered collection of properties, each with a specific name and type" | `component` < | `internal` 'Group' _ > >
+                    'list': < _ * "Ordered sequence of values of the same type" | `group` {
+                        'value': < _ | `component` < | `internal` 'Value' _ > >
+                        'results': < _ | `component` < | `internal` 'Value Results' _ > >
+                    } >
+                    'nothing': < _ * "Empty value (unit type, no data)" | `nothing` ~ >
+                    'simple': < _ * "Primitive value types: boolean, number, or date" | `state` < {
+                        'global': < _ _ | `reference` < < < | `internal` 'Globals' ~ > < [ | `group` 'simple types' ] ~ > > | `selected` < ~ | `acyclic` ~ _ > > >
+                    } _ > >
+                    'optional': < _ * "Value that may or may not be present" | `component` < | `internal` 'Value' _ > >
+                    'reference': < _ * "Pointer to another value in the data (like a foreign key)" | `group` {
+                        'referent': < * "What this reference points to" | `component` < | `internal` 'Value Reference' _ > >
+                        'type': < _ | `state` < {
+                            'derived': < _ * "Reference type is automatically derived from the target" | `nothing` ~ >
+                            'selected': < _ * "Explicitly select which dictionary entry to reference" | `group` {
+                                'dictionary': < _ | `reference` < < < | `internal` 'Dictionary' ~ > < [ ] ~ > > | `derived` ~ > >
+                                'dependency': < * "How this reference affects dependency order" | `state` < {
+                                    'acyclic': < _ * "No circular dependencies (default for cross-module references)" | `nothing` ~ >
+                                    'cyclic': < _ * "Allows circular instance references (only within same dictionary)" | `nothing` ~ >
+                                    'stack': < _ * "Push onto dependency stack for multi-level lookups" | `nothing` ~ >
+                                } _ > >
+                                'results': < _ | `component` < | `internal` 'Value Results' _ > >
+                            } >
+                        } _ > >
+                    } >
+                    'state': < _ * "Tagged union: value is one of several named options (like a sum type or enum)" | `group` {
+                        'options': < * "The possible variants, each with its own name and associated data" | `dictionary` < | `group` {
+                            'constraints': < _ | `component` < | `internal` 'Option Constraints' _ > >
+                            'description': < * "Documentation shown in IDE for this option" | `optional` | `text` | `global` 'multi line text' >
+                            'value': < _ | `component` < | `internal` 'Value' _ > >
+                        } > >
+                        'results': < _ | `component` < | `internal` 'Value Results' _ > >
+                    } >
+                    'text': < _ * "String value (single-line or multi-line)" | `state` < {
+                        'global': < _ * "Use a globally defined text type" | `reference` < < < | `internal` 'Globals' ~ > < [ | `group` 'text types' ] ~ > > | `selected` < ~ | `acyclic` ~ _ > > >
+                        'local': < _ * "Define the text type inline" | `component` < | `internal` 'Text Type' _ > >
+                    } _ > >
+                } _ > >
+                'Resolver': < | `group` {
+                    'signatures': < _ | `group` {
+                        'signatures': < _ | `component` < | `internal` 'Resolver Signatures' _ > >
+                    } >
+                    'modules': < _ | `component` < | `internal` 'Resolver Modules' _ > >
+                } >
+                'Resolver Imports': < | `dictionary` < | `group` {
+                    'schema set child': < _ | `reference` < < < | `internal` 'Schemas' ~ > < [ ] ~ > > | `selected` < ~ | `stack` ~ * {
+                        'resolver': < < | `internal` 'Resolver' ~ > < [ ] ~ > >
+                    } > > >
+                    'resolver': < _ | `reference` < < < | `internal` 'Resolver' ~ > < [ ] ~ > > | `derived` ~ > >
+                } > >
+                'Resolver Signatures': < | `dictionary` < | `component` < | `internal` 'Resolver Signature' _ > > >
+                'Resolver Signature Parameters': < | `group` {
+                    'modules': < _ | `dictionary` < | `group` {
+                        'module': < _ | `component` < | `internal` 'Module Reference' _ > >
+                        'presence': < _ | `component` < | `internal` 'Presence' _ > >
+                    } > >
+                    'lookups': < _ | `dictionary` < | `group` {
+                        'referent': < _ | `component` < | `internal` 'Module Reference' _ > >
+                        'dictionary': < _ | `reference` < < < | `internal` 'Dictionary' ~ > < [ ] ~ > > | `derived` ~ > >
+                        'type': < _ | `state` < {
+                            'cyclic': < _ _ | `nothing` ~ >
+                            'acyclic': < _ _ | `nothing` ~ >
+                            'stack': < _ _ | `nothing` ~ >
+                        } _ > >
+                        'presence': < _ | `component` < | `internal` 'Presence' _ > >
+                    } > >
+                } >
+                'Resolver Value': < | `state` < {
+                    'component': < * {
+                        'definition': < < | `internal` 'Value' ~ > < [ | `state` 'component' ] ~ > >
+                    } _ | `group` {
+                        'definition': < _ | `reference` < < < | `internal` 'Value' ~ > < [ | `state` 'component' ] ~ > > | `derived` ~ > >
+                        'location': < _ | `state` < {
+                            'external': < _ _ | `group` {
+                                'schema import': < _ | `reference` < < < | `internal` 'Schema Imports' ~ > < [ ] ~ > > | `selected` < ~ | `acyclic` ~ _ > > >
+                                'resolver import': < _ | `reference` < < < | `internal` 'Resolver Imports' ~ > < [ ] ~ > > | `selected` < ~ | `acyclic` ~ _ > > >
+                                'signature': < _ | `reference` < < < | `internal` 'Resolver Signatures' ~ > < [ ] ~ > > | `selected` < ~ | `acyclic` ~ _ > > >
+                            } >
+                            'internal': < _ _ | `reference` < < < | `internal` 'Resolver Signatures' ~ > < [ ] ~ > > | `selected` < ~ | `acyclic` ~ _ > > >
+                        } _ > >
+                        'signature': < _ | `reference` < < < | `internal` 'Resolver Signatures' ~ > < [ | `dictionary` ~ ] ~ > > | `derived` ~ > >
+                        'arguments': < _ | `optional` | `group` {
+                            'modules': < _ | `optional` | `dictionary` < | `state` < {
+                                'optional': < _ _ | `component` < | `internal` 'Resolver Optional Value Initialization' _ > >
+                                'required': < _ _ | `component` < | `internal` 'Resolver Guaranteed Value Selection' _ > >
+                                'parameter': < _ _ | `reference` < < < | `internal` 'Resolver Signature Parameters' ~ > < [ | `group` 'modules' ] ~ > > | `selected` < ~ | `acyclic` ~ _ > > >
+                            } _ > > >
+                            'lookups': < _ | `optional` | `dictionary` < | `state` < {
+                                'stack': < _ _ | `state` < {
+                                    'empty': < _ _ | `nothing` ~ >
+                                    'push': < _ _ | `group` {
+                                        'stack': < _ | `component` < | `internal` 'Resolver Lookup Selection' _ > >
+                                        'item': < _ | `component` < | `internal` 'Resolver Lookup Selection' _ > >
+                                    } >
+                                } _ > >
+                                'acyclic': < _ _ | `state` < {
+                                    'not set': < _ _ | `nothing` ~ >
+                                } _ > >
+                                'cyclic': < _ _ | `state` < {
+                                    'not set': < _ _ | `nothing` ~ >
+                                } _ > >
+                                'selection': < _ _ | `component` < | `internal` 'Resolver Lookup Selection' _ > >
+                            } _ > > >
+                        } >
+                        'constraints': < _ | `component` < | `internal` 'Resolver Value Constraints' _ > >
+                    } >
+                    'dictionary': < * {
+                        'definition': < < | `internal` 'Value' ~ > < [ | `state` 'dictionary' ] ~ > >
+                    } _ | `group` {
+                        'definition': < _ | `reference` < < < | `internal` 'Dictionary' ~ > < [ ] ~ > > | `derived` ~ > >
+                        'resolver': < _ | `component` < | `internal` 'Resolver Value' _ > >
+                        'benchmark': < _ | `optional` | `component` < | `internal` 'Resolver Benchmark' _ > >
+                    } >
+                    'group': < * {
+                        'definition': < < | `internal` 'Value' ~ > < [ | `state` 'group' ] ~ > >
+                    } _ | `component` < | `internal` 'Resolver Value Group' _ > >
+                    'list': < * {
+                        'definition': < < | `internal` 'Value' ~ > < [ | `state` 'list' ] ~ > >
+                    } _ | `group` {
+                        'definition': < _ | `reference` < < < | `internal` 'Value' ~ > < [ | `state` 'list' ] ~ > > | `derived` ~ > >
+                        'resolver': < _ | `component` < | `internal` 'Resolver Value' _ > >
+                        'result': < _ | `optional` | `component` < | `internal` 'Resolver Value List Result' _ > >
+                    } >
+                    'nothing': < * {
+                        'definition': < < | `internal` 'Value' ~ > < [ | `state` 'nothing' ] ~ > >
+                    } _ | `nothing` ~ >
+                    'simple': < * {
+                        'definition': < < | `internal` 'Value' ~ > < [ | `state` 'simple' ] ~ > >
+                    } _ | `nothing` ~ >
+                    'optional': < * {
+                        'definition': < < | `internal` 'Value' ~ > < [ | `state` 'optional' ] ~ > >
+                    } _ | `group` {
+                        'constraints': < _ | `component` < | `internal` 'Resolver Option Constraints' _ > >
+                        'resolver': < _ | `component` < | `internal` 'Resolver Value' _ > >
+                    } >
+                    'reference': < * {
+                        'definition': < < | `internal` 'Value' ~ > < [ | `state` 'reference' ] ~ > >
+                    } _ | `group` {
+                        'definition': < _ | `reference` < < < | `internal` 'Value' ~ > < [ | `state` 'reference' ] ~ > > | `derived` ~ > >
+                        'type': < _ | `state` < {
+                            'derived': < _ _ | `group` {
+                                'value': < _ | `component` < | `internal` 'Resolver Guaranteed Value Selection' _ > >
+                            } >
+                            'selected': < _ _ | `group` {
+                                'definition': < _ | `reference` < < < | `internal` 'Value' ~ > < [ | `state` 'reference' | `group` 'type' | `state` 'selected' ] ~ > > | `derived` ~ > >
+                                'lookup': < _ | `component` < | `internal` 'Resolver Lookup Selection' _ > >
+                                'constraints': < _ | `component` < | `internal` 'Resolver Value Constraints' _ > >
+                            } >
+                        } _ > >
+                    } >
+                    'state': < * {
+                        'definition': < < | `internal` 'Value' ~ > < [ | `state` 'state' ] ~ > >
+                    } _ | `group` {
+                        'definition': < _ | `reference` < < < | `internal` 'Value' ~ > < [ | `state` 'state' ] ~ > > | `derived` ~ > >
+                        'options': < _ | `dictionary` < | `group` {
+                            'constraints': < _ | `component` < | `internal` 'Resolver Option Constraints' _ > >
+                            'resolver': < _ | `component` < | `internal` 'Resolver Value' _ > >
+                        } > >
+                    } >
+                    'text': < _ _ | `nothing` ~ >
+                } _ > >
+                'Module Specification': < | `group` {
+                    'schema': < * "select 'schema' if you want to have 1 schema, if you have or need multple, select 'set'" | `component` < | `internal` 'Schema Tree' _ > >
+                    'schema path': < * "selects the schema in which the module is specified" | `list` < | `text` | `global` 'text' _ > >
+                    'complexity': < _ | `state` < {
+                        'constrained': < _ _ | `group` {
+                            'module resolver': < * "the module resolver that is the root of the document (the resolver gives access to the module definition as well)" | `text` | `global` 'text' >
+                        } >
+                        'unconstrained': < _ _ | `group` {
+                            'module': < * "the module that is the root of the document" | `text` | `global` 'text' >
+                        } >
+                    } _ > >
+                } >
+                'Schema Tree': < | `state` < {
+                    'schema': < _ * "a single schema" | `component` < | `internal` 'Schema' _ > >
+                    'set': < _ * "a hierarchy of schemas" | `component` < | `internal` 'Schemas' _ > >
+                } _ > >
+                'Text Type': < | `group` {
+                    'type': < _ | `state` < {
+                        'multi line': < _ * "Text can contain line breaks (like a textarea)" | `nothing` ~ >
+                        'single line': < _ * "Text on a single line (like an input field)" | `nothing` ~ >
+                    } _ > >
+                    'link': < _ | `state` < {
+                        'no': < _ _ | `nothing` ~ >
+                        'yes': < _ _ | `group` {
+                            'path prefix': < _ | `text` | `global` 'text' >
+                            'path suffix': < _ | `text` | `global` 'text' >
+                        } >
+                    } _ > >
+                } >
+                'Simple Type': < | `group` {
+                    'type': < _ | `state` < {
+                        'boolean': < _ _ | `nothing` ~ >
+                        'date': < _ _ | `nothing` ~ >
+                        'number': < _ _ | `group` {
+                            'precision': < _ | `state` < {
+                                'approximation': < _ _ | `group` {
+                                    'significant digits': < _ | `simple` | `global` 'Natural' >
+                                } >
+                                'exact': < _ _ | `group` {
+                                    'number of fractional digits': < _ | `optional` | `simple` | `global` 'Natural' >
+                                    'type': < _ | `state` < {
+                                        'integer': < _ _ | `nothing` ~ >
+                                        'natural': < _ _ | `nothing` ~ >
+                                        'positive natural': < _ _ | `nothing` ~ >
+                                    } _ > >
+                                } >
+                            } _ > >
+                        } >
+                    } _ > >
+                } >
+                'Module': < | `group` {
+                    'root value': < _ | `component` < | `internal` 'Value' _ > >
+                } >
+                'Presence': < | `state` < {
+                    'optional': < _ * "This parameter may be omitted" | `nothing` ~ >
+                    'required': < _ * "This parameter must be provided" | `nothing` ~ >
+                } _ > >
+                'Resolver Modules': < | `dictionary` < | `group` {
+                    'signature': < _ | `reference` < < < | `internal` 'Resolver Signatures' ~ > < [ | `dictionary` ~ ] ~ > > | `derived` ~ > >
+                    'root value resolver': < _ | `component` < | `internal` 'Resolver Value' _ > >
+                } > >
+                'Resolver Benchmark': < | `group` {
+                    'selection': < _ | `component` < | `internal` 'Resolver Guaranteed Value Selection' * {
+                        'dictionary': < < | `internal` 'Value' ~ > < [ | `state` 'dictionary' ] ~ > >
+                    } > >
+                    'resulting dictionary': < _ | `reference` < < < | `internal` 'Dictionary' ~ > < [ ] ~ > > | `derived` ~ > >
+                    'dense': < _ | `simple` | `global` 'boolean' >
+                } >
+                'Group': < | `dictionary` < | `group` {
+                    'description': < * "Documentation shown in IDE for this property" | `optional` | `text` | `global` 'multi line text' >
+                    'value': < * "The type of this property" | `component` < | `internal` 'Value' _ > >
+                } > >
+                'Value Reference': < | `group` {
+                    'module': < _ | `component` < | `internal` 'Module Reference' _ > >
+                    'path': < _ | `component` < | `internal` 'Value Path' _ > >
+                } >
+                'Value Path': < | `group` {
+                    'tail': < * "Navigate through nested structures: groups, states, dictionaries, lists, optionals" | `list` < | `state` < {
+                        'dictionary': < _ * "Navigate into a dictionary's values" | `nothing` ~ >
+                        'group': < _ * "Navigate to a specific property in a group" | `reference` < < < | `internal` 'Group' ~ > < [ ] ~ > > | `selected` < ~ | `acyclic` ~ _ > > >
+                        'list': < _ * "Navigate into a list's elements" | `nothing` ~ >
+                        'optional': < _ * "Navigate into an optional's value" | `nothing` ~ >
+                        'state': < _ * "Navigate to a specific option in a state" | `reference` < < < | `internal` 'Value' ~ > < [ | `state` 'state' | `group` 'options' ] ~ > > | `selected` < ~ | `acyclic` ~ _ > > >
+                    } * {
+                        'value': < < | `internal` 'Value' ~ > < [ ] ~ > >
+                    } > * {
+                        'result': < < | `internal` 'Value' ~ > < [ ] ~ > >
+                    } > >
+                    'resulting node': < _ | `reference` < < < | `internal` 'Value' ~ > < [ ] ~ > > | `derived` ~ > >
+                } >
+                'Module Reference': < | `group` {
+                    'location': < * "Where the referenced module is defined" | `state` < {
+                        'internal': < _ * "Module is in the same schema" | `reference` < < < | `internal` 'Modules' ~ > < [ ] ~ > > | `selected` < ~ | `acyclic` ~ _ > > >
+                        'external': < _ * "Module is in an imported schema" | `group` {
+                            'import': < _ | `reference` < < < | `internal` 'Schema Imports' ~ > < [ ] ~ > > | `selected` < ~ | `acyclic` ~ _ > > >
+                            'module': < _ | `reference` < < < | `internal` 'Modules' ~ > < [ ] ~ > > | `selected` < ~ | `acyclic` ~ _ > > >
+                        } >
+                    } _ > >
+                    'resulting module': < _ | `reference` < < < | `internal` 'Module' ~ > < [ ] ~ > > | `derived` ~ > >
+                } >
+                'Resolver Signature': < | `group` {
+                    'module': < _ | `reference` < < < | `internal` 'Module' ~ > < [ ] ~ > > | `derived` ~ > >
+                    'parameters': < _ | `state` < {
+                        'local': < _ _ | `component` < | `internal` 'Resolver Signature Parameters' _ > >
+                        'same as': < _ _ | `reference` < < < | `internal` 'Resolver Signatures' ~ > < [ ] ~ > > | `selected` < ~ | `acyclic` ~ _ > > >
+                    } _ > >
+                    'resolved parameters': < _ | `reference` < < < | `internal` 'Resolver Signature Parameters' ~ > < [ ] ~ > > | `derived` ~ > >
+                } >
+                'Resolver Relative Value Selection': < | `group` {
+                    'path': < _ | `list` < | `state` < {
+                        'component': < _ _ | `nothing` ~ >
+                        'group': < _ _ | `reference` < < < | `internal` 'Group' ~ > < [ ] ~ > > | `selected` < ~ | `acyclic` ~ _ > > >
+                        'reference': < _ _ | `group` {
+                            'definition': < _ | `reference` < < < | `internal` 'Value' ~ > < [ | `state` 'reference' ] ~ > > | `derived` ~ > >
+                        } >
+                    } _ > * {
+                        'result': < < | `internal` 'Value' ~ > < [ ] ~ > >
+                    } > >
+                    'resulting node': < _ | `reference` < < < | `internal` 'Value' ~ > < [ ] ~ > > | `derived` ~ > >
+                } >
+                'Resolver Lookup Selection': < | `group` {
+                    'type': < _ | `state` < {
+                        'acyclic': < _ _ | `state` < {
+                            'siblings': < _ _ | `reference` < < < | `internal` 'Dictionary' ~ > < [ ] ~ > > | `derived` ~ > >
+                            'resolved dictionary': < _ _ | `group` {
+                                'selection': < _ | `component` < | `internal` 'Resolver Guaranteed Value Selection' _ > >
+                                'selected dictionary': < _ | `reference` < < < | `internal` 'Dictionary' ~ > < [ ] ~ > > | `derived` ~ > >
+                            } >
+                        } _ > >
+                        'cyclic': < _ _ | `state` < {
+                            'siblings': < _ _ | `reference` < < < | `internal` 'Dictionary' ~ > < [ ] ~ > > | `derived` ~ > >
+                        } _ > >
+                        'parameter': < _ _ | `reference` < < < | `internal` 'Resolver Signature Parameters' ~ > < [ | `group` 'lookups' ] ~ > > | `selected` < ~ | `acyclic` ~ _ > > >
+                    } _ > >
+                    'resulting dictionary': < _ | `reference` < < < | `internal` 'Dictionary' ~ > < [ ] ~ > > | `derived` ~ > >
+                } >
+                'Resolver Constraint': < | `group` {
+                    'selection': < _ | `component` < | `internal` 'Resolver Relative Value Selection' _ > >
+                    'type': < _ | `state` < {
+                        'state': < _ _ | `group` {
+                            'selected state': < _ | `reference` < < < | `internal` 'Value' ~ > < [ | `state` 'state' ] ~ > > | `derived` ~ > >
+                            'option': < _ | `reference` < < < | `internal` 'Value' ~ > < [ | `state` 'state' | `group` 'options' ] ~ > > | `selected` < ~ | `acyclic` ~ _ > > >
+                        } >
+                        'optional value': < _ _ | `group` {
+                            'selected optional value': < _ | `reference` < < < | `internal` 'Value' ~ > < [ | `state` 'optional' ] ~ > > | `derived` ~ > >
+                        } >
+                    } _ > >
+                } >
+                'Resolver Option Constraints': < | `dictionary` < | `state` < {
+                    'state': < _ _ | `group` {
+                        'selection': < _ | `component` < | `internal` 'Resolver Guaranteed Value Selection' _ > >
+                        'selected state': < _ | `reference` < < < | `internal` 'Value' ~ > < [ | `state` 'state' ] ~ > > | `derived` ~ > >
+                        'option': < _ | `reference` < < < | `internal` 'Value' ~ > < [ | `state` 'state' | `group` 'options' ] ~ > > | `selected` < ~ | `acyclic` ~ _ > > >
+                    } >
+                    'assert is set': < _ _ | `component` < | `internal` 'Resolver Possible Value Selection' _ > >
+                } _ > > >
+                'Resolver Optional Value Constraints': < | `optional` | `component` < | `internal` 'Resolver Value Constraints' _ > >
+                'Resolver Value Constraints': < | `dictionary` < | `component` < | `internal` 'Resolver Value Constraint' _ > > >
+                'Resolver Reference To Value Constraint': < | `reference` < < < | `internal` 'Resolver Value Constraints' ~ > < [ ] ~ > > | `selected` < ~ | `acyclic` ~ _ > > >
+                'Resolver Value Constraint': < | `group` {
+                    'start': < _ | `state` < {
+                        'value': < _ _ | `nothing` ~ >
+                        'sibling': < _ _ | `component` < | `internal` 'Resolver Reference To Value Constraint' _ > >
+                    } _ > >
+                    'constraint': < _ | `component` < | `internal` 'Resolver Constraint' _ > >
+                } >
+                'Resolver Optional Value Initialization': < | `state` < {
+                    'not set': < _ _ | `nothing` ~ >
+                    'set': < _ _ | `component` < | `internal` 'Resolver Guaranteed Value Selection' _ > >
+                    'selection': < _ _ | `component` < | `internal` 'Resolver Possible Value Selection' _ > >
+                } _ > >
+                'Resolver Value Group': < | `dictionary` < | `group` {
+                    'definition': < _ | `reference` < < < | `internal` 'Group' ~ > < [ | `dictionary` ~ ] ~ > > | `derived` ~ > >
+                    'resolver': < _ | `component` < | `internal` 'Resolver Value' _ > >
+                } > >
+                'Resolver Value List Result': < | `component` < | `internal` 'Module Reference' _ > >
+                'Value Results': < | `optional` | `dictionary` < | `component` < | `internal` 'Value Reference' _ > > >
+                'Option Constraints': < | `optional` | `dictionary` < | `component` < | `internal` 'Value Reference' _ > > >
+                'Resolver Guaranteed Value Selection': < | `group` {
+                    'start': < _ | `state` < {
+                        'sibling': < _ _ | `reference` < < < | `internal` 'Resolver Value Group' ~ > < [ ] ~ > > | `selected` < ~ | `acyclic` ~ _ > > >
+                        'parent sibling': < _ _ | `reference` < < < | `internal` 'Resolver Value Group' ~ > < [ ] ~ > > | `selected` < ~ | `acyclic` ~ _ > > >
+                        'option constraint': < _ _ | `reference` < < < | `internal` 'Resolver Option Constraints' ~ > < [ ] ~ > > | `selected` < ~ | `acyclic` ~ _ > > >
+                        'list cursor': < _ _ | `nothing` ~ >
+                        'linked entry': < _ _ | `nothing` ~ >
+                        'constraint': < _ _ | `state` < {
+                            'component': < _ _ | `group` {
+                                'property': < _ | `reference` < < < | `internal` 'Resolver Value Group' ~ > < [ ] ~ > > | `selected` < ~ | `acyclic` ~ _ > > >
+                                'constraint': < _ | `reference` < < < | `internal` 'Resolver Value Constraints' ~ > < [ ] ~ > > | `selected` < ~ | `acyclic` ~ _ > > >
+                            } >
+                            'reference': < _ _ | `group` {
+                                'property': < _ | `reference` < < < | `internal` 'Resolver Value Group' ~ > < [ ] ~ > > | `selected` < ~ | `acyclic` ~ _ > > >
+                                'constraint': < _ | `reference` < < < | `internal` 'Resolver Value Constraints' ~ > < [ ] ~ > > | `selected` < ~ | `acyclic` ~ _ > > >
+                            } >
+                        } _ > >
+                        'parameter': < _ _ | `reference` < < < | `internal` 'Resolver Signature Parameters' ~ > < [ | `group` 'modules' ] ~ > > | `selected` < ~ | `acyclic` ~ _ > > >
+                        'result': < _ _ | `state` < {
+                            'list': < _ _ | `group` {
+                                'property': < _ | `reference` < < < | `internal` 'Resolver Value Group' ~ > < [ ] ~ > > | `selected` < ~ | `acyclic` ~ _ > > >
+                                'list result': < _ | `reference` < < < | `internal` 'Resolver Value' ~ > < [ | `state` 'list' | `group` 'result' | `optional` ~ ] ~ > > | `derived` ~ > >
+                            } >
+                            'state': < _ _ | `group` {
+                                'property': < _ | `reference` < < < | `internal` 'Resolver Value Group' ~ > < [ ] ~ > > | `selected` < ~ | `acyclic` ~ _ > > >
+                                'state': < _ | `reference` < < < | `internal` 'Resolver Value' ~ > < [ | `state` 'state' ] ~ > > | `derived` ~ > >
+                                'result': < _ | `component` < | `internal` 'Module Reference' _ > >
+                            } >
+                            'optional value': < _ _ | `group` {
+                                'property': < _ | `reference` < < < | `internal` 'Resolver Value Group' ~ > < [ ] ~ > > | `selected` < ~ | `acyclic` ~ _ > > >
+                                'optional value': < _ | `reference` < < < | `internal` 'Resolver Value' ~ > < [ | `state` 'optional' ] ~ > > | `derived` ~ > >
+                                'result': < _ | `component` < | `internal` 'Module Reference' _ > >
+                            } >
+                        } _ > >
+                    } _ > >
+                    'tail': < _ | `component` < | `internal` 'Resolver Relative Value Selection' _ > >
+                    'resulting node': < _ | `reference` < < < | `internal` 'Value' ~ > < [ ] ~ > > | `derived` ~ > >
+                } >
+                'Resolver Possible Value Selection': < | `state` < {
+                    'parameter': < _ _ | `reference` < < < | `internal` 'Resolver Signature Parameters' ~ > < [ | `group` 'modules' ] ~ > > | `selected` < ~ | `acyclic` ~ _ > > >
+                    'result': < _ _ | `state` < {
+                        'state': < _ _ | `group` {
+                            'property': < _ | `reference` < < < | `internal` 'Resolver Value Group' ~ > < [ ] ~ > > | `selected` < ~ | `acyclic` ~ _ > > >
+                            'state': < _ | `reference` < < < | `internal` 'Resolver Value' ~ > < [ | `state` 'state' ] ~ > > | `derived` ~ > >
+                            'result': < _ | `component` < | `internal` 'Module Reference' _ > >
+                        } >
+                        'optional value': < _ _ | `group` {
+                            'property': < _ | `reference` < < < | `internal` 'Resolver Value Group' ~ > < [ ] ~ > > | `selected` < ~ | `acyclic` ~ _ > > >
+                            'optional value': < _ | `reference` < < < | `internal` 'Resolver Value' ~ > < [ | `state` 'optional' ] ~ > > | `derived` ~ > >
+                            'result': < _ | `component` < | `internal` 'Module Reference' _ > >
+                        } >
+                    } _ > >
+                } _ > >
+            }
+            `complexity`: | `constrained` (
+                `signatures`: (
+                    `signatures`: {
+                        'Package': < ~ | `local` < {} {} > ~ >
+                        'Presence': < ~ | `local` < {} {} > ~ >
+                        'Simple Type': < ~ | `local` < {} {} > ~ >
+                        'Text Type': < ~ | `local` < {} {} > ~ >
+                        'Globals': < ~ | `local` < {} {} > ~ >
+                        'Group': < ~ | `local` < {
+                            'globals': < < | `internal` 'Globals' ~ > | `optional` ~ >
+                            'imports': < < | `internal` 'Schema Imports' ~ > | `optional` ~ >
+                        } {
+                            'noncircular sibling modules': < < | `internal` 'Modules' ~ > ~ | `acyclic` ~ | `required` ~ >
+                            'possibly circular dependent sibling modules': < < | `internal` 'Modules' ~ > ~ | `cyclic` ~ | `required` ~ >
+                        } > ~ >
+                        'Dictionary': < ~ | `local` < {
+                            'globals': < < | `internal` 'Globals' ~ > | `optional` ~ >
+                            'imports': < < | `internal` 'Schema Imports' ~ > | `optional` ~ >
+                        } {
+                            'noncircular sibling modules': < < | `internal` 'Modules' ~ > ~ | `acyclic` ~ | `required` ~ >
+                            'possibly circular dependent sibling modules': < < | `internal` 'Modules' ~ > ~ | `cyclic` ~ | `required` ~ >
+                        } > ~ >
+                        'Value': < ~ | `local` < {
+                            'globals': < < | `internal` 'Globals' ~ > | `optional` ~ >
+                            'imports': < < | `internal` 'Schema Imports' ~ > | `optional` ~ >
+                        } {
+                            'noncircular sibling modules': < < | `internal` 'Modules' ~ > ~ | `acyclic` ~ | `required` ~ >
+                            'possibly circular dependent sibling modules': < < | `internal` 'Modules' ~ > ~ | `cyclic` ~ | `required` ~ >
+                        } > ~ >
+                        'Module Reference': < ~ | `local` < {
+                            'imports': < < | `internal` 'Schema Imports' ~ > | `optional` ~ >
+                        } {
+                            'modules': < < | `internal` 'Modules' ~ > ~ | `acyclic` ~ | `required` ~ >
+                        } > ~ >
+                        'Value Reference': < ~ | `same as` 'Module Reference' ~ >
+                        'Value Results': < ~ | `same as` 'Value Reference' ~ >
+                        'Option Constraints': < ~ | `same as` 'Value Reference' ~ >
+                        'Module': < ~ | `local` < {
+                            'globals': < < | `internal` 'Globals' ~ > | `optional` ~ >
+                            'imports': < < | `internal` 'Schema Imports' ~ > | `optional` ~ >
+                        } {
+                            'noncircular sibling modules': < < | `internal` 'Modules' ~ > ~ | `acyclic` ~ | `required` ~ >
+                            'possibly circular dependent sibling modules': < < | `internal` 'Modules' ~ > ~ | `cyclic` ~ | `required` ~ >
+                        } > ~ >
+                        'Value Path': < ~ | `local` < {
+                            'module': < < | `internal` 'Module' ~ > | `required` ~ >
+                        } {} > ~ >
+                        'Schemas': < ~ | `local` < {} {
+                            'sibling schemas': < < | `internal` 'Schemas' ~ > ~ | `stack` ~ | `required` ~ >
+                        } > ~ >
+                        'Resolver Value': < ~ | `local` < {
+                            'definition': < < | `internal` 'Value' ~ > | `required` ~ >
+                            'list cursor': < < | `internal` 'Resolver Value List Result' ~ > | `optional` ~ >
+                            'linked entry': < < | `internal` 'Resolver Benchmark' ~ > | `optional` ~ >
+                            'current dictionary': < < | `internal` 'Dictionary' ~ > | `optional` ~ >
+                            'current ordered dictionary': < < | `internal` 'Dictionary' ~ > | `optional` ~ >
+                            'signature': < < | `internal` 'Resolver Signature' ~ > | `required` ~ >
+                            'schema imports': < < | `internal` 'Schema Imports' ~ > | `optional` ~ >
+                            'resolver imports': < < | `internal` 'Resolver Imports' ~ > | `optional` ~ >
+                            'signatures': < < | `internal` 'Resolver Signatures' ~ > | `required` ~ >
+                            'modules': < < | `internal` 'Modules' ~ > | `required` ~ >
+                            'option constraints': < < | `internal` 'Resolver Option Constraints' ~ > | `optional` ~ >
+                        } {
+                            'sibling property resolvers': < < | `internal` 'Resolver Value Group' ~ > ~ | `acyclic` ~ | `required` ~ >
+                            'parent sibling property resolvers': < < | `internal` 'Resolver Value Group' ~ > ~ | `acyclic` ~ | `required` ~ >
+                        } > ~ >
+                        'Resolver Possible Value Selection': < ~ | `same as` 'Resolver Value' ~ >
+                        'Resolver Guaranteed Value Selection': < ~ | `same as` 'Resolver Value' ~ >
+                        'Resolver Benchmark': < ~ | `same as` 'Resolver Value' ~ >
+                        'Resolver Optional Value Initialization': < ~ | `same as` 'Resolver Value' ~ >
+                        'Resolver Lookup Selection': < ~ | `same as` 'Resolver Value' ~ >
+                        'Resolver Option Constraints': < ~ | `same as` 'Resolver Value' ~ >
+                        'Resolver Value List Result': < ~ | `same as` 'Module Reference' ~ >
+                        'Resolver Value Group': < ~ | `local` < {
+                            'definition': < < | `internal` 'Group' ~ > | `required` ~ >
+                            'list cursor': < < | `internal` 'Resolver Value List Result' ~ > | `optional` ~ >
+                            'linked entry': < < | `internal` 'Resolver Benchmark' ~ > | `optional` ~ >
+                            'current dictionary': < < | `internal` 'Dictionary' ~ > | `optional` ~ >
+                            'current ordered dictionary': < < | `internal` 'Dictionary' ~ > | `optional` ~ >
+                            'signature': < < | `internal` 'Resolver Signature' ~ > | `required` ~ >
+                            'schema imports': < < | `internal` 'Schema Imports' ~ > | `optional` ~ >
+                            'resolver imports': < < | `internal` 'Resolver Imports' ~ > | `optional` ~ >
+                            'signatures': < < | `internal` 'Resolver Signatures' ~ > | `required` ~ >
+                            'modules': < < | `internal` 'Modules' ~ > | `required` ~ >
+                            'option constraints': < < | `internal` 'Resolver Option Constraints' ~ > | `optional` ~ >
+                        } {
+                            'sibling property resolvers': < < | `internal` 'Resolver Value Group' ~ > ~ | `acyclic` ~ | `required` ~ >
+                            'parent sibling property resolvers': < < | `internal` 'Resolver Value Group' ~ > ~ | `acyclic` ~ | `required` ~ >
+                        } > ~ >
+                        'Resolver Relative Value Selection': < ~ | `local` < {
+                            'value': < < | `internal` 'Value' ~ > | `required` ~ >
+                        } {} > ~ >
+                        'Resolver Constraint': < ~ | `same as` 'Resolver Relative Value Selection' ~ >
+                        'Resolver Optional Value Constraints': < ~ | `same as` 'Resolver Relative Value Selection' ~ >
+                        'Resolver Value Constraints': < ~ | `same as` 'Resolver Relative Value Selection' ~ >
+                        'Resolver Value Constraint': < ~ | `local` < {} {
+                            'property constraints': < < | `internal` 'Resolver Value Constraints' ~ > ~ | `acyclic` ~ | `required` ~ >
+                        } > ~ >
+                        'Resolver': < ~ | `local` < {
+                            'modules': < < | `internal` 'Modules' ~ > | `required` ~ >
+                            'resolver imports': < < | `internal` 'Resolver Imports' ~ > | `required` ~ >
+                            'schema imports': < < | `internal` 'Schema Imports' ~ > | `required` ~ >
+                        } {} > ~ >
+                        'Resolver Signature Parameters': < ~ | `local` < {
+                            'modules': < < | `internal` 'Modules' ~ > | `required` ~ >
+                            'imports': < < | `internal` 'Schema Imports' ~ > | `required` ~ >
+                        } {} > ~ >
+                        'Resolver Signature': < ~ | `local` < {
+                            'modules': < < | `internal` 'Modules' ~ > | `required` ~ >
+                            'module': < < | `internal` 'Module' ~ > | `required` ~ >
+                            'imports': < < | `internal` 'Schema Imports' ~ > | `required` ~ >
+                        } {
+                            'sibling signatures': < < | `internal` 'Resolver Signatures' ~ > ~ | `acyclic` ~ | `required` ~ >
+                        } > ~ >
+                        'Resolver Signatures': < ~ | `local` < {
+                            'modules': < < | `internal` 'Modules' ~ > | `required` ~ >
+                            'imports': < < | `internal` 'Schema Imports' ~ > | `required` ~ >
+                        } {} > ~ >
+                        'Resolver Modules': < ~ | `local` < {
+                            'signatures': < < | `internal` 'Resolver Signatures' ~ > | `required` ~ >
+                            'modules': < < | `internal` 'Modules' ~ > | `required` ~ >
+                            'schema imports': < < | `internal` 'Schema Imports' ~ > | `required` ~ >
+                            'resolver imports': < < | `internal` 'Resolver Imports' ~ > | `required` ~ >
+                        } {} > ~ >
+                        'Resolver Reference To Value Constraint': < ~ | `local` < {} {
+                            'property constraints': < < | `internal` 'Resolver Value Constraints' ~ > ~ | `acyclic` ~ | `required` ~ >
+                        } > ~ >
+                        'Resolver Imports': < ~ | `same as` 'Schemas' ~ >
+                        'Module Specification': < ~ | `local` < {} {} > ~ >
+                        'Schema Tree': < ~ | `local` < {} {
+                            'sibling schemas': < < | `internal` 'Schemas' ~ > ~ | `stack` ~ | `required` ~ >
+                        } > ~ >
+                        'Schema': < ~ | `same as` 'Schemas' ~ >
+                        'Schema Imports': < ~ | `same as` 'Schemas' ~ >
+                        'Modules': < ~ | `local` < {
+                            'globals': < < | `internal` 'Globals' ~ > | `optional` ~ >
+                            'imports': < < | `internal` 'Schema Imports' ~ > | `optional` ~ >
+                        } {} > ~ >
+                    }
+                )
+                `modules`: {
+                    'Package': < ~ | `group` {
+                        'omit (de)serializer': < ~ | `simple` ~ >
+                        'schema tree': < ~ | `component` < ~ | `internal` 'Schema Tree' ~ * < * {} * {
+                            'sibling schemas': | `stack` | `empty` ~
+                        } > {} > >
+                    } >
+                    'Module': < ~ | `group` {
+                        'root value': < ~ | `component` < ~ | `internal` 'Value' ~ * < * {
+                            'globals': | `parameter` 'globals'
+                            'imports': | `parameter` 'imports'
+                        } * {
+                            'noncircular sibling modules': | `selection` < | `parameter` 'noncircular sibling modules' ~ >
+                            'possibly circular dependent sibling modules': | `selection` < | `parameter` 'possibly circular dependent sibling modules' ~ >
+                        } > {} > >
+                    } >
+                    'Modules': < ~ | `dictionary` < ~ | `component` < ~ | `internal` 'Module' ~ * < * {
+                        'globals': | `parameter` 'globals'
+                        'imports': | `parameter` 'imports'
+                    } * {
+                        'noncircular sibling modules': | `selection` < | `acyclic` | `siblings` ~ ~ >
+                        'possibly circular dependent sibling modules': | `selection` < | `cyclic` | `siblings` ~ ~ >
+                    } > {} > _ > >
+                    'Globals': < ~ | `group` {
+                        'complexity': < ~ | `state` < ~ {
+                            'unconstrained': < {} | `nothing` ~ >
+                            'constrained': < {} | `nothing` ~ >
+                        } > >
+                        'text types': < ~ | `dictionary` < ~ | `component` < ~ | `internal` 'Text Type' ~ * < * {} * {} > {} > _ > >
+                        'simple types': < ~ | `dictionary` < ~ | `component` < ~ | `internal` 'Simple Type' ~ * < * {} * {} > {} > _ > >
+                    } >
+                    'Simple Type': < ~ | `group` {
+                        'type': < ~ | `state` < ~ {
+                            'boolean': < {} | `nothing` ~ >
+                            'date': < {} | `nothing` ~ >
+                            'number': < {} | `group` {
+                                'precision': < ~ | `state` < ~ {
+                                    'approximation': < {} | `group` {
+                                        'significant digits': < ~ | `simple` ~ >
+                                    } >
+                                    'exact': < {} | `group` {
+                                        'number of fractional digits': < ~ | `optional` < {} | `simple` ~ > >
+                                        'type': < ~ | `state` < ~ {
+                                            'integer': < {} | `nothing` ~ >
+                                            'natural': < {} | `nothing` ~ >
+                                            'positive natural': < {} | `nothing` ~ >
+                                        } > >
+                                    } >
+                                } > >
+                            } >
+                        } > >
+                    } >
+                    'Text Type': < ~ | `group` {
+                        'type': < ~ | `state` < ~ {
+                            'multi line': < {} | `nothing` ~ >
+                            'single line': < {} | `nothing` ~ >
+                        } > >
+                        'link': < ~ | `state` < ~ {
+                            'no': < {} | `nothing` ~ >
+                            'yes': < {} | `group` {
+                                'path prefix': < ~ | `text` ~ >
+                                'path suffix': < ~ | `text` ~ >
+                            } >
+                        } > >
+                    } >
+                    'Module Reference': < ~ | `group` {
+                        'location': < ~ | `state` < ~ {
+                            'internal': < {} | `reference` < ~ | `selected` < ~ < | `parameter` 'modules' ~ > {} > > >
+                            'external': < {
+                                'import': | `assert is set` | `parameter` 'imports'
+                            } | `group` {
+                                'import': < ~ | `reference` < ~ | `selected` < ~ < | `acyclic` | `resolved dictionary` < < | `option constraint` 'import' < [ ] ~ > ~ > ~ > ~ > {} > > >
+                                'module': < ~ | `reference` < ~ | `selected` < ~ < | `acyclic` | `resolved dictionary` < < | `sibling` 'import' < [ | `reference` < ~ > | `group` 'schema' | `reference` < ~ > | `group` 'modules' | `component` ~ ] ~ > ~ > ~ > ~ > {} > > >
+                            } >
+                        } > >
+                        'resulting module': < ~ | `reference` < ~ | `derived` < < | `result` | `state` < 'location' ~ < | `internal` 'Module' ~ > > < [ ] ~ > ~ > > > >
+                    } >
+                    'Value Reference': < ~ | `group` {
+                        'module': < ~ | `component` < ~ | `internal` 'Module Reference' ~ * < _ _ > {} > >
+                        'path': < ~ | `component` < ~ | `internal` 'Value Path' ~ * < * {
+                            'module': | `required` < | `sibling` 'module' < [ | `component` ~ | `group` 'resulting module' | `reference` < ~ > ] ~ > ~ >
+                        } * {} > {} > >
+                    } >
+                    'Value Path': < ~ | `group` {
+                        'tail': < ~ | `list` < ~ | `state` < ~ {
+                            'dictionary': < {
+                                'definition': | `state` < < | `list cursor` ~ < [ ] ~ > ~ > ~ 'dictionary' >
+                            } | `nothing` ~ >
+                            'group': < {
+                                'definition': | `state` < < | `list cursor` ~ < [ ] ~ > ~ > ~ 'group' >
+                            } | `reference` < ~ | `selected` < ~ < | `acyclic` | `resolved dictionary` < < | `option constraint` 'definition' < [ | `component` ~ ] ~ > ~ > ~ > ~ > {} > > >
+                            'list': < {
+                                'definition': | `state` < < | `list cursor` ~ < [ ] ~ > ~ > ~ 'list' >
+                            } | `nothing` ~ >
+                            'optional': < {
+                                'definition': | `state` < < | `list cursor` ~ < [ ] ~ > ~ > ~ 'optional' >
+                            } | `nothing` ~ >
+                            'state': < {
+                                'definition': | `state` < < | `list cursor` ~ < [ ] ~ > ~ > ~ 'state' >
+                            } | `reference` < ~ | `selected` < ~ < | `acyclic` | `resolved dictionary` < < | `option constraint` 'definition' < [ | `group` 'options' ] ~ > ~ > ~ > ~ > {} > > >
+                        } > * < | `internal` 'Value' ~ > > >
+                        'resulting node': < ~ | `reference` < ~ | `derived` < < | `result` | `list` < 'tail' ~ > < [ ] ~ > ~ > > > >
+                    } >
+                    'Value Results': < ~ | `optional` < {} | `dictionary` < ~ | `component` < ~ | `internal` 'Value Reference' ~ * < _ _ > {} > _ > > >
+                    'Option Constraints': < ~ | `optional` < {} | `dictionary` < ~ | `component` < ~ | `internal` 'Value Reference' ~ * < _ _ > {} > _ > > >
+                    'Group': < ~ | `dictionary` < ~ | `group` {
+                        'description': < ~ | `optional` < {} | `text` ~ > >
+                        'value': < ~ | `component` < ~ | `internal` 'Value' ~ * < * {
+                            'globals': | `parameter` 'globals'
+                            'imports': | `parameter` 'imports'
+                        } * {
+                            'noncircular sibling modules': | `selection` < | `parameter` 'noncircular sibling modules' ~ >
+                            'possibly circular dependent sibling modules': | `selection` < | `parameter` 'possibly circular dependent sibling modules' ~ >
+                        } > {} > >
+                    } _ > >
+                    'Dictionary': < ~ | `group` {
+                        'value': < ~ | `component` < ~ | `internal` 'Value' ~ * < * {
+                            'globals': | `parameter` 'globals'
+                            'imports': | `parameter` 'imports'
+                        } * {
+                            'noncircular sibling modules': | `selection` < | `parameter` 'noncircular sibling modules' ~ >
+                            'possibly circular dependent sibling modules': | `selection` < | `parameter` 'possibly circular dependent sibling modules' ~ >
+                        } > {} > >
+                    } >
+                    'Value': < ~ | `state` < ~ {
+                        'component': < {} | `group` {
+                            'type': < ~ | `state` < ~ {
+                                'external': < {
+                                    'import': | `assert is set` | `parameter` 'imports'
+                                } | `group` {
+                                    'import': < ~ | `reference` < ~ | `selected` < ~ < | `acyclic` | `resolved dictionary` < < | `option constraint` 'import' < [ ] ~ > ~ > ~ > ~ > {} > > >
+                                    'module': < ~ | `reference` < ~ | `selected` < ~ < | `acyclic` | `resolved dictionary` < < | `sibling` 'import' < [ | `reference` < ~ > | `group` 'schema' | `reference` < ~ > | `group` 'modules' | `component` ~ ] ~ > ~ > ~ > ~ > {} > > >
+                                } >
+                                'internal acyclic': < {} | `reference` < ~ | `selected` < ~ < | `parameter` 'noncircular sibling modules' ~ > {} > > >
+                                'internal': < {} | `reference` < ~ | `selected` < ~ < | `parameter` 'possibly circular dependent sibling modules' ~ > {} > > >
+                            } > >
+                            'results': < ~ | `component` < ~ | `internal` 'Value Results' ~ * < * {
+                                'imports': | `parameter` 'imports'
+                            } * {
+                                'modules': | `selection` < | `parameter` 'noncircular sibling modules' ~ >
+                            } > {} > >
+                        } >
+                        'dictionary': < {} | `component` < ~ | `internal` 'Dictionary' ~ * < * {
+                            'globals': | `parameter` 'globals'
+                            'imports': | `parameter` 'imports'
+                        } * {
+                            'noncircular sibling modules': | `selection` < | `parameter` 'noncircular sibling modules' ~ >
+                            'possibly circular dependent sibling modules': | `selection` < | `parameter` 'possibly circular dependent sibling modules' ~ >
+                        } > {} > >
+                        'group': < {} | `component` < ~ | `internal` 'Group' ~ * < * {
+                            'globals': | `parameter` 'globals'
+                            'imports': | `parameter` 'imports'
+                        } * {
+                            'noncircular sibling modules': | `selection` < | `parameter` 'noncircular sibling modules' ~ >
+                            'possibly circular dependent sibling modules': | `selection` < | `parameter` 'possibly circular dependent sibling modules' ~ >
+                        } > {} > >
+                        'list': < {} | `group` {
+                            'value': < ~ | `component` < ~ | `internal` 'Value' ~ * < _ _ > {} > >
+                            'results': < ~ | `component` < ~ | `internal` 'Value Results' ~ * < * {
+                                'imports': | `parameter` 'imports'
+                            } * {
+                                'modules': | `selection` < | `parameter` 'noncircular sibling modules' ~ >
+                            } > {} > >
+                        } >
+                        'nothing': < {} | `nothing` ~ >
+                        'simple': < {} | `state` < ~ {
+                            'global': < {
+                                'globals': | `assert is set` | `parameter` 'globals'
+                            } | `reference` < ~ | `selected` < ~ < | `acyclic` | `resolved dictionary` < < | `option constraint` 'globals' < [ | `group` 'simple types' ] ~ > ~ > ~ > ~ > {} > > >
+                        } > >
+                        'optional': < {} | `component` < ~ | `internal` 'Value' ~ * < _ _ > {} > >
+                        'reference': < {} | `group` {
+                            'referent': < ~ | `component` < ~ | `internal` 'Value Reference' ~ * < * {
+                                'imports': | `parameter` 'imports'
+                            } * {
+                                'modules': | `selection` < | `parameter` 'noncircular sibling modules' ~ >
+                            } > {} > >
+                            'type': < ~ | `state` < ~ {
+                                'derived': < {} | `nothing` ~ >
+                                'selected': < {
+                                    'dictionary': | `state` < < | `sibling` 'referent' < [ | `component` ~ | `group` 'module' | `component` ~ | `group` 'resulting module' | `reference` < ~ > | `group` 'root value' | `component` ~ ] ~ > ~ > ~ 'dictionary' >
+                                } | `group` {
+                                    'dictionary': < ~ | `reference` < ~ | `derived` < < | `option constraint` 'dictionary' < [ ] ~ > ~ > > > >
+                                    'dependency': < ~ | `state` < ~ {
+                                        'acyclic': < {} | `nothing` ~ >
+                                        'cyclic': < {} | `nothing` ~ >
+                                        'stack': < {} | `nothing` ~ >
+                                    } > >
+                                    'results': < ~ | `component` < ~ | `internal` 'Value Results' ~ * < * {
+                                        'imports': | `parameter` 'imports'
+                                    } * {
+                                        'modules': | `selection` < | `parameter` 'noncircular sibling modules' ~ >
+                                    } > {} > >
+                                } >
+                            } > >
+                        } >
+                        'state': < {} | `group` {
+                            'options': < ~ | `dictionary` < ~ | `group` {
+                                'constraints': < ~ | `component` < ~ | `internal` 'Option Constraints' ~ * < * {
+                                    'imports': | `parameter` 'imports'
+                                } * {
+                                    'modules': | `selection` < | `parameter` 'noncircular sibling modules' ~ >
+                                } > {} > >
+                                'value': < ~ | `component` < ~ | `internal` 'Value' ~ * < _ _ > {} > >
+                                'description': < ~ | `optional` < {} | `text` ~ > >
+                            } _ > >
+                            'results': < ~ | `component` < ~ | `internal` 'Value Results' ~ * < * {
+                                'imports': | `parameter` 'imports'
+                            } * {
+                                'modules': | `selection` < | `parameter` 'noncircular sibling modules' ~ >
+                            } > {} > >
+                        } >
+                        'text': < {} | `state` < ~ {
+                            'global': < {
+                                'globals': | `assert is set` | `parameter` 'globals'
+                            } | `reference` < ~ | `selected` < ~ < | `acyclic` | `resolved dictionary` < < | `option constraint` 'globals' < [ | `group` 'text types' ] ~ > ~ > ~ > ~ > {} > > >
+                            'local': < {} | `component` < ~ | `internal` 'Text Type' ~ * < * {} * {} > {} > >
+                        } > >
+                    } > >
+                    'Resolver Relative Value Selection': < ~ | `group` {
+                        'path': < ~ | `list` < ~ | `state` < ~ {
+                            'component': < {
+                                'definition': | `state` < < | `list cursor` ~ < [ ] ~ > ~ > ~ 'component' >
+                            } | `nothing` ~ >
+                            'group': < {
+                                'definition': | `state` < < | `list cursor` ~ < [ ] ~ > ~ > ~ 'group' >
+                            } | `reference` < ~ | `selected` < ~ < | `acyclic` | `resolved dictionary` < < | `option constraint` 'definition' < [ | `component` ~ ] ~ > ~ > ~ > ~ > {} > > >
+                            'reference': < {
+                                'definition': | `state` < < | `list cursor` ~ < [ ] ~ > ~ > ~ 'reference' >
+                            } | `group` {
+                                'definition': < ~ | `reference` < ~ | `derived` < < | `option constraint` 'definition' < [ ] ~ > ~ > > > >
+                            } >
+                        } > * < | `internal` 'Value' ~ > > >
+                        'resulting node': < ~ | `reference` < ~ | `derived` < < | `result` | `list` < 'path' ~ > < [ ] ~ > ~ > > > >
+                    } >
+                    'Presence': < ~ | `state` < ~ {
+                        'optional': < {} | `nothing` ~ >
+                        'required': < {} | `nothing` ~ >
+                    } > >
+                    'Resolver Signature Parameters': < ~ | `group` {
+                        'modules': < ~ | `dictionary` < ~ | `group` {
+                            'module': < ~ | `component` < ~ | `internal` 'Module Reference' ~ * < * {
+                                'imports': | `optional` | `set` < | `parameter` 'imports' < [ ] ~ > ~ >
+                            } * {
+                                'modules': | `selection` < | `acyclic` | `resolved dictionary` < < | `parameter` 'modules' < [ ] ~ > ~ > ~ > ~ >
+                            } > {} > >
+                            'presence': < ~ | `component` < ~ | `internal` 'Presence' ~ * < * {} * {} > {} > >
+                        } _ > >
+                        'lookups': < ~ | `dictionary` < ~ | `group` {
+                            'referent': < ~ | `component` < ~ | `internal` 'Module Reference' ~ * < * {
+                                'imports': | `optional` | `set` < | `parameter` 'imports' < [ ] ~ > ~ >
+                            } * {
+                                'modules': | `selection` < | `acyclic` | `resolved dictionary` < < | `parameter` 'modules' < [ ] ~ > ~ > ~ > ~ >
+                            } > {
+                                'dictionary': < | `value` ~ < < [ | `group` 'resulting module' | `reference` < ~ > | `group` 'root value' | `component` ~ ] ~ > | `state` < ~ 'dictionary' > > >
+                            } > >
+                            'dictionary': < ~ | `reference` < ~ | `derived` < < | `constraint` | `component` < 'referent' 'dictionary' > < [ ] ~ > ~ > > > >
+                            'type': < ~ | `state` < ~ {
+                                'cyclic': < {} | `nothing` ~ >
+                                'acyclic': < {} | `nothing` ~ >
+                                'stack': < {} | `nothing` ~ >
+                            } > >
+                            'presence': < ~ | `component` < ~ | `internal` 'Presence' ~ * < * {} * {} > {} > >
+                        } _ > >
+                    } >
+                    'Resolver Signature': < ~ | `group` {
+                        'module': < ~ | `reference` < ~ | `derived` < < | `parameter` 'module' < [ ] ~ > ~ > > > >
+                        'parameters': < ~ | `state` < ~ {
+                            'local': < {} | `component` < ~ | `internal` 'Resolver Signature Parameters' ~ * < * {
+                                'modules': | `parameter` 'modules'
+                                'imports': | `parameter` 'imports'
+                            } * {} > {} > >
+                            'same as': < {} | `reference` < ~ | `selected` < ~ < | `parameter` 'sibling signatures' ~ > {} > > >
+                        } > >
+                        'resolved parameters': < ~ | `reference` < ~ | `derived` < < | `result` | `state` < 'parameters' ~ < | `internal` 'Resolver Signature Parameters' ~ > > < [ ] ~ > ~ > > > >
+                    } >
+                    'Resolver Signatures': < ~ | `dictionary` < ~ | `component` < ~ | `internal` 'Resolver Signature' ~ * < * {
+                        'modules': | `parameter` 'modules'
+                        'module': | `required` < | `linked entry` ~ < [ | `component` ~ ] ~ > ~ >
+                        'imports': | `parameter` 'imports'
+                    } * {
+                        'sibling signatures': | `selection` < | `acyclic` | `siblings` ~ ~ >
+                    } > {} > * < < | `parameter` 'modules' < [ ] ~ > ~ > ~ true > > >
+                    'Resolver Optional Value Initialization': < ~ | `state` < ~ {
+                        'not set': < {} | `nothing` ~ >
+                        'set': < {} | `component` < ~ | `internal` 'Resolver Guaranteed Value Selection' ~ * < _ _ > {} > >
+                        'selection': < {} | `component` < ~ | `internal` 'Resolver Possible Value Selection' ~ * < _ _ > {} > >
+                    } > >
+                    'Resolver Possible Value Selection': < ~ | `state` < ~ {
+                        'parameter': < {} | `reference` < ~ | `selected` < ~ < | `acyclic` | `resolved dictionary` < < | `parameter` 'signature' < [ | `group` 'resolved parameters' | `reference` < ~ > | `group` 'modules' ] ~ > ~ > ~ > ~ > {} > > >
+                        'result': < {} | `state` < ~ {
+                            'state': < {} | `group` {
+                                'property': < ~ | `reference` < ~ | `selected` < ~ < | `parameter` 'sibling property resolvers' ~ > {
+                                    'state': < | `value` ~ < < [ | `group` 'resolver' | `component` ~ ] ~ > | `state` < ~ 'state' > > >
+                                } > > >
+                                'state': < ~ | `reference` < ~ | `derived` < < | `constraint` | `reference` < 'property' 'state' > < [ ] ~ > ~ > > > >
+                                'result': < ~ | `component` < ~ | `internal` 'Module Reference' ~ * < * {
+                                    'imports': | `parameter` 'schema imports'
+                                } * {
+                                    'modules': | `selection` < | `acyclic` | `resolved dictionary` < < | `parameter` 'modules' < [ ] ~ > ~ > ~ > ~ >
+                                } > {} > >
+                            } >
+                            'optional value': < {} | `group` {
+                                'property': < ~ | `reference` < ~ | `selected` < ~ < | `parameter` 'sibling property resolvers' ~ > {
+                                    'optional': < | `value` ~ < < [ | `group` 'resolver' | `component` ~ ] ~ > | `state` < ~ 'optional' > > >
+                                } > > >
+                                'optional value': < ~ | `reference` < ~ | `derived` < < | `constraint` | `reference` < 'property' 'optional' > < [ ] ~ > ~ > > > >
+                                'result': < ~ | `component` < ~ | `internal` 'Module Reference' ~ * < * {
+                                    'imports': | `parameter` 'schema imports'
+                                } * {
+                                    'modules': | `selection` < | `acyclic` | `resolved dictionary` < < | `parameter` 'modules' < [ ] ~ > ~ > ~ > ~ >
+                                } > {} > >
+                            } >
+                        } > >
+                    } > >
+                    'Resolver Guaranteed Value Selection': < ~ | `group` {
+                        'start': < ~ | `state` < ~ {
+                            'list cursor': < {} | `nothing` ~ >
+                            'linked entry': < {} | `nothing` ~ >
+                            'sibling': < {} | `reference` < ~ | `selected` < ~ < | `parameter` 'sibling property resolvers' ~ > {} > > >
+                            'parent sibling': < {} | `reference` < ~ | `selected` < ~ < | `parameter` 'parent sibling property resolvers' ~ > {} > > >
+                            'option constraint': < {
+                                'oc': | `assert is set` | `parameter` 'option constraints'
+                            } | `reference` < ~ | `selected` < ~ < | `acyclic` | `resolved dictionary` < < | `option constraint` 'oc' < [ ] ~ > ~ > ~ > ~ > {} > > >
+                            'constraint': < {} | `state` < ~ {
+                                'component': < {} | `group` {
+                                    'property': < ~ | `reference` < ~ | `selected` < ~ < | `parameter` 'sibling property resolvers' ~ > {
+                                        'component': < | `value` ~ < < [ | `group` 'resolver' | `component` ~ ] ~ > | `state` < ~ 'component' > > >
+                                    } > > >
+                                    'constraint': < ~ | `reference` < ~ | `selected` < ~ < | `acyclic` | `resolved dictionary` < < | `constraint` | `reference` < 'property' 'component' > < [ | `group` 'constraints' | `component` ~ ] ~ > ~ > ~ > ~ > {} > > >
+                                } >
+                                'reference': < {} | `group` {
+                                    'property': < ~ | `reference` < ~ | `selected` < ~ < | `parameter` 'sibling property resolvers' ~ > {
+                                        'reference': < | `value` ~ < < [ | `group` 'resolver' | `component` ~ ] ~ > | `state` < ~ 'reference' > > >
+                                        'selected': < | `sibling` 'reference' < < [ | `group` 'type' ] ~ > | `state` < ~ 'selected' > > >
+                                    } > > >
+                                    'constraint': < ~ | `reference` < ~ | `selected` < ~ < | `acyclic` | `resolved dictionary` < < | `constraint` | `reference` < 'property' 'selected' > < [ | `group` 'constraints' | `component` ~ ] ~ > ~ > ~ > ~ > {} > > >
+                                } >
+                            } > >
+                            'parameter': < {} | `reference` < ~ | `selected` < ~ < | `acyclic` | `resolved dictionary` < < | `parameter` 'signature' < [ | `group` 'resolved parameters' | `reference` < ~ > | `group` 'modules' ] ~ > ~ > ~ > ~ > {} > > >
+                            'result': < {} | `state` < ~ {
+                                'list': < {} | `group` {
+                                    'property': < ~ | `reference` < ~ | `selected` < ~ < | `parameter` 'sibling property resolvers' ~ > {
+                                        'list': < | `value` ~ < < [ | `group` 'resolver' | `component` ~ ] ~ > | `state` < ~ 'list' > > >
+                                        'result': < | `sibling` 'list' < < [ | `group` 'result' ] ~ > | `optional value` < ~ > > >
+                                    } > > >
+                                    'list result': < ~ | `reference` < ~ | `derived` < < | `constraint` | `reference` < 'property' 'result' > < [ ] ~ > ~ > > > >
+                                } >
+                                'state': < {} | `group` {
+                                    'property': < ~ | `reference` < ~ | `selected` < ~ < | `parameter` 'sibling property resolvers' ~ > {
+                                        'state': < | `value` ~ < < [ | `group` 'resolver' | `component` ~ ] ~ > | `state` < ~ 'state' > > >
+                                    } > > >
+                                    'state': < ~ | `reference` < ~ | `derived` < < | `constraint` | `reference` < 'property' 'state' > < [ ] ~ > ~ > > > >
+                                    'result': < ~ | `component` < ~ | `internal` 'Module Reference' ~ * < * {
+                                        'imports': | `parameter` 'schema imports'
+                                    } * {
+                                        'modules': | `selection` < | `acyclic` | `resolved dictionary` < < | `parameter` 'modules' < [ ] ~ > ~ > ~ > ~ >
+                                    } > {} > >
+                                } >
+                                'optional value': < {} | `group` {
+                                    'property': < ~ | `reference` < ~ | `selected` < ~ < | `parameter` 'sibling property resolvers' ~ > {
+                                        'optional': < | `value` ~ < < [ | `group` 'resolver' | `component` ~ ] ~ > | `state` < ~ 'optional' > > >
+                                    } > > >
+                                    'optional value': < ~ | `reference` < ~ | `derived` < < | `constraint` | `reference` < 'property' 'optional' > < [ ] ~ > ~ > > > >
+                                    'result': < ~ | `component` < ~ | `internal` 'Module Reference' ~ * < * {
+                                        'imports': | `parameter` 'schema imports'
+                                    } * {
+                                        'modules': | `selection` < | `acyclic` | `resolved dictionary` < < | `parameter` 'modules' < [ ] ~ > ~ > ~ > ~ >
+                                    } > {} > >
+                                } >
+                            } > >
+                        } > >
+                        'tail': < ~ | `component` < ~ | `internal` 'Resolver Relative Value Selection' ~ * < * {
+                            'value': | `required` < | `result` | `state` < 'start' ~ < | `internal` 'Value' ~ > > < [ ] ~ > ~ >
+                        } * {} > {} > >
+                        'resulting node': < ~ | `reference` < ~ | `derived` < < | `sibling` 'tail' < [ | `component` ~ | `group` 'resulting node' | `reference` < ~ > ] ~ > ~ > > > >
+                    } >
+                    'Resolver Lookup Selection': < ~ | `group` {
+                        'type': < ~ | `state` < ~ {
+                            'acyclic': < {} | `state` < ~ {
+                                'siblings': < {
+                                    'cd': | `assert is set` | `parameter` 'current ordered dictionary'
+                                } | `reference` < ~ | `derived` < < | `option constraint` 'cd' < [ ] ~ > ~ > > > >
+                                'resolved dictionary': < {} | `group` {
+                                    'selection': < ~ | `component` < ~ | `internal` 'Resolver Guaranteed Value Selection' ~ * < _ _ > {
+                                        'dictionary': < | `value` ~ < < [ | `group` 'resulting node' | `reference` < ~ > ] ~ > | `state` < ~ 'dictionary' > > >
+                                    } > >
+                                    'selected dictionary': < ~ | `reference` < ~ | `derived` < < | `constraint` | `component` < 'selection' 'dictionary' > < [ ] ~ > ~ > > > >
+                                } >
+                            } > >
+                            'cyclic': < {} | `state` < ~ {
+                                'siblings': < {
+                                    'cd': | `assert is set` | `parameter` 'current dictionary'
+                                } | `reference` < ~ | `derived` < < | `option constraint` 'cd' < [ ] ~ > ~ > > > >
+                            } > >
+                            'parameter': < {} | `reference` < ~ | `selected` < ~ < | `acyclic` | `resolved dictionary` < < | `parameter` 'signature' < [ | `group` 'resolved parameters' | `reference` < ~ > | `group` 'lookups' ] ~ > ~ > ~ > ~ > {} > > >
+                        } > >
+                        'resulting dictionary': < ~ | `reference` < ~ | `derived` < < | `result` | `state` < 'type' ~ < | `internal` 'Dictionary' ~ > > < [ ] ~ > ~ > > > >
+                    } >
+                    'Resolver Modules': < ~ | `dictionary` < ~ | `group` {
+                        'signature': < ~ | `reference` < ~ | `derived` < < | `linked entry` ~ < [ ] ~ > ~ > > > >
+                        'root value resolver': < ~ | `component` < ~ | `internal` 'Resolver Value' ~ * < * {
+                            'option constraints': | `optional` | `not set` ~
+                            'list cursor': | `optional` | `not set` ~
+                            'linked entry': | `optional` | `not set` ~
+                            'current ordered dictionary': | `optional` | `not set` ~
+                            'current dictionary': | `optional` | `not set` ~
+                            'signature': | `required` < | `sibling` 'signature' < [ | `reference` < ~ > ] ~ > ~ >
+                            'definition': | `required` < | `linked entry` ~ < [ | `component` ~ | `group` 'module' | `reference` < ~ > | `group` 'root value' ] ~ > ~ >
+                            'signatures': | `parameter` 'signatures'
+                            'schema imports': | `optional` | `set` < | `parameter` 'schema imports' < [ ] ~ > ~ >
+                            'resolver imports': | `optional` | `set` < | `parameter` 'resolver imports' < [ ] ~ > ~ >
+                            'modules': | `parameter` 'modules'
+                        } * {
+                            'sibling property resolvers': | `acyclic` | `not set` ~
+                            'parent sibling property resolvers': | `acyclic` | `not set` ~
+                        } > {} > >
+                    } * < < | `parameter` 'signatures' < [ ] ~ > ~ > ~ true > > >
+                    'Resolver Constraint': < ~ | `group` {
+                        'selection': < ~ | `component` < ~ | `internal` 'Resolver Relative Value Selection' ~ * < _ _ > {} > >
+                        'type': < ~ | `state` < ~ {
+                            'state': < {
+                                'state': | `state` < < | `sibling` 'selection' < [ | `component` ~ | `group` 'resulting node' | `reference` < ~ > ] ~ > ~ > ~ 'state' >
+                            } | `group` {
+                                'selected state': < ~ | `reference` < ~ | `derived` < < | `option constraint` 'state' < [ ] ~ > ~ > > > >
+                                'option': < ~ | `reference` < ~ | `selected` < ~ < | `acyclic` | `resolved dictionary` < < | `sibling` 'selected state' < [ | `reference` < ~ > | `group` 'options' ] ~ > ~ > ~ > ~ > {} > > >
+                            } >
+                            'optional value': < {
+                                'optional': | `state` < < | `sibling` 'selection' < [ | `component` ~ | `group` 'resulting node' | `reference` < ~ > ] ~ > ~ > ~ 'state' >
+                            } | `group` {
+                                'selected optional value': < ~ | `reference` < ~ | `derived` < < | `option constraint` 'optional' < [ ] ~ > ~ > > > >
+                            } >
+                        } > >
+                    } >
+                    'Resolver Option Constraints': < ~ | `dictionary` < ~ | `state` < ~ {
+                        'state': < {} | `group` {
+                            'selection': < ~ | `component` < ~ | `internal` 'Resolver Guaranteed Value Selection' ~ * < _ _ > {
+                                'state': < | `value` ~ < < [ | `group` 'resulting node' | `reference` < ~ > ] ~ > | `state` < ~ 'state' > > >
+                            } > >
+                            'selected state': < ~ | `reference` < ~ | `derived` < < | `constraint` | `component` < 'selection' 'state' > < [ ] ~ > ~ > > > >
+                            'option': < ~ | `reference` < ~ | `selected` < ~ < | `acyclic` | `resolved dictionary` < < | `sibling` 'selected state' < [ | `reference` < ~ > | `group` 'options' ] ~ > ~ > ~ > ~ > {} > > >
+                        } >
+                        'assert is set': < {} | `component` < ~ | `internal` 'Resolver Possible Value Selection' ~ * < _ _ > {} > >
+                    } > _ > >
+                    'Resolver Value Constraint': < ~ | `group` {
+                        'start': < ~ | `state` < ~ {
+                            'value': < {} | `nothing` ~ >
+                            'sibling': < {} | `component` < ~ | `internal` 'Resolver Reference To Value Constraint' ~ * < * {} * {
+                                'property constraints': | `selection` < | `parameter` 'property constraints' ~ >
+                            } > {} > >
+                        } > >
+                        'constraint': < ~ | `component` < ~ | `internal` 'Resolver Constraint' ~ * < * {
+                            'value': | `required` < | `result` | `state` < 'start' ~ < | `internal` 'Value' ~ > > < [ ] ~ > ~ >
+                        } * {} > {} > >
+                    } >
+                    'Resolver Optional Value Constraints': < ~ | `optional` < {} | `component` < ~ | `internal` 'Resolver Value Constraints' ~ * < * {
+                        'value': | `parameter` 'value'
+                    } * {} > {} > > >
+                    'Resolver Value Constraints': < ~ | `dictionary` < ~ | `component` < ~ | `internal` 'Resolver Value Constraint' ~ * < * {} * {
+                        'property constraints': | `selection` < | `acyclic` | `siblings` ~ ~ >
+                    } > {} > _ > >
+                    'Resolver Reference To Value Constraint': < ~ | `reference` < ~ | `selected` < ~ < | `parameter` 'property constraints' ~ > {} > > >
+                    'Resolver Value Group': < ~ | `dictionary` < ~ | `group` {
+                        'definition': < ~ | `reference` < ~ | `derived` < < | `linked entry` ~ < [ ] ~ > ~ > > > >
+                        'resolver': < ~ | `component` < ~ | `internal` 'Resolver Value' ~ * < * {
+                            'definition': | `required` < | `linked entry` ~ < [ | `group` 'value' | `component` ~ ] ~ > ~ >
+                            'modules': | `parameter` 'modules'
+                            'schema imports': | `parameter` 'schema imports'
+                            'resolver imports': | `parameter` 'resolver imports'
+                            'signature': | `parameter` 'signature'
+                            'signatures': | `parameter` 'signatures'
+                            'list cursor': | `parameter` 'list cursor'
+                            'linked entry': | `parameter` 'linked entry'
+                            'current dictionary': | `parameter` 'current dictionary'
+                            'option constraints': | `parameter` 'option constraints'
+                            'current ordered dictionary': | `parameter` 'current ordered dictionary'
+                        } * {
+                            'sibling property resolvers': | `selection` < | `acyclic` | `siblings` ~ ~ >
+                            'parent sibling property resolvers': | `selection` < | `parameter` 'sibling property resolvers' ~ >
+                        } > {} > >
+                    } * < < | `parameter` 'definition' < [ ] ~ > ~ > ~ true > > >
+                    'Resolver Value List Result': < ~ | `component` < ~ | `internal` 'Module Reference' ~ * < * {
+                        'imports': | `parameter` 'imports'
+                    } * {
+                        'modules': | `selection` < | `parameter` 'modules' ~ >
+                    } > {} > >
+                    'Resolver Benchmark': < ~ | `group` {
+                        'selection': < ~ | `component` < ~ | `internal` 'Resolver Guaranteed Value Selection' ~ * < _ _ > {
+                            'dictionary': < | `value` ~ < < [ | `group` 'resulting node' | `reference` < ~ > ] ~ > | `state` < ~ 'dictionary' > > >
+                        } > >
+                        'resulting dictionary': < ~ | `reference` < ~ | `derived` < < | `constraint` | `component` < 'selection' 'dictionary' > < [ ] ~ > ~ > > > >
+                        'dense': < ~ | `simple` ~ >
+                    } >
+                    'Resolver Value': < ~ | `state` < ~ {
+                        'component': < {
+                            'definition': | `state` < < | `parameter` 'definition' < [ ] ~ > ~ > ~ 'component' >
+                        } | `group` {
+                            'definition': < ~ | `reference` < ~ | `derived` < < | `option constraint` 'definition' < [ ] ~ > ~ > > > >
+                            'location': < ~ | `state` < ~ {
+                                'external': < {
+                                    'schema import': | `assert is set` | `parameter` 'schema imports'
+                                    'resolver import': | `assert is set` | `parameter` 'resolver imports'
+                                } | `group` {
+                                    'schema import': < ~ | `reference` < ~ | `selected` < ~ < | `acyclic` | `resolved dictionary` < < | `option constraint` 'schema import' < [ ] ~ > ~ > ~ > ~ > {
+                                        'constrained': < | `value` ~ < < [ | `group` 'schema' | `reference` < ~ > | `group` 'complexity' ] ~ > | `state` < ~ 'constrained' > > >
+                                    } > > >
+                                    'resolver import': < ~ | `reference` < ~ | `selected` < ~ < | `acyclic` | `resolved dictionary` < < | `option constraint` 'resolver import' < [ ] ~ > ~ > ~ > ~ > {} > > >
+                                    'signature': < ~ | `reference` < ~ | `selected` < ~ < | `acyclic` | `resolved dictionary` < < | `constraint` | `reference` < 'schema import' 'constrained' > < [ | `component` ~ | `group` 'signatures' | `group` 'signatures' | `component` ~ ] ~ > ~ > ~ > ~ > {} > > >
+                                } >
+                                'internal': < {} | `reference` < ~ | `selected` < ~ < | `acyclic` | `resolved dictionary` < < | `parameter` 'signatures' < [ ] ~ > ~ > ~ > ~ > {} > > >
+                            } > >
+                            'signature': < ~ | `reference` < ~ | `derived` < < | `result` | `state` < 'location' ~ < | `internal` 'Resolver Signature' ~ > > < [ ] ~ > ~ > > > >
+                            'arguments': < ~ | `optional` < {} | `group` {
+                                'modules': < ~ | `optional` < {} | `dictionary` < ~ | `state` < ~ {
+                                    'optional': < {} | `component` < ~ | `internal` 'Resolver Optional Value Initialization' ~ * < _ _ > {} > >
+                                    'required': < {} | `component` < ~ | `internal` 'Resolver Guaranteed Value Selection' ~ * < _ _ > {} > >
+                                    'parameter': < {} | `reference` < ~ | `selected` < ~ < | `acyclic` | `resolved dictionary` < < | `parameter` 'signature' < [ | `group` 'resolved parameters' | `reference` < ~ > | `group` 'modules' ] ~ > ~ > ~ > ~ > {} > > >
+                                } > * < < | `parent sibling` 'signature' < [ | `reference` < ~ > | `component` ~ | `group` 'resolved parameters' | `reference` < ~ > | `group` 'modules' ] ~ > ~ > ~ true > > > >
+                                'lookups': < ~ | `optional` < {} | `dictionary` < ~ | `state` < ~ {
+                                    'stack': < {} | `state` < ~ {
+                                        'empty': < {} | `nothing` ~ >
+                                        'push': < {} | `group` {
+                                            'stack': < ~ | `component` < ~ | `internal` 'Resolver Lookup Selection' ~ * < _ _ > {} > >
+                                            'item': < ~ | `component` < ~ | `internal` 'Resolver Lookup Selection' ~ * < _ _ > {} > >
+                                        } >
+                                    } > >
+                                    'acyclic': < {} | `state` < ~ {
+                                        'not set': < {} | `nothing` ~ >
+                                    } > >
+                                    'cyclic': < {} | `state` < ~ {
+                                        'not set': < {} | `nothing` ~ >
+                                    } > >
+                                    'selection': < {} | `component` < ~ | `internal` 'Resolver Lookup Selection' ~ * < _ _ > {} > >
+                                } > * < < | `parent sibling` 'signature' < [ | `reference` < ~ > | `component` ~ | `group` 'resolved parameters' | `reference` < ~ > | `group` 'lookups' ] ~ > ~ > ~ true > > > >
+                            } > >
+                            'constraints': < ~ | `component` < ~ | `internal` 'Resolver Value Constraints' ~ * < * {
+                                'value': | `required` < | `sibling` 'signature' < [ | `reference` < ~ > | `component` ~ | `group` 'module' | `reference` < ~ > | `group` 'root value' | `component` ~ ] ~ > ~ >
+                            } * {} > {} > >
+                        } >
+                        'dictionary': < {
+                            'definition': | `state` < < | `parameter` 'definition' < [ ] ~ > ~ > ~ 'dictionary' >
+                        } | `group` {
+                            'definition': < ~ | `reference` < ~ | `derived` < < | `option constraint` 'definition' < [ ] ~ > ~ > > > >
+                            'benchmark': < ~ | `optional` < {} | `component` < ~ | `internal` 'Resolver Benchmark' ~ * < _ _ > {} > > >
+                            'resolver': < ~ | `component` < ~ | `internal` 'Resolver Value' ~ * < * {
+                                'linked entry': | `optional` | `selection` | `result` | `optional value` < 'benchmark' ~ < | `internal` 'Resolver Benchmark' ~ > >
+                                'definition': | `required` < | `sibling` 'definition' < [ | `reference` < ~ > | `group` 'value' ] ~ > ~ >
+                                'current dictionary': | `optional` | `set` < | `sibling` 'definition' < [ ] ~ > ~ >
+                                'current ordered dictionary': | `optional` | `set` < | `sibling` 'definition' < [ ] ~ > ~ >
+                                'modules': | `parameter` 'modules'
+                                'schema imports': | `parameter` 'schema imports'
+                                'resolver imports': | `parameter` 'resolver imports'
+                                'signature': | `parameter` 'signature'
+                                'signatures': | `parameter` 'signatures'
+                                'list cursor': | `parameter` 'list cursor'
+                                'option constraints': | `parameter` 'option constraints'
+                            } _ > {} > >
+                        } >
+                        'group': < {
+                            'definition': | `state` < < | `parameter` 'definition' < [ ] ~ > ~ > ~ 'group' >
+                        } | `component` < ~ | `internal` 'Resolver Value Group' ~ * < * {
+                            'definition': | `required` < | `option constraint` 'definition' < [ ] ~ > ~ >
+                            'modules': | `parameter` 'modules'
+                            'schema imports': | `parameter` 'schema imports'
+                            'resolver imports': | `parameter` 'resolver imports'
+                            'signature': | `parameter` 'signature'
+                            'signatures': | `parameter` 'signatures'
+                            'list cursor': | `parameter` 'list cursor'
+                            'linked entry': | `parameter` 'linked entry'
+                            'current dictionary': | `parameter` 'current dictionary'
+                            'option constraints': | `parameter` 'option constraints'
+                            'current ordered dictionary': | `parameter` 'current ordered dictionary'
+                        } * {
+                            'sibling property resolvers': | `selection` < | `parameter` 'sibling property resolvers' ~ >
+                            'parent sibling property resolvers': | `selection` < | `parameter` 'sibling property resolvers' ~ >
+                        } > {} > >
+                        'list': < {
+                            'definition': | `state` < < | `parameter` 'definition' < [ ] ~ > ~ > ~ 'list' >
+                        } | `group` {
+                            'definition': < ~ | `reference` < ~ | `derived` < < | `option constraint` 'definition' < [ ] ~ > ~ > > > >
+                            'result': < ~ | `optional` < {} | `component` < ~ | `internal` 'Resolver Value List Result' ~ * < * {
+                                'imports': | `parameter` 'schema imports'
+                            } * {
+                                'modules': | `selection` < | `acyclic` | `resolved dictionary` < < | `parameter` 'modules' < [ ] ~ > ~ > ~ > ~ >
+                            } > {} > > >
+                            'resolver': < ~ | `component` < ~ | `internal` 'Resolver Value' ~ * < * {
+                                'list cursor': | `optional` | `set` < | `result` | `optional value` < 'result' ~ < | `internal` 'Resolver Value List Result' ~ > > < [ | `component` ~ ] ~ > ~ >
+                                'definition': | `required` < | `option constraint` 'definition' < [ | `group` 'value' ] ~ > ~ >
+                                'modules': | `parameter` 'modules'
+                                'schema imports': | `parameter` 'schema imports'
+                                'resolver imports': | `parameter` 'resolver imports'
+                                'signature': | `parameter` 'signature'
+                                'signatures': | `parameter` 'signatures'
+                                'linked entry': | `parameter` 'linked entry'
+                                'current dictionary': | `parameter` 'current dictionary'
+                                'option constraints': | `parameter` 'option constraints'
+                                'current ordered dictionary': | `parameter` 'current ordered dictionary'
+                            } _ > {} > >
+                        } >
+                        'nothing': < {
+                            'definition': | `state` < < | `parameter` 'definition' < [ ] ~ > ~ > ~ 'nothing' >
+                        } | `nothing` ~ >
+                        'simple': < {
+                            'definition': | `state` < < | `parameter` 'definition' < [ ] ~ > ~ > ~ 'simple' >
+                        } | `nothing` ~ >
+                        'optional': < {
+                            'definition': | `state` < < | `parameter` 'definition' < [ ] ~ > ~ > ~ 'optional' >
+                        } | `group` {
+                            'constraints': < ~ | `component` < ~ | `internal` 'Resolver Option Constraints' ~ * < _ _ > {} > >
+                            'resolver': < ~ | `component` < ~ | `internal` 'Resolver Value' ~ * < * {
+                                'definition': | `required` < | `option constraint` 'definition' < [ | `component` ~ ] ~ > ~ >
+                                'modules': | `parameter` 'modules'
+                                'schema imports': | `parameter` 'schema imports'
+                                'resolver imports': | `parameter` 'resolver imports'
+                                'signature': | `parameter` 'signature'
+                                'signatures': | `parameter` 'signatures'
+                                'list cursor': | `parameter` 'list cursor'
+                                'linked entry': | `parameter` 'linked entry'
+                                'current dictionary': | `parameter` 'current dictionary'
+                                'option constraints': | `parameter` 'option constraints'
+                                'current ordered dictionary': | `parameter` 'current ordered dictionary'
+                            } _ > {} > >
+                        } >
+                        'reference': < {
+                            'definition': | `state` < < | `parameter` 'definition' < [ ] ~ > ~ > ~ 'reference' >
+                        } | `group` {
+                            'definition': < ~ | `reference` < ~ | `derived` < < | `option constraint` 'definition' < [ ] ~ > ~ > > > >
+                            'type': < ~ | `state` < ~ {
+                                'derived': < {
+                                    'definition': | `state` < < | `sibling` 'definition' < [ | `reference` < ~ > | `group` 'type' ] ~ > ~ > ~ 'derived' >
+                                } | `group` {
+                                    'value': < ~ | `component` < ~ | `internal` 'Resolver Guaranteed Value Selection' ~ * < _ _ > {} > >
+                                } >
+                                'selected': < {
+                                    'definition': | `state` < < | `sibling` 'definition' < [ | `reference` < ~ > | `group` 'type' ] ~ > ~ > ~ 'selected' >
+                                } | `group` {
+                                    'definition': < ~ | `reference` < ~ | `derived` < < | `option constraint` 'definition' < [ ] ~ > ~ > > > >
+                                    'lookup': < ~ | `component` < ~ | `internal` 'Resolver Lookup Selection' ~ * < _ _ > {} > >
+                                    'constraints': < ~ | `component` < ~ | `internal` 'Resolver Value Constraints' ~ * < * {
+                                        'value': | `required` < | `sibling` 'lookup' < [ | `component` ~ | `group` 'resulting dictionary' | `reference` < ~ > | `group` 'value' ] ~ > ~ >
+                                    } * {} > {} > >
+                                } >
+                            } > >
+                        } >
+                        'state': < {
+                            'definition': | `state` < < | `parameter` 'definition' < [ ] ~ > ~ > ~ 'state' >
+                        } | `group` {
+                            'definition': < ~ | `reference` < ~ | `derived` < < | `option constraint` 'definition' < [ ] ~ > ~ > > > >
+                            'options': < ~ | `dictionary` < ~ | `group` {
+                                'constraints': < ~ | `component` < ~ | `internal` 'Resolver Option Constraints' ~ * < _ _ > {} > >
+                                'resolver': < ~ | `component` < ~ | `internal` 'Resolver Value' ~ * < * {
+                                    'definition': | `required` < | `linked entry` ~ < [ | `group` 'value' ] ~ > ~ >
+                                    'modules': | `parameter` 'modules'
+                                    'schema imports': | `parameter` 'schema imports'
+                                    'resolver imports': | `parameter` 'resolver imports'
+                                    'signature': | `parameter` 'signature'
+                                    'signatures': | `parameter` 'signatures'
+                                    'list cursor': | `parameter` 'list cursor'
+                                    'linked entry': | `parameter` 'linked entry'
+                                    'current dictionary': | `parameter` 'current dictionary'
+                                    'option constraints': | `parameter` 'option constraints'
+                                    'current ordered dictionary': | `parameter` 'current ordered dictionary'
+                                } _ > {} > >
+                            } * < < | `option constraint` 'definition' < [ | `group` 'options' ] ~ > ~ > ~ true > > >
+                        } >
+                        'text': < {
+                            'definition': | `state` < < | `parameter` 'definition' < [ ] ~ > ~ > ~ 'text' >
+                        } | `nothing` ~ >
+                    } > >
+                    'Resolver': < ~ | `group` {
+                        'signatures': < ~ | `group` {
+                            'signatures': < ~ | `component` < ~ | `internal` 'Resolver Signatures' ~ * < * {
+                                'modules': | `parameter` 'modules'
+                                'imports': | `parameter` 'schema imports'
+                            } * {} > {} > >
+                        } >
+                        'modules': < ~ | `component` < ~ | `internal` 'Resolver Modules' ~ * < * {
+                            'signatures': | `required` < | `sibling` 'signatures' < [ | `group` 'signatures' ] ~ > ~ >
+                            'modules': | `parameter` 'modules'
+                            'schema imports': | `parameter` 'schema imports'
+                            'resolver imports': | `parameter` 'resolver imports'
+                        } * {} > {} > >
+                    } >
+                    'Schemas': < ~ | `dictionary` < ~ | `component` < ~ | `internal` 'Schema Tree' ~ * < * {} * {
+                        'sibling schemas': | `stack` | `push` < < | `parameter` 'sibling schemas' ~ > < | `acyclic` | `siblings` ~ ~ > >
+                    } > {} > _ > >
+                    'Module Specification': < ~ | `group` {
+                        'schema': < ~ | `component` < ~ | `internal` 'Schema Tree' ~ * < * {} * {
+                            'sibling schemas': | `stack` | `empty` ~
+                        } > {} > >
+                        'schema path': < ~ | `list` < ~ | `text` ~ _ > >
+                        'complexity': < ~ | `state` < ~ {
+                            'constrained': < {} | `group` {
+                                'module resolver': < ~ | `text` ~ >
+                            } >
+                            'unconstrained': < {} | `group` {
+                                'module': < ~ | `text` ~ >
+                            } >
+                        } > >
+                    } >
+                    'Schema Tree': < ~ | `state` < ~ {
+                        'schema': < {} | `component` < ~ | `internal` 'Schema' ~ * < * {} * {
+                            'sibling schemas': | `selection` < | `parameter` 'sibling schemas' ~ >
+                        } > {} > >
+                        'set': < {} | `component` < ~ | `internal` 'Schemas' ~ * < * {} * {
+                            'sibling schemas': | `selection` < | `parameter` 'sibling schemas' ~ >
+                        } > {} > >
+                    } > >
+                    'Schema': < ~ | `group` {
+                        'schema imports': < ~ | `component` < ~ | `internal` 'Schema Imports' ~ * < * {} * {
+                            'sibling schemas': | `selection` < | `parameter` 'sibling schemas' ~ >
+                        } > {} > >
+                        'resolver imports': < ~ | `component` < ~ | `internal` 'Resolver Imports' ~ * < * {} * {
+                            'sibling schemas': | `selection` < | `parameter` 'sibling schemas' ~ >
+                        } > {} > >
+                        'globals': < ~ | `component` < ~ | `internal` 'Globals' ~ * < * {} * {} > {} > >
+                        'modules': < ~ | `component` < ~ | `internal` 'Modules' ~ * < * {
+                            'globals': | `optional` | `set` < | `sibling` 'globals' < [ ] ~ > ~ >
+                            'imports': | `optional` | `set` < | `sibling` 'schema imports' < [ | `component` ~ ] ~ > ~ >
+                        } * {} > {} > >
+                        'complexity': < ~ | `state` < ~ {
+                            'constrained': < {} | `component` < ~ | `internal` 'Resolver' ~ * < * {
+                                'schema imports': | `required` < | `sibling` 'schema imports' < [ | `component` ~ ] ~ > ~ >
+                                'resolver imports': | `required` < | `sibling` 'resolver imports' < [ | `component` ~ ] ~ > ~ >
+                                'modules': | `required` < | `sibling` 'modules' < [ | `component` ~ ] ~ > ~ >
+                            } * {} > {} > >
+                            'unconstrained': < {} | `nothing` ~ >
+                        } > >
+                    } >
+                    'Schema Imports': < ~ | `dictionary` < ~ | `group` {
+                        'schema set child': < ~ | `reference` < ~ | `selected` < ~ < | `parameter` 'sibling schemas' ~ > {
+                            'schema': < | `value` ~ < < [ | `component` ~ ] ~ > | `state` < ~ 'schema' > > >
+                        } > > >
+                        'schema': < ~ | `reference` < ~ | `derived` < < | `constraint` | `reference` < 'schema set child' 'schema' > < [ ] ~ > ~ > > > >
+                    } _ > >
+                    'Resolver Imports': < ~ | `dictionary` < ~ | `group` {
+                        'schema set child': < ~ | `reference` < ~ | `selected` < ~ < | `parameter` 'sibling schemas' ~ > {
+                            'resolver': < | `value` ~ < < [ | `component` ~ ] ~ > | `state` < ~ 'schema' > > >
+                        } > > >
+                        'resolver': < ~ | `reference` < ~ | `derived` < < | `constraint` | `reference` < 'schema set child' 'resolver' > < [ ] ~ > ~ > > > >
+                    } _ > >
+                }
+            )
+        )
+    }
+    `schema path`: [ ]
+    `complexity`: | `constrained` (
+        `module resolver`: "Root"
+    )
+)
