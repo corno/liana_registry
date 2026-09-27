@@ -1,0 +1,2070 @@
+(
+    `schema`: | `set` {
+        'attributes': | `schema` (
+            `schema imports`: {
+                'html': (
+                    `schema set child`: 'html'
+                    `schema`: ~
+                )
+            }
+            `resolver imports`: {}
+            `globals`: (
+                `complexity`: | `unconstrained` ~
+                `text types`: {
+                    'Text Value': (
+                        `type`: | `single line` ~
+                        `link`: | `no` ~
+                    )
+                    'multi line text': (
+                        `type`: | `multi line` ~
+                        `link`: | `no` ~
+                    )
+                    'text': (
+                        `type`: | `single line` ~
+                        `link`: | `no` ~
+                    )
+                }
+                `simple types`: {
+                    'Natural': (
+                        `type`: | `number` (
+                            `precision`: | `exact` (
+                                `number of fractional digits`: _
+                                `type`: | `natural` ~
+                            )
+                        )
+                    )
+                    'Approximation': (
+                        `type`: | `number` (
+                            `precision`: | `approximation` (
+                                `significant digits`: 10
+                            )
+                        )
+                    )
+                    'boolean': (
+                        `type`: | `boolean` ~
+                    )
+                }
+            )
+            `modules`: {
+                'Attributes': (
+                    `root value`: | `list` (
+                        `value`: | `state` (
+                            `options`: {
+                                'freeform': (
+                                    `constraints`: _
+                                    `description`: _
+                                    `value`: | `group` {
+                                        'key': (
+                                            `description`: _
+                                            `value`: | `text` | `global` 'text'
+                                        )
+                                        'value': (
+                                            `description`: _
+                                            `value`: | `text` | `global` 'text'
+                                        )
+                                    }
+                                )
+                                'color': (
+                                    `constraints`: _
+                                    `description`: _
+                                    `value`: | `text` | `global` 'text'
+                                )
+                                'fillcolor': (
+                                    `constraints`: _
+                                    `description`: _
+                                    `value`: | `text` | `global` 'text'
+                                )
+                                'penwidth': (
+                                    `constraints`: _
+                                    `description`: _
+                                    `value`: | `simple` | `global` 'Approximation'
+                                )
+                                'label': (
+                                    `constraints`: _
+                                    `description`: _
+                                    `value`: | `text` | `global` 'multi line text'
+                                )
+                                'fontcolor': (
+                                    `constraints`: _
+                                    `description`: _
+                                    `value`: | `text` | `global` 'text'
+                                )
+                                'fontname': (
+                                    `constraints`: _
+                                    `description`: _
+                                    `value`: | `text` | `global` 'text'
+                                )
+                                'fontsize': (
+                                    `constraints`: _
+                                    `description`: _
+                                    `value`: | `simple` | `global` 'Approximation'
+                                )
+                                'URL': (
+                                    `constraints`: _
+                                    `description`: _
+                                    `value`: | `text` | `global` 'text'
+                                )
+                                'href': (
+                                    `constraints`: _
+                                    `description`: _
+                                    `value`: | `text` | `global` 'text'
+                                )
+                                'target': (
+                                    `constraints`: _
+                                    `description`: _
+                                    `value`: | `text` | `global` 'text'
+                                )
+                                'tooltip': (
+                                    `constraints`: _
+                                    `description`: _
+                                    `value`: | `text` | `global` 'text'
+                                )
+                                'id': (
+                                    `constraints`: _
+                                    `description`: _
+                                    `value`: | `text` | `global` 'text'
+                                )
+                                'class': (
+                                    `constraints`: _
+                                    `description`: _
+                                    `value`: | `text` | `global` 'text'
+                                )
+                                'comment': (
+                                    `constraints`: _
+                                    `description`: _
+                                    `value`: | `text` | `global` 'multi line text'
+                                )
+                                'style': (
+                                    `constraints`: _
+                                    `description`: _
+                                    `value`: | `state` (
+                                        `options`: {
+                                            'filled': (
+                                                `constraints`: _
+                                                `description`: _
+                                                `value`: | `nothing` ~
+                                            )
+                                            'rounded': (
+                                                `constraints`: _
+                                                `description`: _
+                                                `value`: | `nothing` ~
+                                            )
+                                            'bold': (
+                                                `constraints`: _
+                                                `description`: _
+                                                `value`: | `nothing` ~
+                                            )
+                                            'solid': (
+                                                `constraints`: _
+                                                `description`: _
+                                                `value`: | `nothing` ~
+                                            )
+                                            'dashed': (
+                                                `constraints`: _
+                                                `description`: _
+                                                `value`: | `nothing` ~
+                                            )
+                                            'dotted': (
+                                                `constraints`: _
+                                                `description`: _
+                                                `value`: | `nothing` ~
+                                            )
+                                            'striped': (
+                                                `constraints`: _
+                                                `description`: _
+                                                `value`: | `nothing` ~
+                                            )
+                                            'wedged': (
+                                                `constraints`: _
+                                                `description`: _
+                                                `value`: | `nothing` ~
+                                            )
+                                            'diagonals': (
+                                                `constraints`: _
+                                                `description`: _
+                                                `value`: | `nothing` ~
+                                            )
+                                            'invis': (
+                                                `constraints`: _
+                                                `description`: _
+                                                `value`: | `nothing` ~
+                                            )
+                                            'tapered': (
+                                                `constraints`: _
+                                                `description`: _
+                                                `value`: | `nothing` ~
+                                            )
+                                            'custom': (
+                                                `constraints`: _
+                                                `description`: _
+                                                `value`: | `text` | `global` 'text'
+                                            )
+                                        }
+                                        `results`: _
+                                    )
+                                )
+                                'layout': (
+                                    `constraints`: _
+                                    `description`: _
+                                    `value`: | `state` (
+                                        `options`: {
+                                            'dot': (
+                                                `constraints`: _
+                                                `description`: _
+                                                `value`: | `nothing` ~
+                                            )
+                                            'neato': (
+                                                `constraints`: _
+                                                `description`: _
+                                                `value`: | `nothing` ~
+                                            )
+                                            'fdp': (
+                                                `constraints`: _
+                                                `description`: _
+                                                `value`: | `nothing` ~
+                                            )
+                                            'sfdp': (
+                                                `constraints`: _
+                                                `description`: _
+                                                `value`: | `nothing` ~
+                                            )
+                                            'twopi': (
+                                                `constraints`: _
+                                                `description`: _
+                                                `value`: | `nothing` ~
+                                            )
+                                            'circo': (
+                                                `constraints`: _
+                                                `description`: _
+                                                `value`: | `nothing` ~
+                                            )
+                                            'custom': (
+                                                `constraints`: _
+                                                `description`: _
+                                                `value`: | `text` | `global` 'text'
+                                            )
+                                        }
+                                        `results`: _
+                                    )
+                                )
+                                'rankdir': (
+                                    `constraints`: _
+                                    `description`: _
+                                    `value`: | `state` (
+                                        `options`: {
+                                            'TB': (
+                                                `constraints`: _
+                                                `description`: _
+                                                `value`: | `nothing` ~
+                                            )
+                                            'BT': (
+                                                `constraints`: _
+                                                `description`: _
+                                                `value`: | `nothing` ~
+                                            )
+                                            'LR': (
+                                                `constraints`: _
+                                                `description`: _
+                                                `value`: | `nothing` ~
+                                            )
+                                            'RL': (
+                                                `constraints`: _
+                                                `description`: _
+                                                `value`: | `nothing` ~
+                                            )
+                                        }
+                                        `results`: _
+                                    )
+                                )
+                                'bgcolor': (
+                                    `constraints`: _
+                                    `description`: _
+                                    `value`: | `text` | `global` 'text'
+                                )
+                                'labelloc': (
+                                    `constraints`: _
+                                    `description`: _
+                                    `value`: | `state` (
+                                        `options`: {
+                                            't': (
+                                                `constraints`: _
+                                                `description`: _
+                                                `value`: | `nothing` ~
+                                            )
+                                            'b': (
+                                                `constraints`: _
+                                                `description`: _
+                                                `value`: | `nothing` ~
+                                            )
+                                        }
+                                        `results`: _
+                                    )
+                                )
+                                'labeljust': (
+                                    `constraints`: _
+                                    `description`: _
+                                    `value`: | `state` (
+                                        `options`: {
+                                            'l': (
+                                                `constraints`: _
+                                                `description`: _
+                                                `value`: | `nothing` ~
+                                            )
+                                            'c': (
+                                                `constraints`: _
+                                                `description`: _
+                                                `value`: | `nothing` ~
+                                            )
+                                            'r': (
+                                                `constraints`: _
+                                                `description`: _
+                                                `value`: | `nothing` ~
+                                            )
+                                        }
+                                        `results`: _
+                                    )
+                                )
+                                'size': (
+                                    `constraints`: _
+                                    `description`: _
+                                    `value`: | `text` | `global` 'text'
+                                )
+                                'ratio': (
+                                    `constraints`: _
+                                    `description`: _
+                                    `value`: | `text` | `global` 'text'
+                                )
+                                'pad': (
+                                    `constraints`: _
+                                    `description`: _
+                                    `value`: | `text` | `global` 'text'
+                                )
+                                'nodesep': (
+                                    `constraints`: _
+                                    `description`: _
+                                    `value`: | `simple` | `global` 'Approximation'
+                                )
+                                'ranksep': (
+                                    `constraints`: _
+                                    `description`: _
+                                    `value`: | `simple` | `global` 'Approximation'
+                                )
+                                'dpi': (
+                                    `constraints`: _
+                                    `description`: _
+                                    `value`: | `simple` | `global` 'Approximation'
+                                )
+                                'overlap': (
+                                    `constraints`: _
+                                    `description`: _
+                                    `value`: | `state` (
+                                        `options`: {
+                                            'true': (
+                                                `constraints`: _
+                                                `description`: _
+                                                `value`: | `nothing` ~
+                                            )
+                                            'false': (
+                                                `constraints`: _
+                                                `description`: _
+                                                `value`: | `nothing` ~
+                                            )
+                                            'scale': (
+                                                `constraints`: _
+                                                `description`: _
+                                                `value`: | `nothing` ~
+                                            )
+                                            'scalexy': (
+                                                `constraints`: _
+                                                `description`: _
+                                                `value`: | `nothing` ~
+                                            )
+                                            'orthoxy': (
+                                                `constraints`: _
+                                                `description`: _
+                                                `value`: | `nothing` ~
+                                            )
+                                            'orthoyx': (
+                                                `constraints`: _
+                                                `description`: _
+                                                `value`: | `nothing` ~
+                                            )
+                                            'compress': (
+                                                `constraints`: _
+                                                `description`: _
+                                                `value`: | `nothing` ~
+                                            )
+                                            'vpsc': (
+                                                `constraints`: _
+                                                `description`: _
+                                                `value`: | `nothing` ~
+                                            )
+                                            'ipsep': (
+                                                `constraints`: _
+                                                `description`: _
+                                                `value`: | `nothing` ~
+                                            )
+                                            'prism': (
+                                                `constraints`: _
+                                                `description`: _
+                                                `value`: | `nothing` ~
+                                            )
+                                        }
+                                        `results`: _
+                                    )
+                                )
+                                'pack': (
+                                    `constraints`: _
+                                    `description`: _
+                                    `value`: | `state` (
+                                        `options`: {
+                                            'true': (
+                                                `constraints`: _
+                                                `description`: _
+                                                `value`: | `nothing` ~
+                                            )
+                                            'false': (
+                                                `constraints`: _
+                                                `description`: _
+                                                `value`: | `nothing` ~
+                                            )
+                                            'custom': (
+                                                `constraints`: _
+                                                `description`: _
+                                                `value`: | `simple` | `global` 'Natural'
+                                            )
+                                        }
+                                        `results`: _
+                                    )
+                                )
+                                'packmode': (
+                                    `constraints`: _
+                                    `description`: _
+                                    `value`: | `state` (
+                                        `options`: {
+                                            'node': (
+                                                `constraints`: _
+                                                `description`: _
+                                                `value`: | `nothing` ~
+                                            )
+                                            'clust': (
+                                                `constraints`: _
+                                                `description`: _
+                                                `value`: | `nothing` ~
+                                            )
+                                            'graph': (
+                                                `constraints`: _
+                                                `description`: _
+                                                `value`: | `nothing` ~
+                                            )
+                                        }
+                                        `results`: _
+                                    )
+                                )
+                                'concentrate': (
+                                    `constraints`: _
+                                    `description`: _
+                                    `value`: | `simple` | `global` 'boolean'
+                                )
+                                'compound': (
+                                    `constraints`: _
+                                    `description`: _
+                                    `value`: | `simple` | `global` 'boolean'
+                                )
+                                'center': (
+                                    `constraints`: _
+                                    `description`: _
+                                    `value`: | `simple` | `global` 'boolean'
+                                )
+                                'normalize': (
+                                    `constraints`: _
+                                    `description`: _
+                                    `value`: | `simple` | `global` 'boolean'
+                                )
+                                'landscape': (
+                                    `constraints`: _
+                                    `description`: _
+                                    `value`: | `simple` | `global` 'boolean'
+                                )
+                                'outputorder': (
+                                    `constraints`: _
+                                    `description`: _
+                                    `value`: | `state` (
+                                        `options`: {
+                                            'breadthfirst': (
+                                                `constraints`: _
+                                                `description`: _
+                                                `value`: | `nothing` ~
+                                            )
+                                            'nodesfirst': (
+                                                `constraints`: _
+                                                `description`: _
+                                                `value`: | `nothing` ~
+                                            )
+                                            'edgesfirst': (
+                                                `constraints`: _
+                                                `description`: _
+                                                `value`: | `nothing` ~
+                                            )
+                                        }
+                                        `results`: _
+                                    )
+                                )
+                                'charset': (
+                                    `constraints`: _
+                                    `description`: _
+                                    `value`: | `text` | `global` 'text'
+                                )
+                                'clusterrank': (
+                                    `constraints`: _
+                                    `description`: _
+                                    `value`: | `state` (
+                                        `options`: {
+                                            'local': (
+                                                `constraints`: _
+                                                `description`: _
+                                                `value`: | `nothing` ~
+                                            )
+                                            'global': (
+                                                `constraints`: _
+                                                `description`: _
+                                                `value`: | `nothing` ~
+                                            )
+                                            'none': (
+                                                `constraints`: _
+                                                `description`: _
+                                                `value`: | `nothing` ~
+                                            )
+                                        }
+                                        `results`: _
+                                    )
+                                )
+                                'shape': (
+                                    `constraints`: _
+                                    `description`: _
+                                    `value`: | `state` (
+                                        `options`: {
+                                            'box': (
+                                                `constraints`: _
+                                                `description`: _
+                                                `value`: | `nothing` ~
+                                            )
+                                            'circle': (
+                                                `constraints`: _
+                                                `description`: _
+                                                `value`: | `nothing` ~
+                                            )
+                                            'ellipse': (
+                                                `constraints`: _
+                                                `description`: _
+                                                `value`: | `nothing` ~
+                                            )
+                                            'oval': (
+                                                `constraints`: _
+                                                `description`: _
+                                                `value`: | `nothing` ~
+                                            )
+                                            'point': (
+                                                `constraints`: _
+                                                `description`: _
+                                                `value`: | `nothing` ~
+                                            )
+                                            'egg': (
+                                                `constraints`: _
+                                                `description`: _
+                                                `value`: | `nothing` ~
+                                            )
+                                            'triangle': (
+                                                `constraints`: _
+                                                `description`: _
+                                                `value`: | `nothing` ~
+                                            )
+                                            'plaintext': (
+                                                `constraints`: _
+                                                `description`: _
+                                                `value`: | `nothing` ~
+                                            )
+                                            'plain': (
+                                                `constraints`: _
+                                                `description`: _
+                                                `value`: | `nothing` ~
+                                            )
+                                            'diamond': (
+                                                `constraints`: _
+                                                `description`: _
+                                                `value`: | `nothing` ~
+                                            )
+                                            'trapezium': (
+                                                `constraints`: _
+                                                `description`: _
+                                                `value`: | `nothing` ~
+                                            )
+                                            'parallelogram': (
+                                                `constraints`: _
+                                                `description`: _
+                                                `value`: | `nothing` ~
+                                            )
+                                            'house': (
+                                                `constraints`: _
+                                                `description`: _
+                                                `value`: | `nothing` ~
+                                            )
+                                            'pentagon': (
+                                                `constraints`: _
+                                                `description`: _
+                                                `value`: | `nothing` ~
+                                            )
+                                            'hexagon': (
+                                                `constraints`: _
+                                                `description`: _
+                                                `value`: | `nothing` ~
+                                            )
+                                            'septagon': (
+                                                `constraints`: _
+                                                `description`: _
+                                                `value`: | `nothing` ~
+                                            )
+                                            'octagon': (
+                                                `constraints`: _
+                                                `description`: _
+                                                `value`: | `nothing` ~
+                                            )
+                                            'polygon': (
+                                                `constraints`: _
+                                                `description`: _
+                                                `value`: | `nothing` ~
+                                            )
+                                            'record': (
+                                                `constraints`: _
+                                                `description`: _
+                                                `value`: | `nothing` ~
+                                            )
+                                            'Mrecord': (
+                                                `constraints`: _
+                                                `description`: _
+                                                `value`: | `nothing` ~
+                                            )
+                                            'custom': (
+                                                `constraints`: _
+                                                `description`: _
+                                                `value`: | `text` | `global` 'text'
+                                            )
+                                        }
+                                        `results`: _
+                                    )
+                                )
+                                'width': (
+                                    `constraints`: _
+                                    `description`: _
+                                    `value`: | `simple` | `global` 'Approximation'
+                                )
+                                'height': (
+                                    `constraints`: _
+                                    `description`: _
+                                    `value`: | `simple` | `global` 'Approximation'
+                                )
+                                'fixedsize': (
+                                    `constraints`: _
+                                    `description`: _
+                                    `value`: | `simple` | `global` 'boolean'
+                                )
+                                'regular': (
+                                    `constraints`: _
+                                    `description`: _
+                                    `value`: | `simple` | `global` 'boolean'
+                                )
+                                'sides': (
+                                    `constraints`: _
+                                    `description`: _
+                                    `value`: | `simple` | `global` 'Natural'
+                                )
+                                'skew': (
+                                    `constraints`: _
+                                    `description`: _
+                                    `value`: | `simple` | `global` 'Approximation'
+                                )
+                                'distortion': (
+                                    `constraints`: _
+                                    `description`: _
+                                    `value`: | `simple` | `global` 'Approximation'
+                                )
+                                'orientation': (
+                                    `constraints`: _
+                                    `description`: _
+                                    `value`: | `simple` | `global` 'Approximation'
+                                )
+                                'peripheries': (
+                                    `constraints`: _
+                                    `description`: _
+                                    `value`: | `simple` | `global` 'Natural'
+                                )
+                                'pin': (
+                                    `constraints`: _
+                                    `description`: _
+                                    `value`: | `simple` | `global` 'boolean'
+                                )
+                                'image': (
+                                    `constraints`: _
+                                    `description`: _
+                                    `value`: | `text` | `global` 'text'
+                                )
+                                'imagepos': (
+                                    `constraints`: _
+                                    `description`: _
+                                    `value`: | `state` (
+                                        `options`: {
+                                            'tl': (
+                                                `constraints`: _
+                                                `description`: _
+                                                `value`: | `nothing` ~
+                                            )
+                                            'tc': (
+                                                `constraints`: _
+                                                `description`: _
+                                                `value`: | `nothing` ~
+                                            )
+                                            'tr': (
+                                                `constraints`: _
+                                                `description`: _
+                                                `value`: | `nothing` ~
+                                            )
+                                            'ml': (
+                                                `constraints`: _
+                                                `description`: _
+                                                `value`: | `nothing` ~
+                                            )
+                                            'mc': (
+                                                `constraints`: _
+                                                `description`: _
+                                                `value`: | `nothing` ~
+                                            )
+                                            'mr': (
+                                                `constraints`: _
+                                                `description`: _
+                                                `value`: | `nothing` ~
+                                            )
+                                            'bl': (
+                                                `constraints`: _
+                                                `description`: _
+                                                `value`: | `nothing` ~
+                                            )
+                                            'bc': (
+                                                `constraints`: _
+                                                `description`: _
+                                                `value`: | `nothing` ~
+                                            )
+                                            'br': (
+                                                `constraints`: _
+                                                `description`: _
+                                                `value`: | `nothing` ~
+                                            )
+                                        }
+                                        `results`: _
+                                    )
+                                )
+                                'imagescale': (
+                                    `constraints`: _
+                                    `description`: _
+                                    `value`: | `state` (
+                                        `options`: {
+                                            'false': (
+                                                `constraints`: _
+                                                `description`: _
+                                                `value`: | `nothing` ~
+                                            )
+                                            'true': (
+                                                `constraints`: _
+                                                `description`: _
+                                                `value`: | `nothing` ~
+                                            )
+                                            'width': (
+                                                `constraints`: _
+                                                `description`: _
+                                                `value`: | `nothing` ~
+                                            )
+                                            'height': (
+                                                `constraints`: _
+                                                `description`: _
+                                                `value`: | `nothing` ~
+                                            )
+                                            'both': (
+                                                `constraints`: _
+                                                `description`: _
+                                                `value`: | `nothing` ~
+                                            )
+                                        }
+                                        `results`: _
+                                    )
+                                )
+                                'group': (
+                                    `constraints`: _
+                                    `description`: _
+                                    `value`: | `text` | `global` 'text'
+                                )
+                                'sortv': (
+                                    `constraints`: _
+                                    `description`: _
+                                    `value`: | `simple` | `global` 'Natural'
+                                )
+                                'area': (
+                                    `constraints`: _
+                                    `description`: _
+                                    `value`: | `simple` | `global` 'Approximation'
+                                )
+                                'z': (
+                                    `constraints`: _
+                                    `description`: _
+                                    `value`: | `simple` | `global` 'Approximation'
+                                )
+                                'margin': (
+                                    `constraints`: _
+                                    `description`: _
+                                    `value`: | `text` | `global` 'text'
+                                )
+                                'arrowhead': (
+                                    `constraints`: _
+                                    `description`: _
+                                    `value`: | `state` (
+                                        `options`: {
+                                            'normal': (
+                                                `constraints`: _
+                                                `description`: _
+                                                `value`: | `nothing` ~
+                                            )
+                                            'box': (
+                                                `constraints`: _
+                                                `description`: _
+                                                `value`: | `nothing` ~
+                                            )
+                                            'crow': (
+                                                `constraints`: _
+                                                `description`: _
+                                                `value`: | `nothing` ~
+                                            )
+                                            'diamond': (
+                                                `constraints`: _
+                                                `description`: _
+                                                `value`: | `nothing` ~
+                                            )
+                                            'dot': (
+                                                `constraints`: _
+                                                `description`: _
+                                                `value`: | `nothing` ~
+                                            )
+                                            'inv': (
+                                                `constraints`: _
+                                                `description`: _
+                                                `value`: | `nothing` ~
+                                            )
+                                            'none': (
+                                                `constraints`: _
+                                                `description`: _
+                                                `value`: | `nothing` ~
+                                            )
+                                            'tee': (
+                                                `constraints`: _
+                                                `description`: _
+                                                `value`: | `nothing` ~
+                                            )
+                                            'vee': (
+                                                `constraints`: _
+                                                `description`: _
+                                                `value`: | `nothing` ~
+                                            )
+                                            'open': (
+                                                `constraints`: _
+                                                `description`: _
+                                                `value`: | `nothing` ~
+                                            )
+                                            'halfopen': (
+                                                `constraints`: _
+                                                `description`: _
+                                                `value`: | `nothing` ~
+                                            )
+                                            'empty': (
+                                                `constraints`: _
+                                                `description`: _
+                                                `value`: | `nothing` ~
+                                            )
+                                            'invempty': (
+                                                `constraints`: _
+                                                `description`: _
+                                                `value`: | `nothing` ~
+                                            )
+                                            'odiamond': (
+                                                `constraints`: _
+                                                `description`: _
+                                                `value`: | `nothing` ~
+                                            )
+                                            'odot': (
+                                                `constraints`: _
+                                                `description`: _
+                                                `value`: | `nothing` ~
+                                            )
+                                            'obox': (
+                                                `constraints`: _
+                                                `description`: _
+                                                `value`: | `nothing` ~
+                                            )
+                                            'custom': (
+                                                `constraints`: _
+                                                `description`: _
+                                                `value`: | `text` | `global` 'text'
+                                            )
+                                        }
+                                        `results`: _
+                                    )
+                                )
+                                'arrowtail': (
+                                    `constraints`: _
+                                    `description`: _
+                                    `value`: | `state` (
+                                        `options`: {
+                                            'normal': (
+                                                `constraints`: _
+                                                `description`: _
+                                                `value`: | `nothing` ~
+                                            )
+                                            'box': (
+                                                `constraints`: _
+                                                `description`: _
+                                                `value`: | `nothing` ~
+                                            )
+                                            'crow': (
+                                                `constraints`: _
+                                                `description`: _
+                                                `value`: | `nothing` ~
+                                            )
+                                            'diamond': (
+                                                `constraints`: _
+                                                `description`: _
+                                                `value`: | `nothing` ~
+                                            )
+                                            'dot': (
+                                                `constraints`: _
+                                                `description`: _
+                                                `value`: | `nothing` ~
+                                            )
+                                            'inv': (
+                                                `constraints`: _
+                                                `description`: _
+                                                `value`: | `nothing` ~
+                                            )
+                                            'none': (
+                                                `constraints`: _
+                                                `description`: _
+                                                `value`: | `nothing` ~
+                                            )
+                                            'tee': (
+                                                `constraints`: _
+                                                `description`: _
+                                                `value`: | `nothing` ~
+                                            )
+                                            'vee': (
+                                                `constraints`: _
+                                                `description`: _
+                                                `value`: | `nothing` ~
+                                            )
+                                            'open': (
+                                                `constraints`: _
+                                                `description`: _
+                                                `value`: | `nothing` ~
+                                            )
+                                            'halfopen': (
+                                                `constraints`: _
+                                                `description`: _
+                                                `value`: | `nothing` ~
+                                            )
+                                            'empty': (
+                                                `constraints`: _
+                                                `description`: _
+                                                `value`: | `nothing` ~
+                                            )
+                                            'invempty': (
+                                                `constraints`: _
+                                                `description`: _
+                                                `value`: | `nothing` ~
+                                            )
+                                            'odiamond': (
+                                                `constraints`: _
+                                                `description`: _
+                                                `value`: | `nothing` ~
+                                            )
+                                            'odot': (
+                                                `constraints`: _
+                                                `description`: _
+                                                `value`: | `nothing` ~
+                                            )
+                                            'obox': (
+                                                `constraints`: _
+                                                `description`: _
+                                                `value`: | `nothing` ~
+                                            )
+                                            'custom': (
+                                                `constraints`: _
+                                                `description`: _
+                                                `value`: | `text` | `global` 'text'
+                                            )
+                                        }
+                                        `results`: _
+                                    )
+                                )
+                                'arrowsize': (
+                                    `constraints`: _
+                                    `description`: _
+                                    `value`: | `simple` | `global` 'Approximation'
+                                )
+                                'dir': (
+                                    `constraints`: _
+                                    `description`: _
+                                    `value`: | `state` (
+                                        `options`: {
+                                            'forward': (
+                                                `constraints`: _
+                                                `description`: _
+                                                `value`: | `nothing` ~
+                                            )
+                                            'back': (
+                                                `constraints`: _
+                                                `description`: _
+                                                `value`: | `nothing` ~
+                                            )
+                                            'both': (
+                                                `constraints`: _
+                                                `description`: _
+                                                `value`: | `nothing` ~
+                                            )
+                                            'none': (
+                                                `constraints`: _
+                                                `description`: _
+                                                `value`: | `nothing` ~
+                                            )
+                                        }
+                                        `results`: _
+                                    )
+                                )
+                                'headlabel': (
+                                    `constraints`: _
+                                    `description`: _
+                                    `value`: | `text` | `global` 'text'
+                                )
+                                'taillabel': (
+                                    `constraints`: _
+                                    `description`: _
+                                    `value`: | `text` | `global` 'text'
+                                )
+                                'labelfontcolor': (
+                                    `constraints`: _
+                                    `description`: _
+                                    `value`: | `text` | `global` 'text'
+                                )
+                                'labelfontname': (
+                                    `constraints`: _
+                                    `description`: _
+                                    `value`: | `text` | `global` 'text'
+                                )
+                                'labelfontsize': (
+                                    `constraints`: _
+                                    `description`: _
+                                    `value`: | `simple` | `global` 'Approximation'
+                                )
+                                'labelangle': (
+                                    `constraints`: _
+                                    `description`: _
+                                    `value`: | `simple` | `global` 'Approximation'
+                                )
+                                'labeldistance': (
+                                    `constraints`: _
+                                    `description`: _
+                                    `value`: | `simple` | `global` 'Approximation'
+                                )
+                                'labelfloat': (
+                                    `constraints`: _
+                                    `description`: _
+                                    `value`: | `simple` | `global` 'boolean'
+                                )
+                                'weight': (
+                                    `constraints`: _
+                                    `description`: _
+                                    `value`: | `simple` | `global` 'Approximation'
+                                )
+                                'len': (
+                                    `constraints`: _
+                                    `description`: _
+                                    `value`: | `simple` | `global` 'Approximation'
+                                )
+                                'minlen': (
+                                    `constraints`: _
+                                    `description`: _
+                                    `value`: | `simple` | `global` 'Natural'
+                                )
+                                'constraint': (
+                                    `constraints`: _
+                                    `description`: _
+                                    `value`: | `simple` | `global` 'boolean'
+                                )
+                                'decorate': (
+                                    `constraints`: _
+                                    `description`: _
+                                    `value`: | `simple` | `global` 'boolean'
+                                )
+                                'headport': (
+                                    `constraints`: _
+                                    `description`: _
+                                    `value`: | `state` (
+                                        `options`: {
+                                            'center': (
+                                                `constraints`: _
+                                                `description`: _
+                                                `value`: | `nothing` ~
+                                            )
+                                            'n': (
+                                                `constraints`: _
+                                                `description`: _
+                                                `value`: | `nothing` ~
+                                            )
+                                            'ne': (
+                                                `constraints`: _
+                                                `description`: _
+                                                `value`: | `nothing` ~
+                                            )
+                                            'e': (
+                                                `constraints`: _
+                                                `description`: _
+                                                `value`: | `nothing` ~
+                                            )
+                                            'se': (
+                                                `constraints`: _
+                                                `description`: _
+                                                `value`: | `nothing` ~
+                                            )
+                                            's': (
+                                                `constraints`: _
+                                                `description`: _
+                                                `value`: | `nothing` ~
+                                            )
+                                            'sw': (
+                                                `constraints`: _
+                                                `description`: _
+                                                `value`: | `nothing` ~
+                                            )
+                                            'w': (
+                                                `constraints`: _
+                                                `description`: _
+                                                `value`: | `nothing` ~
+                                            )
+                                            'nw': (
+                                                `constraints`: _
+                                                `description`: _
+                                                `value`: | `nothing` ~
+                                            )
+                                            'custom': (
+                                                `constraints`: _
+                                                `description`: _
+                                                `value`: | `text` | `global` 'text'
+                                            )
+                                        }
+                                        `results`: _
+                                    )
+                                )
+                                'tailport': (
+                                    `constraints`: _
+                                    `description`: _
+                                    `value`: | `state` (
+                                        `options`: {
+                                            'center': (
+                                                `constraints`: _
+                                                `description`: _
+                                                `value`: | `nothing` ~
+                                            )
+                                            'n': (
+                                                `constraints`: _
+                                                `description`: _
+                                                `value`: | `nothing` ~
+                                            )
+                                            'ne': (
+                                                `constraints`: _
+                                                `description`: _
+                                                `value`: | `nothing` ~
+                                            )
+                                            'e': (
+                                                `constraints`: _
+                                                `description`: _
+                                                `value`: | `nothing` ~
+                                            )
+                                            'se': (
+                                                `constraints`: _
+                                                `description`: _
+                                                `value`: | `nothing` ~
+                                            )
+                                            's': (
+                                                `constraints`: _
+                                                `description`: _
+                                                `value`: | `nothing` ~
+                                            )
+                                            'sw': (
+                                                `constraints`: _
+                                                `description`: _
+                                                `value`: | `nothing` ~
+                                            )
+                                            'w': (
+                                                `constraints`: _
+                                                `description`: _
+                                                `value`: | `nothing` ~
+                                            )
+                                            'nw': (
+                                                `constraints`: _
+                                                `description`: _
+                                                `value`: | `nothing` ~
+                                            )
+                                            'custom': (
+                                                `constraints`: _
+                                                `description`: _
+                                                `value`: | `text` | `global` 'text'
+                                            )
+                                        }
+                                        `results`: _
+                                    )
+                                )
+                                'headclip': (
+                                    `constraints`: _
+                                    `description`: _
+                                    `value`: | `simple` | `global` 'boolean'
+                                )
+                                'tailclip': (
+                                    `constraints`: _
+                                    `description`: _
+                                    `value`: | `simple` | `global` 'boolean'
+                                )
+                                'lhead': (
+                                    `constraints`: _
+                                    `description`: _
+                                    `value`: | `text` | `global` 'text'
+                                )
+                                'ltail': (
+                                    `constraints`: _
+                                    `description`: _
+                                    `value`: | `text` | `global` 'text'
+                                )
+                                'samehead': (
+                                    `constraints`: _
+                                    `description`: _
+                                    `value`: | `text` | `global` 'text'
+                                )
+                                'sametail': (
+                                    `constraints`: _
+                                    `description`: _
+                                    `value`: | `text` | `global` 'text'
+                                )
+                                'edgeURL': (
+                                    `constraints`: _
+                                    `description`: _
+                                    `value`: | `text` | `global` 'text'
+                                )
+                                'headURL': (
+                                    `constraints`: _
+                                    `description`: _
+                                    `value`: | `text` | `global` 'text'
+                                )
+                                'tailURL': (
+                                    `constraints`: _
+                                    `description`: _
+                                    `value`: | `text` | `global` 'text'
+                                )
+                                'labelURL': (
+                                    `constraints`: _
+                                    `description`: _
+                                    `value`: | `text` | `global` 'text'
+                                )
+                                'edgehref': (
+                                    `constraints`: _
+                                    `description`: _
+                                    `value`: | `text` | `global` 'text'
+                                )
+                                'headhref': (
+                                    `constraints`: _
+                                    `description`: _
+                                    `value`: | `text` | `global` 'text'
+                                )
+                                'tailhref': (
+                                    `constraints`: _
+                                    `description`: _
+                                    `value`: | `text` | `global` 'text'
+                                )
+                                'labelhref': (
+                                    `constraints`: _
+                                    `description`: _
+                                    `value`: | `text` | `global` 'text'
+                                )
+                                'edgetarget': (
+                                    `constraints`: _
+                                    `description`: _
+                                    `value`: | `text` | `global` 'text'
+                                )
+                                'headtarget': (
+                                    `constraints`: _
+                                    `description`: _
+                                    `value`: | `text` | `global` 'text'
+                                )
+                                'tailtarget': (
+                                    `constraints`: _
+                                    `description`: _
+                                    `value`: | `text` | `global` 'text'
+                                )
+                                'edgetooltip': (
+                                    `constraints`: _
+                                    `description`: _
+                                    `value`: | `text` | `global` 'text'
+                                )
+                                'headtooltip': (
+                                    `constraints`: _
+                                    `description`: _
+                                    `value`: | `text` | `global` 'text'
+                                )
+                                'tailtooltip': (
+                                    `constraints`: _
+                                    `description`: _
+                                    `value`: | `text` | `global` 'text'
+                                )
+                                'labeltooltip': (
+                                    `constraints`: _
+                                    `description`: _
+                                    `value`: | `text` | `global` 'text'
+                                )
+                                'radius': (
+                                    `constraints`: _
+                                    `description`: _
+                                    `value`: | `simple` | `global` 'Approximation'
+                                )
+                                'splines': (
+                                    `constraints`: _
+                                    `description`: _
+                                    `value`: | `state` (
+                                        `options`: {
+                                            'true': (
+                                                `constraints`: _
+                                                `description`: _
+                                                `value`: | `nothing` ~
+                                            )
+                                            'false': (
+                                                `constraints`: _
+                                                `description`: _
+                                                `value`: | `nothing` ~
+                                            )
+                                            'none': (
+                                                `constraints`: _
+                                                `description`: _
+                                                `value`: | `nothing` ~
+                                            )
+                                            'line': (
+                                                `constraints`: _
+                                                `description`: _
+                                                `value`: | `nothing` ~
+                                            )
+                                            'spline': (
+                                                `constraints`: _
+                                                `description`: _
+                                                `value`: | `nothing` ~
+                                            )
+                                            'polyline': (
+                                                `constraints`: _
+                                                `description`: _
+                                                `value`: | `nothing` ~
+                                            )
+                                            'ortho': (
+                                                `constraints`: _
+                                                `description`: _
+                                                `value`: | `nothing` ~
+                                            )
+                                            'curved': (
+                                                `constraints`: _
+                                                `description`: _
+                                                `value`: | `nothing` ~
+                                            )
+                                            'compound': (
+                                                `constraints`: _
+                                                `description`: _
+                                                `value`: | `nothing` ~
+                                            )
+                                        }
+                                        `results`: _
+                                    )
+                                )
+                                'pos': (
+                                    `constraints`: _
+                                    `description`: _
+                                    `value`: | `text` | `global` 'text'
+                                )
+                                'xlabel': (
+                                    `constraints`: _
+                                    `description`: _
+                                    `value`: | `text` | `global` 'multi line text'
+                                )
+                                'layer': (
+                                    `constraints`: _
+                                    `description`: _
+                                    `value`: | `text` | `global` 'text'
+                                )
+                            }
+                            `results`: _
+                        )
+                        `results`: _
+                    )
+                )
+            }
+            `complexity`: | `unconstrained` ~
+        )
+        'high level': | `schema` (
+            `schema imports`: {
+                'attributes': (
+                    `schema set child`: 'attributes'
+                    `schema`: ~
+                )
+            }
+            `resolver imports`: {}
+            `globals`: (
+                `complexity`: | `unconstrained` ~
+                `text types`: {
+                    'Text Value': (
+                        `type`: | `single line` ~
+                        `link`: | `no` ~
+                    )
+                }
+                `simple types`: {}
+            )
+            `modules`: {
+                'Graph': (
+                    `root value`: | `group` {
+                        'name': (
+                            `description`: _
+                            `value`: | `optional` | `text` | `global` 'Text Value'
+                        )
+                        'tree': (
+                            `description`: _
+                            `value`: | `component` (
+                                `type`: | `internal` 'Tree'
+                                `results`: _
+                            )
+                        )
+                        'type': (
+                            `description`: _
+                            `value`: | `state` (
+                                `options`: {
+                                    'undirected': (
+                                        `constraints`: _
+                                        `description`: _
+                                        `value`: | `group` {
+                                            'edges': (
+                                                `description`: _
+                                                `value`: | `list` (
+                                                    `value`: | `group` {
+                                                        'yin': (
+                                                            `description`: _
+                                                            `value`: | `component` (
+                                                                `type`: | `internal` 'End Point Specification'
+                                                                `results`: _
+                                                            )
+                                                        )
+                                                        'yang': (
+                                                            `description`: _
+                                                            `value`: | `component` (
+                                                                `type`: | `internal` 'End Point Specification'
+                                                                `results`: _
+                                                            )
+                                                        )
+                                                        'attributes': (
+                                                            `description`: _
+                                                            `value`: | `component` (
+                                                                `type`: | `external` (
+                                                                    `import`: 'attributes'
+                                                                    `module`: 'Attributes'
+                                                                )
+                                                                `results`: _
+                                                            )
+                                                        )
+                                                    }
+                                                    `results`: _
+                                                )
+                                            )
+                                        }
+                                    )
+                                    'directed': (
+                                        `constraints`: _
+                                        `description`: _
+                                        `value`: | `group` {
+                                            'edges': (
+                                                `description`: _
+                                                `value`: | `list` (
+                                                    `value`: | `group` {
+                                                        'from': (
+                                                            `description`: _
+                                                            `value`: | `component` (
+                                                                `type`: | `internal` 'End Point Specification'
+                                                                `results`: _
+                                                            )
+                                                        )
+                                                        'to': (
+                                                            `description`: _
+                                                            `value`: | `component` (
+                                                                `type`: | `internal` 'End Point Specification'
+                                                                `results`: _
+                                                            )
+                                                        )
+                                                        'attributes': (
+                                                            `description`: _
+                                                            `value`: | `component` (
+                                                                `type`: | `external` (
+                                                                    `import`: 'attributes'
+                                                                    `module`: 'Attributes'
+                                                                )
+                                                                `results`: _
+                                                            )
+                                                        )
+                                                    }
+                                                    `results`: _
+                                                )
+                                            )
+                                        }
+                                    )
+                                }
+                                `results`: _
+                            )
+                        )
+                    }
+                )
+                'Tree': (
+                    `root value`: | `group` {
+                        'attributes': (
+                            `description`: _
+                            `value`: | `component` (
+                                `type`: | `external` (
+                                    `import`: 'attributes'
+                                    `module`: 'Attributes'
+                                )
+                                `results`: _
+                            )
+                        )
+                        'elements': (
+                            `description`: _
+                            `value`: | `dictionary` (
+                                `value`: | `state` (
+                                    `options`: {
+                                        'node': (
+                                            `constraints`: _
+                                            `description`: _
+                                            `value`: | `group` {
+                                                'attributes': (
+                                                    `description`: _
+                                                    `value`: | `component` (
+                                                        `type`: | `external` (
+                                                            `import`: 'attributes'
+                                                            `module`: 'Attributes'
+                                                        )
+                                                        `results`: _
+                                                    )
+                                                )
+                                            }
+                                        )
+                                        'sub': (
+                                            `constraints`: _
+                                            `description`: _
+                                            `value`: | `group` {
+                                                'type': (
+                                                    `description`: _
+                                                    `value`: | `state` (
+                                                        `options`: {
+                                                            'group': (
+                                                                `constraints`: _
+                                                                `description`: _
+                                                                `value`: | `nothing` ~
+                                                            )
+                                                            'cluster': (
+                                                                `constraints`: _
+                                                                `description`: _
+                                                                `value`: | `nothing` ~
+                                                            )
+                                                            'subgraph': (
+                                                                `constraints`: _
+                                                                `description`: _
+                                                                `value`: | `nothing` ~
+                                                            )
+                                                        }
+                                                        `results`: _
+                                                    )
+                                                )
+                                                'tree': (
+                                                    `description`: _
+                                                    `value`: | `component` (
+                                                        `type`: | `internal` 'Tree'
+                                                        `results`: _
+                                                    )
+                                                )
+                                            }
+                                        )
+                                    }
+                                    `results`: _
+                                )
+                            )
+                        )
+                    }
+                )
+                'End Point Specification': (
+                    `root value`: | `group` {
+                        'start': (
+                            `description`: _
+                            `value`: | `text` | `global` 'Text Value'
+                        )
+                        'tail': (
+                            `description`: _
+                            `value`: | `list` (
+                                `value`: | `text` | `global` 'Text Value'
+                                `results`: _
+                            )
+                        )
+                        'port data': (
+                            `description`: _
+                            `value`: | `optional` | `group` {
+                                'port': (
+                                    `description`: _
+                                    `value`: | `text` | `global` 'Text Value'
+                                )
+                                'compass direction': (
+                                    `description`: _
+                                    `value`: | `optional` | `text` | `global` 'Text Value'
+                                )
+                            }
+                        )
+                    }
+                )
+            }
+            `complexity`: | `unconstrained` ~
+        )
+        'high level simple': | `schema` (
+            `schema imports`: {
+                'attributes': (
+                    `schema set child`: 'attributes'
+                    `schema`: ~
+                )
+            }
+            `resolver imports`: {}
+            `globals`: (
+                `complexity`: | `unconstrained` ~
+                `text types`: {
+                    'Text Value': (
+                        `type`: | `single line` ~
+                        `link`: | `no` ~
+                    )
+                    'text': (
+                        `type`: | `single line` ~
+                        `link`: | `no` ~
+                    )
+                }
+                `simple types`: {
+                    'Position': (
+                        `type`: | `number` (
+                            `precision`: | `exact` (
+                                `number of fractional digits`: _
+                                `type`: | `natural` ~
+                            )
+                        )
+                    )
+                }
+            )
+            `modules`: {
+                'Graph': (
+                    `root value`: | `group` {
+                        'attributes': (
+                            `description`: _
+                            `value`: | `component` (
+                                `type`: | `external` (
+                                    `import`: 'attributes'
+                                    `module`: 'Attributes'
+                                )
+                                `results`: _
+                            )
+                        )
+                        'nodes': (
+                            `description`: _
+                            `value`: | `dictionary` (
+                                `value`: | `group` {
+                                    'attributes': (
+                                        `description`: _
+                                        `value`: | `component` (
+                                            `type`: | `external` (
+                                                `import`: 'attributes'
+                                                `module`: 'Attributes'
+                                            )
+                                            `results`: _
+                                        )
+                                    )
+                                }
+                            )
+                        )
+                        'edges': (
+                            `description`: _
+                            `value`: | `list` (
+                                `value`: | `group` {
+                                    'from': (
+                                        `description`: _
+                                        `value`: | `text` | `global` 'text'
+                                    )
+                                    'to': (
+                                        `description`: _
+                                        `value`: | `text` | `global` 'text'
+                                    )
+                                    'attributes': (
+                                        `description`: _
+                                        `value`: | `component` (
+                                            `type`: | `external` (
+                                                `import`: 'attributes'
+                                                `module`: 'Attributes'
+                                            )
+                                            `results`: _
+                                        )
+                                    )
+                                }
+                                `results`: _
+                            )
+                        )
+                    }
+                )
+            }
+            `complexity`: | `unconstrained` ~
+        )
+        'low level': | `schema` (
+            `schema imports`: {
+                'html': (
+                    `schema set child`: 'html'
+                    `schema`: ~
+                )
+            }
+            `resolver imports`: {}
+            `globals`: (
+                `complexity`: | `unconstrained` ~
+                `text types`: {
+                    'id': (
+                        `type`: | `single line` ~
+                        `link`: | `no` ~
+                    )
+                    'Text Value': (
+                        `type`: | `single line` ~
+                        `link`: | `no` ~
+                    )
+                    '': (
+                        `type`: | `single line` ~
+                        `link`: | `no` ~
+                    )
+                }
+                `simple types`: {
+                    'Integer': (
+                        `type`: | `number` (
+                            `precision`: | `exact` (
+                                `number of fractional digits`: _
+                                `type`: | `integer` ~
+                            )
+                        )
+                    )
+                    'boolean': (
+                        `type`: | `boolean` ~
+                    )
+                }
+            )
+            `modules`: {
+                'Graph': (
+                    `root value`: | `group` {
+                        'strict': (
+                            `description`: _
+                            `value`: | `simple` | `global` 'boolean'
+                        )
+                        'type': (
+                            `description`: _
+                            `value`: | `state` (
+                                `options`: {
+                                    'graph': (
+                                        `constraints`: _
+                                        `description`: _
+                                        `value`: | `nothing` ~
+                                    )
+                                    'digraph': (
+                                        `constraints`: _
+                                        `description`: _
+                                        `value`: | `nothing` ~
+                                    )
+                                }
+                                `results`: _
+                            )
+                        )
+                        'name': (
+                            `description`: _
+                            `value`: | `optional` | `component` (
+                                `type`: | `internal` 'ID'
+                                `results`: _
+                            )
+                        )
+                        'statements': (
+                            `description`: _
+                            `value`: | `component` (
+                                `type`: | `internal` 'Statements'
+                                `results`: _
+                            )
+                        )
+                    }
+                )
+                'Statements': (
+                    `root value`: | `list` (
+                        `value`: | `state` (
+                            `options`: {
+                                'node': (
+                                    `constraints`: _
+                                    `description`: _
+                                    `value`: | `group` {
+                                        'node': (
+                                            `description`: _
+                                            `value`: | `component` (
+                                                `type`: | `internal` 'Node ID'
+                                                `results`: _
+                                            )
+                                        )
+                                        'attributes': (
+                                            `description`: _
+                                            `value`: | `component` (
+                                                `type`: | `internal` 'Attributes'
+                                                `results`: _
+                                            )
+                                        )
+                                    }
+                                )
+                                'edge': (
+                                    `constraints`: _
+                                    `description`: _
+                                    `value`: | `group` {
+                                        'left': (
+                                            `description`: _
+                                            `value`: | `component` (
+                                                `type`: | `internal` 'End Point'
+                                                `results`: _
+                                            )
+                                        )
+                                        'right': (
+                                            `description`: _
+                                            `value`: | `list` (
+                                                `value`: | `component` (
+                                                    `type`: | `internal` 'End Point'
+                                                    `results`: _
+                                                )
+                                                `results`: _
+                                            )
+                                        )
+                                        'attributes': (
+                                            `description`: _
+                                            `value`: | `component` (
+                                                `type`: | `internal` 'Attributes'
+                                                `results`: _
+                                            )
+                                        )
+                                    }
+                                )
+                                'attributes': (
+                                    `constraints`: _
+                                    `description`: _
+                                    `value`: | `group` {
+                                        'type': (
+                                            `description`: _
+                                            `value`: | `state` (
+                                                `options`: {
+                                                    'graph': (
+                                                        `constraints`: _
+                                                        `description`: _
+                                                        `value`: | `nothing` ~
+                                                    )
+                                                    'node': (
+                                                        `constraints`: _
+                                                        `description`: _
+                                                        `value`: | `nothing` ~
+                                                    )
+                                                    'edge': (
+                                                        `constraints`: _
+                                                        `description`: _
+                                                        `value`: | `nothing` ~
+                                                    )
+                                                }
+                                                `results`: _
+                                            )
+                                        )
+                                        'attributes': (
+                                            `description`: _
+                                            `value`: | `component` (
+                                                `type`: | `internal` 'Attributes'
+                                                `results`: _
+                                            )
+                                        )
+                                    }
+                                )
+                                'attribute assignment': (
+                                    `constraints`: _
+                                    `description`: _
+                                    `value`: | `group` {
+                                        'name': (
+                                            `description`: _
+                                            `value`: | `component` (
+                                                `type`: | `internal` 'ID'
+                                                `results`: _
+                                            )
+                                        )
+                                        'value': (
+                                            `description`: _
+                                            `value`: | `component` (
+                                                `type`: | `internal` 'ID'
+                                                `results`: _
+                                            )
+                                        )
+                                    }
+                                )
+                                'subgraph': (
+                                    `constraints`: _
+                                    `description`: _
+                                    `value`: | `component` (
+                                        `type`: | `internal` 'Subgraph'
+                                        `results`: _
+                                    )
+                                )
+                            }
+                            `results`: _
+                        )
+                        `results`: _
+                    )
+                )
+                'End Point': (
+                    `root value`: | `state` (
+                        `options`: {
+                            'node': (
+                                `constraints`: _
+                                `description`: _
+                                `value`: | `component` (
+                                    `type`: | `internal` 'Node ID'
+                                    `results`: _
+                                )
+                            )
+                            'subgraph': (
+                                `constraints`: _
+                                `description`: _
+                                `value`: | `component` (
+                                    `type`: | `internal` 'Subgraph'
+                                    `results`: _
+                                )
+                            )
+                        }
+                        `results`: _
+                    )
+                )
+                'Attributes': (
+                    `root value`: | `list` (
+                        `value`: | `group` {
+                            'name': (
+                                `description`: _
+                                `value`: | `component` (
+                                    `type`: | `internal` 'ID'
+                                    `results`: _
+                                )
+                            )
+                            'value': (
+                                `description`: _
+                                `value`: | `component` (
+                                    `type`: | `internal` 'ID'
+                                    `results`: _
+                                )
+                            )
+                        }
+                        `results`: _
+                    )
+                )
+                'Node ID': (
+                    `root value`: | `group` {
+                        'id': (
+                            `description`: _
+                            `value`: | `component` (
+                                `type`: | `internal` 'ID'
+                                `results`: _
+                            )
+                        )
+                        'port': (
+                            `description`: _
+                            `value`: | `optional` | `group` {
+                                'port': (
+                                    `description`: _
+                                    `value`: | `component` (
+                                        `type`: | `internal` 'ID'
+                                        `results`: _
+                                    )
+                                )
+                                'compass point': (
+                                    `description`: _
+                                    `value`: | `optional` | `component` (
+                                        `type`: | `internal` 'ID'
+                                        `results`: _
+                                    )
+                                )
+                            }
+                        )
+                    }
+                )
+                'ID': (
+                    `root value`: | `state` (
+                        `options`: {
+                            'id': (
+                                `constraints`: _
+                                `description`: _
+                                `value`: | `text` | `global` 'id'
+                            )
+                            'string': (
+                                `constraints`: _
+                                `description`: _
+                                `value`: | `text` | `global` 'Text Value'
+                            )
+                            'html': (
+                                `constraints`: _
+                                `description`: _
+                                `value`: | `component` (
+                                    `type`: | `external` (
+                                        `import`: 'html'
+                                        `module`: 'Phrasing Element'
+                                    )
+                                    `results`: _
+                                )
+                            )
+                            'number': (
+                                `constraints`: _
+                                `description`: _
+                                `value`: | `simple` | `global` 'Integer'
+                            )
+                        }
+                        `results`: _
+                    )
+                )
+                'Subgraph': (
+                    `root value`: | `group` {
+                        'subgraph': (
+                            `description`: _
+                            `value`: | `optional` | `optional` | `component` (
+                                `type`: | `internal` 'ID'
+                                `results`: _
+                            )
+                        )
+                        'statements': (
+                            `description`: _
+                            `value`: | `component` (
+                                `type`: | `internal` 'Statements'
+                                `results`: _
+                            )
+                        )
+                    }
+                )
+            }
+            `complexity`: | `unconstrained` ~
+        )
+    }
+    `schema path`: [ ]
+    `complexity`: | `constrained` (
+        `module resolver`: "Root"
+    )
+)

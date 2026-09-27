@@ -1,0 +1,403 @@
+(
+    `schema`: | `schema` (
+        `schema imports`: {}
+        `resolver imports`: {}
+        `globals`: (
+            `complexity`: | `unconstrained` ~
+            `text types`: {
+                'Pseudo Reference': < | `single line` ~ | `no` ~ >
+                'Bestandsnaam': < | `single line` ~ | `no` ~ >
+                'Wachtwoord': < | `single line` ~ | `no` ~ >
+                'Benaming': < | `single line` ~ | `no` ~ >
+                'Omschrijving': < | `multi line` ~ | `no` ~ >
+                'text': < | `single line` ~ | `no` ~ >
+            }
+            `simple types`: {
+                'Bedrag': < | `number` < | `exact` < _ | `integer` ~ > > >
+                'Dagen': < | `number` < | `exact` < _ | `positive natural` ~ > > >
+                'Datum': < | `number` < | `exact` < _ | `integer` ~ > > >
+                'Promillage': < | `number` < | `exact` < _ | `natural` ~ > > >
+            }
+        )
+        `modules`: {
+            'Root': < | `group` {
+                'Bankrekeningen': < _ | `dictionary` < | `group` {} > >
+                'Beheer': < _ | `group` {
+                    'Balans': < _ | `group` {
+                        'Grootboekrekeningen': < _ | `dictionary` < | `group` {
+                            'Hoofdcategorie': < _ | `text` | `global` 'Pseudo Reference' >
+                            'Subcategorie': < _ | `text` | `global` 'Pseudo Reference' >
+                            'Zijde': < _ | `state` < {
+                                'Activa': < _ _ | `group` {} >
+                                'Passiva': < _ _ | `group` {} >
+                            } _ > >
+                        } > >
+                        'Hoofdcategorieen': < _ | `dictionary` < | `group` {
+                            'Zijde': < _ | `state` < {
+                                'Activa': < _ _ | `group` {} >
+                                'Passiva': < _ _ | `group` {} >
+                            } _ > >
+                            'Subcategorieen': < _ | `dictionary` < | `group` {
+                                'Hoofdcategorie fiscus': < _ | `text` | `global` 'Pseudo Reference' >
+                                'Subcategorie fiscus': < _ | `text` | `global` 'Pseudo Reference' >
+                            } > >
+                        } > >
+                        'Hoofdcategorieen fiscus': < _ | `dictionary` < | `group` {
+                            'Zijde': < _ | `state` < {
+                                'Activa': < _ _ | `group` {} >
+                                'Passiva': < _ _ | `group` {} >
+                            } _ > >
+                            'Subcategorieen': < _ | `dictionary` < | `group` {} > >
+                        } > >
+                    } >
+                    'BTW-categorieen': < _ | `dictionary` < | `group` {
+                        'BTW-heffing': < _ | `state` < {
+                            'Ja': < _ _ | `group` {
+                                'BTW-promillage': < _ | `simple` | `global` 'Promillage' >
+                            } >
+                            'Nee': < _ _ | `group` {} >
+                        } _ > >
+                    } > >
+                    'Gebruikers': < _ | `dictionary` < | `group` {
+                        'Volledige naam': < _ | `text` | `global` 'Benaming' >
+                        'Wachtwoord': < _ | `text` | `global` 'Wachtwoord' >
+                    } > >
+                    'Huidige datum': < _ | `simple` | `global` 'Datum' >
+                    'Resultaat': < _ | `group` {
+                        'Correctietypes vennootschapsbelasting': < _ | `dictionary` < | `group` {
+                            'Te corrigeren promillage': < _ | `simple` | `global` 'Promillage' >
+                        } > >
+                        'Grootboekrekeningen': < _ | `dictionary` < | `group` {
+                            'Hoofdcategorie': < _ | `text` | `global` 'Pseudo Reference' >
+                            'Subcategorie': < _ | `text` | `global` 'Pseudo Reference' >
+                            'Zijde': < _ | `state` < {
+                                'Kosten': < _ _ | `group` {
+                                    'Correctie op vennootschapsbelasting': < _ | `state` < {
+                                        'Ja': < _ _ | `group` {
+                                            'Correctietype': < _ | `text` | `global` 'Pseudo Reference' >
+                                        } >
+                                        'Nee': < _ _ | `group` {} >
+                                    } _ > >
+                                } >
+                                'Opbrengsten': < _ _ | `group` {} >
+                            } _ > >
+                        } > >
+                        'Hoofdcategorieen': < _ | `dictionary` < | `group` {
+                            'Zijde': < _ | `state` < {
+                                'Kosten': < _ _ | `group` {} >
+                                'Opbrengsten': < _ _ | `group` {} >
+                            } _ > >
+                            'Subcategorieen': < _ | `dictionary` < | `group` {
+                                'Hoofdcategorie fiscus': < _ | `text` | `global` 'Pseudo Reference' >
+                                'Subcategorie fiscus': < _ | `text` | `global` 'Pseudo Reference' >
+                            } > >
+                        } > >
+                        'Hoofdcategorieen fiscus': < _ | `dictionary` < | `group` {
+                            'Zijde': < _ | `state` < {
+                                'Kosten': < _ _ | `group` {} >
+                                'Opbrengsten': < _ _ | `group` {} >
+                            } _ > >
+                            'Subcategorieen': < _ | `dictionary` < | `group` {} > >
+                        } > >
+                    } >
+                } >
+                'Informele rekeningen': < _ | `dictionary` < | `group` {} > >
+                'Jaren': < _ | `dictionary` < | `group` {
+                    'Afgesloten': < _ | `state` < {
+                        'Ja': < _ _ | `group` {} >
+                        'Nee': < _ _ | `group` {} >
+                    } _ > >
+                    'Balans grootboekrekeningen': < _ | `dictionary` < | `group` {
+                        'Type': < _ | `state` < {
+                            'Bankrekening': < _ _ | `group` {} >
+                            'Overig': < _ _ | `group` {} >
+                            'Informele rekening': < _ _ | `group` {} >
+                        } _ > >
+                    } > >
+                    'Bankrekeningen': < _ | `dictionary` < | `group` {
+                        'Beginsaldo': < _ | `simple` | `global` 'Bedrag' >
+                        'Grootboekrekening': < _ | `text` | `global` 'Pseudo Reference' >
+                        'Mutaties': < _ | `dictionary` < | `group` {
+                            'Bedrag': < _ | `simple` | `global` 'Bedrag' >
+                            'Datum': < _ | `simple` | `global` 'Datum' >
+                            'Omschrijving': < _ | `text` | `global` 'Omschrijving' >
+                            'Status': < _ | `state` < {
+                                'Nog te verwerken': < _ _ | `group` {} >
+                                'Verwerkt': < _ _ | `group` {
+                                    'Afhandeling': < _ | `state` < {
+                                        'Inkoop': < _ _ | `group` {
+                                            'Jaar': < _ | `text` | `global` 'Pseudo Reference' >
+                                            'Inkoop': < _ | `text` | `global` 'Pseudo Reference' >
+                                        } >
+                                        'Verrekenpost': < _ _ | `group` {
+                                            'Verrekenpost': < _ | `text` | `global` 'Pseudo Reference' >
+                                        } >
+                                        'BTW-periode': < _ _ | `group` {
+                                            'Jaar': < _ | `text` | `global` 'Pseudo Reference' >
+                                            'BTW-periode': < _ | `text` | `global` 'Pseudo Reference' >
+                                        } >
+                                        'Verkoop': < _ _ | `group` {
+                                            'Jaar': < _ | `text` | `global` 'Pseudo Reference' >
+                                            'Verkoop': < _ | `text` | `global` 'Pseudo Reference' >
+                                        } >
+                                        'Informele rekening': < _ _ | `group` {
+                                            'Informele rekening': < _ | `text` | `global` 'Pseudo Reference' >
+                                        } >
+                                    } _ > >
+                                } >
+                            } _ > >
+                        } > >
+                        'Nieuw': < _ | `state` < {
+                            'Ja': < _ _ | `group` {} >
+                            'Nee': < _ _ | `group` {
+                                'Jaar': < _ | `text` | `global` 'Pseudo Reference' >
+                                'Rekening': < _ | `text` | `global` 'Pseudo Reference' >
+                            } >
+                        } _ > >
+                    } > >
+                    'Beginsaldo nog aan te geven BTW': < _ | `simple` | `global` 'Bedrag' >
+                    'Beginsaldo winstreserve': < _ | `simple` | `global` 'Bedrag' >
+                    'BTW periode saldo': < _ | `group` {
+                        'Grootboekrekening': < _ | `text` | `global` 'Pseudo Reference' >
+                    } >
+                    'BTW periodes': < _ | `dictionary` < | `group` {
+                        '1. BTW-categorieen': < _ | `dictionary` < | `group` {} > >
+                        'Documenten': < _ | `dictionary` < | `group` {
+                            'Bestand': < _ | `component` < | `internal` 'Bestandsnaam' _ > >
+                        } > >
+                        'Omschrijving': < _ | `text` | `global` 'Omschrijving' >
+                        'Status': < _ | `state` < {
+                            'Aangegeven': < _ _ | `group` {
+                                'Afronding': < _ | `simple` | `global` 'Bedrag' >
+                                'Bedrag': < _ | `simple` | `global` 'Bedrag' >
+                                'Datum': < _ | `simple` | `global` 'Datum' >
+                            } >
+                            'Openstaand': < _ _ | `group` {} >
+                        } _ > >
+                    } > >
+                    'Eerste boekjaar': < _ | `state` < {
+                        'Ja': < _ _ | `group` {} >
+                        'Nee': < _ _ | `group` {
+                            'Vorig boekjaar': < _ | `text` | `global` 'Pseudo Reference' >
+                        } >
+                    } _ > >
+                    'Grootboekrekening voor BTW afrondingen': < _ | `text` | `global` 'Pseudo Reference' >
+                    'Grootboekrekening voor nog aan te geven BTW': < _ | `text` | `global` 'Pseudo Reference' >
+                    'Grootboekrekening voor resultaat dit jaar': < _ | `text` | `global` 'Pseudo Reference' >
+                    'Grootboekrekening voor winstreserve': < _ | `text` | `global` 'Pseudo Reference' >
+                    'Informele rekeningen': < _ | `dictionary` < | `group` {
+                        'Beginsaldo': < _ | `simple` | `global` 'Bedrag' >
+                        'Grootboekrekening': < _ | `text` | `global` 'Pseudo Reference' >
+                        'Nieuw': < _ | `state` < {
+                            'Ja': < _ _ | `group` {} >
+                            'Nee': < _ _ | `group` {
+                                'Jaar': < _ | `text` | `global` 'Pseudo Reference' >
+                                'Rekening': < _ | `text` | `global` 'Pseudo Reference' >
+                            } >
+                        } _ > >
+                    } > >
+                    'Inkopen': < _ | `dictionary` < | `group` {
+                        'Afhandeling': < _ | `state` < {
+                            'Nog te betalen': < _ _ | `group` {
+                                'Betalingstermijn': < _ | `simple` | `global` 'Dagen' >
+                            } >
+                            'Mutaties': < _ _ | `group` {} >
+                            'Rekening courant': < _ _ | `group` {
+                                'Rekening courant': < _ | `text` | `global` 'Pseudo Reference' >
+                            } >
+                        } _ > >
+                        'BTW-regime': < _ | `state` < {
+                            'Binnenland: heffing verlegd': < _ _ | `group` {
+                                'BTW-periode': < _ | `text` | `global` 'Pseudo Reference' >
+                            } >
+                            'Geen BTW van toepassing': < _ _ | `group` {
+                                'BTW-periode': < _ | `text` | `global` 'Pseudo Reference' >
+                            } >
+                            'Import van buiten de EU': < _ _ | `group` {
+                                'BTW-periode': < _ | `text` | `global` 'Pseudo Reference' >
+                            } >
+                            'Intracommunautair': < _ _ | `group` {
+                                'BTW-periode': < _ | `text` | `global` 'Pseudo Reference' >
+                            } >
+                            'Standaard': < _ _ | `group` {
+                                'BTW-periode': < _ | `text` | `global` 'Pseudo Reference' >
+                            } >
+                        } _ > >
+                        'Brondocument': < _ | `state` < {
+                            'Toegevoegd': < _ _ | `group` {
+                                'Document': < _ | `component` < | `internal` 'Bestandsnaam' _ > >
+                            } >
+                            'Niet van toepassing': < _ _ | `group` {} >
+                            'Ontbreekt': < _ _ | `group` {} >
+                            'Nog toevoegen': < _ _ | `group` {} >
+                        } _ > >
+                        'Datum': < _ | `simple` | `global` 'Datum' >
+                        'Regels': < _ | `dictionary` < | `group` {
+                            'Bedrag': < _ | `state` < {
+                                'Bekend': < _ _ | `group` {
+                                    'BTW-bedrag': < _ | `simple` | `global` 'Bedrag' >
+                                    'Bedrag inclusief geheven BTW': < _ | `simple` | `global` 'Bedrag' >
+                                } >
+                            } _ > >
+                            'Omschrijving': < _ | `text` | `global` 'Omschrijving' >
+                            'Type': < _ | `state` < {
+                                'Balans': < _ _ | `group` {
+                                    'Balans item': < _ | `text` | `global` 'Pseudo Reference' >
+                                } >
+                                'Kosten': < _ _ | `group` {
+                                    'Grootboekrekening': < _ | `text` | `global` 'Pseudo Reference' >
+                                } >
+                            } _ > >
+                        } > >
+                        'Type': < _ | `state` < {
+                            'Bonnetje': < _ _ | `group` {} >
+                            'Inkoop (met crediteur)': < _ _ | `group` {
+                                'Crediteur': < _ | `text` | `global` 'Pseudo Reference' >
+                                'Factuurnummer': < _ | `text` | `global` 'Benaming' >
+                            } >
+                            'Loonheffing': < _ _ | `group` {
+                                'Ronde': < _ | `text` | `global` 'Pseudo Reference' >
+                            } >
+                            'Salaris': < _ _ | `group` {
+                                'Ronde': < _ | `text` | `global` 'Pseudo Reference' >
+                                'Medewerker': < _ | `text` | `global` 'Pseudo Reference' >
+                            } >
+                        } _ > >
+                    } > >
+                    'Inkoop saldo': < _ | `group` {
+                        'Grootboekrekening': < _ | `text` | `global` 'Pseudo Reference' >
+                    } >
+                    'Overige balans items': < _ | `dictionary` < | `group` {
+                        'Beginsaldo': < _ | `simple` | `global` 'Bedrag' >
+                        'Grootboekrekening': < _ | `text` | `global` 'Pseudo Reference' >
+                        'Memoriaal boekingen': < _ | `dictionary` < | `group` {
+                            'Bedrag': < _ | `simple` | `global` 'Bedrag' >
+                            'Datum': < _ | `simple` | `global` 'Datum' >
+                            'Grootboekrekening': < _ | `text` | `global` 'Pseudo Reference' >
+                            'Omschrijving': < _ | `text` | `global` 'Omschrijving' >
+                        } > >
+                        'Nieuw': < _ | `state` < {
+                            'Ja': < _ _ | `group` {} >
+                            'Nee': < _ _ | `group` {
+                                'Jaar': < _ | `text` | `global` 'Pseudo Reference' >
+                                'Balans item': < _ | `text` | `global` 'Pseudo Reference' >
+                            } >
+                        } _ > >
+                    } > >
+                    'Resultaat grootboekrekeningen': < _ | `dictionary` < | `group` {} > >
+                    'Salarisrondes': < _ | `dictionary` < | `group` {} > >
+                    'Startdatum boekjaar': < _ | `simple` | `global` 'Datum' >
+                    'Verkoop saldo': < _ | `group` {
+                        'Grootboekrekening': < _ | `text` | `global` 'Pseudo Reference' >
+                    } >
+                    'Verkopen': < _ | `dictionary` < | `group` {
+                        'Afhandeling': < _ | `state` < {
+                            'Mutaties': < _ _ | `group` {} >
+                            'Rekening courant': < _ _ | `group` {
+                                'Rekening courant': < _ | `text` | `global` 'Pseudo Reference' >
+                            } >
+                        } _ > >
+                        'Betalingstermijn': < _ | `simple` | `global` 'Dagen' >
+                        'BTW-periode': < _ | `text` | `global` 'Pseudo Reference' >
+                        'Brondocument': < _ | `state` < {
+                            'Toegevoegd': < _ _ | `group` {
+                                'Document': < _ | `component` < | `internal` 'Bestandsnaam' _ > >
+                            } >
+                        } _ > >
+                        'Contracttype': < _ | `state` < {
+                            'Project': < _ _ | `group` {
+                                'Project': < _ | `text` | `global` 'Pseudo Reference' >
+                                'Offerte': < _ | `text` | `global` 'Pseudo Reference' >
+                            } >
+                            'Licentieovereenkomst': < _ _ | `group` {
+                                'Overeenkomst': < _ | `text` | `global` 'Pseudo Reference' >
+                            } >
+                        } _ > >
+                        'Datum': < _ | `simple` | `global` 'Datum' >
+                        'Debiteur': < _ | `text` | `global` 'Pseudo Reference' >
+                        'Regels': < _ | `dictionary` < | `group` {
+                            'BTW-regime': < _ | `state` < {
+                                'Intracommunautair': < _ _ | `group` {} >
+                                'Standaard': < _ _ | `group` {
+                                    'BTW-categorie': < _ | `text` | `global` 'Pseudo Reference' >
+                                } >
+                                'Binnenland: heffing verlegd': < _ _ | `group` {} >
+                            } _ > >
+                            'Bedrag exclusief BTW': < _ | `simple` | `global` 'Bedrag' >
+                            'Contracttype': < _ | `state` < {
+                                'Project': < _ _ | `group` {
+                                    'Opbrengst': < _ | `text` | `global` 'Pseudo Reference' >
+                                } >
+                                'Los': < _ _ | `group` {} >
+                                'Licentieovereenkomst': < _ _ | `group` {
+                                    'Periode': < _ | `text` | `global` 'Pseudo Reference' >
+                                } >
+                            } _ > >
+                            'Omschrijving': < _ | `text` | `global` 'Omschrijving' >
+                            'Type': < _ | `state` < {
+                                'Opbrengsten': < _ _ | `group` {
+                                    'Grootboekrekening': < _ | `text` | `global` 'Pseudo Reference' >
+                                } >
+                                'Balans': < _ _ | `group` {
+                                    'Balans item': < _ | `text` | `global` 'Pseudo Reference' >
+                                } >
+                            } _ > >
+                        } > >
+                    } > >
+                    'Verrekenposten': < _ | `dictionary` < | `group` {
+                        'Mutaties': < _ | `dictionary` < | `group` {
+                            'Bedrag': < _ | `simple` | `global` 'Bedrag' >
+                            'Afhandeling': < _ | `state` < {
+                                'Inkoop': < _ _ | `group` {
+                                    'Jaar': < _ | `text` | `global` 'Pseudo Reference' >
+                                    'Inkoop': < _ | `text` | `global` 'Pseudo Reference' >
+                                } >
+                                'Informele rekening': < _ _ | `group` {
+                                    'Informele rekening': < _ | `text` | `global` 'Pseudo Reference' >
+                                } >
+                                'Verkoop': < _ _ | `group` {
+                                    'Jaar': < _ | `text` | `global` 'Pseudo Reference' >
+                                    'Verkoop': < _ | `text` | `global` 'Pseudo Reference' >
+                                } >
+                                'BTW-periode': < _ _ | `group` {
+                                    'Jaar': < _ | `text` | `global` 'Pseudo Reference' >
+                                    'BTW-periode': < _ | `text` | `global` 'Pseudo Reference' >
+                                } >
+                            } _ > >
+                        } > >
+                    } > >
+                } > >
+                'Klanten': < _ | `dictionary` < | `group` {
+                    'Licentieovereenkomsten': < _ | `dictionary` < | `group` {
+                        'Periodes': < _ | `dictionary` < | `group` {
+                            'Bedrag': < _ | `simple` | `global` 'Bedrag' >
+                        } > >
+                    } > >
+                    'Projecten': < _ | `dictionary` < | `group` {
+                        'Offertes': < _ | `dictionary` < | `group` {
+                            'Opbrengsten': < _ | `dictionary` < | `group` {
+                                'Type': < _ | `state` < {
+                                    'Project': < _ _ | `group` {
+                                        'Bedrag': < _ | `simple` | `global` 'Bedrag' >
+                                        'Betaaldatum': < _ | `simple` | `global` 'Datum' >
+                                    } >
+                                } _ > >
+                            } > >
+                        } > >
+                    } > >
+                } > >
+                'Leveranciers': < _ | `dictionary` < | `group` {} > >
+                'Medewerkers': < _ | `dictionary` < | `group` {} > >
+            } >
+            'Bestandsnaam': < | `group` {
+                'stem': < _ | `text` | `global` 'text' >
+                'extension': < _ | `text` | `global` 'text' >
+            } >
+        }
+        `complexity`: | `unconstrained` ~
+    )
+    `schema path`: [ ]
+    `complexity`: | `constrained` (
+        `module resolver`: "Root"
+    )
+)

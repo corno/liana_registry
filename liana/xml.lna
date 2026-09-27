@@ -1,0 +1,68 @@
+(
+    `schema`: | `set` {
+        'xml': | `schema` (
+            `schema imports`: {}
+            `resolver imports`: {}
+            `globals`: (
+                `complexity`: | `unconstrained` ~
+                `text types`: {
+                    'Text Value': < | `single line` ~ | `no` ~ >
+                    'text': < | `single line` ~ | `no` ~ >
+                }
+                `simple types`: {
+                    'Position': < | `number` < | `exact` < _ | `natural` ~ > > >
+                }
+            )
+            `modules`: {
+                'Document': < | `group` {
+                    'doc type': < _ | `optional` | `group` {
+                        'name': < _ | `text` | `global` 'text' >
+                    } >
+                    'root': < _ | `component` < | `internal` 'Element' _ > >
+                } >
+                'Element': < | `group` {
+                    'name': < _ | `component` < | `internal` 'Qualified Name' _ > >
+                    'attributes': < _ | `list` < | `group` {
+                        'name': < _ | `component` < | `internal` 'Qualified Name' _ > >
+                        'value': < _ | `text` | `global` 'text' >
+                    } _ > >
+                    'content type': < _ | `state` < {
+                        'empty': < _ _ | `group` {} >
+                        'text only': < _ _ | `group` {
+                            'value': < _ | `text` | `global` 'text' >
+                        } >
+                        'mixed': < _ _ | `component` < | `internal` 'Mixed Content' _ > >
+                        'nodes only': < _ _ | `group` {
+                            'children': < _ | `list` < | `component` < | `internal` 'Node' _ > _ > >
+                        } >
+                    } _ > >
+                } >
+                'Mixed Content': < | `list` < | `state` < {
+                    'node': < _ _ | `component` < | `internal` 'Node' _ > >
+                    'text': < _ _ | `group` {
+                        'value': < _ | `text` | `global` 'text' >
+                    } >
+                } _ > _ > >
+                'Qualified Name': < | `group` {
+                    'namespace prefix': < _ | `optional` | `text` | `global` 'text' >
+                    'local name': < _ | `text` | `global` 'text' >
+                } >
+                'Node': < | `state` < {
+                    'element': < _ _ | `component` < | `internal` 'Element' _ > >
+                    'comment': < _ _ | `text` | `global` 'text' >
+                    'cdata': < _ _ | `text` | `global` 'text' >
+                    'processing instruction': < _ _ | `group` {
+                        'target': < _ | `text` | `global` 'text' >
+                        'data': < _ | `text` | `global` 'text' >
+                    } >
+                } _ > >
+            }
+            `complexity`: | `unconstrained` ~
+        )
+    
+    }
+    `schema path`: [ ]
+    `complexity`: | `constrained` (
+        `module resolver`: "Root"
+    )
+)

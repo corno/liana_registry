@@ -1,0 +1,50 @@
+(
+    `schema`: | `schema` (
+        `schema imports`: {}
+        `resolver imports`: {}
+        `globals`: (
+            `complexity`: | `unconstrained` ~
+            `text types`: {
+                'pseudo-reference': < | `single line` ~ | `no` ~ >
+            }
+            `simple types`: {
+                'boolean': < | `boolean` ~ >
+            }
+        )
+        `modules`: {
+            'Root': < | `group` {
+                'terminals': < _ | `dictionary` < | `state` < {
+                    'semantic': < _ _ | `nothing` ~ >
+                    'syntactic': < _ _ | `state` < {
+                        'word': < _ _ | `nothing` ~ >
+                        'symbol': < _ _ | `nothing` ~ >
+                    } _ > >
+                } _ > > >
+                'nonterminals': < _ | `dictionary` < | `component` < | `internal acyclic` 'Expression' _ > > >
+            } >
+            'Expression': < | `state` < {
+                'terminal reference': < _ _ | `text` | `global` 'pseudo-reference' >
+                'sequence': < _ _ | `group` {
+                    'elements': < _ | `dictionary` < | `component` < | `internal` 'Expression' _ > > >
+                } >
+                'nonterminal reference': < _ _ | `text` | `global` 'pseudo-reference' >
+                'repetition': < _ _ | `group` {
+                    'item': < _ | `component` < | `internal` 'Expression' _ > >
+                    'separation': < _ | `optional` | `group` {
+                        'separator': < _ | `text` | `global` 'pseudo-reference' >
+                        'trailing separator allowed': < _ | `simple` | `global` 'boolean' >
+                    } >
+                } >
+                'optional': < _ _ | `component` < | `internal` 'Expression' _ > >
+                'alternation': < _ _ | `group` {
+                    'alternatives': < _ | `dictionary` < | `component` < | `internal` 'Expression' _ > > >
+                } >
+            } _ > >
+        }
+        `complexity`: | `unconstrained` ~
+    )
+    `schema path`: [ ]
+    `complexity`: | `unconstrained` (
+        `module`: "Root"
+    )
+)

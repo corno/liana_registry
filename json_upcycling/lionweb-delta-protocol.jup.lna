@@ -1,0 +1,879 @@
+(
+    `types`: {
+        'id': | `string` | `text` ~
+        'deltaProtocolVersion': | `string` | `cycle up` | `enumeration` {
+            '2026.1': "null"
+        }
+        'key': | `component` "id"
+        'version': | `string` | `text` ~
+        'metaPointer': | `object` | `group` < {
+            'language': < false | `component` "key" >
+            'version': < false | `component` "version" >
+            'key': < false | `component` "key" >
+        } >
+        'depthLimit': | `number` | `integer` < * 0 >
+        'split': | `boolean` ~
+        'continuedChunkCompleted': | `boolean` ~
+        'continuedChunkSequenceNumber': | `number` | `integer` < * 0 >
+        'DeltaChunk': | `object` | `group` < {
+            'nodes': < false | `array` | `cycle up` | `indexed objects` < "" {
+                'id': < false | `component` "targetNode" >
+                'classifier': < false | `component` "metaPointer" >
+                'properties': < false | `array` | `list` | `component` "SerializedProperty" >
+                'containments': < false | `array` | `list` | `component` "SerializedContainment" >
+                'references': < false | `array` | `list` | `component` "SerializedReference" >
+                'annotations': < false | `array` | `cycle up` | `indexed objects` < "TBDxxx" {} > >
+                'parent': < false | `nullable` | `component` "id" >
+            } > >
+        } >
+        'SerializedProperty': | `object` | `group` < {
+            'property': < false | `component` "metaPointer" >
+            'value': < false | `nullable` | `component` "propertyValue" >
+        } >
+        'SerializedContainment': | `object` | `group` < {
+            'containment': < false | `component` "metaPointer" >
+            'children': < false | `array` | `cycle up` | `unique strings` null >
+        } >
+        'SerializedReference': | `object` | `group` < {
+            'reference': < false | `component` "metaPointer" >
+            'targets': < false | `array` | `list` | `component` "SerializedReferenceTarget" >
+        } >
+        'SerializedReferenceTarget': | `object` | `group` < {
+            'resolveInfo': < false | `component` "optionalResolveInfo" >
+            'reference': < false | `component` "optionalTargetNode" >
+        } >
+        'queryId': | `component` "id"
+        'commandId': | `component` "id"
+        'commandSources': | `array` | `cycle up` | `indexed objects` < "TBDxxx" {
+            'participationId': < false | `component` "participationId" >
+            'commandId': < false | `component` "commandId" >
+        } >
+        'participationId': | `component` "id"
+        'repositoryId': | `component` "id"
+        'clientId': | `component` "id"
+        'targetNode': | `component` "id"
+        'optionalTargetNode': | `nullable` | `component` "targetNode"
+        'targetNodes': | `array` | `cycle up` | `unique strings` null
+        'resolveInfo': | `string` | `text` ~
+        'optionalResolveInfo': | `nullable` | `component` "resolveInfo"
+        'eventSequenceNumber': | `number` | `integer` < * 0 >
+        'propertyValue': | `string` | `text` ~
+        'index': | `number` | `integer` < * 0 >
+        'indexOffset': | `number` | `integer` < _ >
+        'additionalInfoKind': | `component` "id"
+        'errorCode': | `component` "id"
+        'customMessageKind': | `string` | `text` ~
+        'additionalInfoDataKey': | `component` "id"
+        'additionalInfos': | `array` | `list` | `component` "AdditionalInfo"
+        'AdditionalInfo': | `object` | `group` < {
+            'kind': < false | `component` "additionalInfoKind" >
+            'distribute': < true | `component` "additionalInfoDistribute" >
+            'message': < false | `string` | `text` ~ >
+            'data': < false | `object` | `dictionary` | `string` | `text` ~ >
+        } >
+        'additionalInfoDistribute': | `boolean` ~
+        'QueryRequests': | `object` | `cycle up` | `discriminated with fallback` < "messageKind" {
+            'SubscribeToChangingPartitionsRequest': | `component` "SubscribeToChangingPartitionsRequest"
+            'InformAboutChangingPartitionsRequest': | `component` "InformAboutChangingPartitionsRequest"
+            'SubscribeToPartitionContentsRequest': | `component` "SubscribeToPartitionContentsRequest"
+            'UnsubscribeFromPartitionContentsRequest': | `component` "UnsubscribeFromPartitionContentsRequest"
+            'SignOnRequest': | `component` "SignOnRequest"
+            'SignOffRequest': | `component` "SignOffRequest"
+            'ReconnectRequest': | `component` "ReconnectRequest"
+            'GetAvailableIdsRequest': | `component` "GetAvailableIdsRequest"
+            'ListPartitionsRequest': | `component` "ListPartitionsRequest"
+            'ListAndSubscribePartitionsRequest': | `component` "ListAndSubscribePartitionsRequest"
+        } | `component` "CustomQueryRequest" >
+        'QueryResponses': | `object` | `cycle up` | `discriminated with fallback` < "messageKind" {
+            'SubscribeToChangingPartitionsResponse': | `component` "SubscribeToChangingPartitionsResponse"
+            'InformAboutChangingPartitionsResponse': | `component` "InformAboutChangingPartitionsResponse"
+            'SubscribeToPartitionContentsResponse': | `component` "SubscribeToPartitionContentsResponse"
+            'UnsubscribeFromPartitionContentsResponse': | `component` "UnsubscribeFromPartitionContentsResponse"
+            'SignOnResponse': | `component` "SignOnResponse"
+            'SignOffResponse': | `component` "SignOffResponse"
+            'ReconnectResponse': | `component` "ReconnectResponse"
+            'GetAvailableIdsResponse': | `component` "GetAvailableIdsResponse"
+            'ListPartitionsResponse': | `component` "ListPartitionsResponse"
+            'ListAndSubscribePartitionsResponse': | `component` "ListAndSubscribePartitionsResponse"
+            'ErrorResponse': | `component` "ErrorResponse"
+            'ContinuedQueryResponse': | `component` "ContinuedQueryResponse"
+        } | `component` "CustomQueryResponse" >
+        'NonContinuedQueryResponses': | `object` | `cycle up` | `discriminated with fallback` < "messageKind" {
+            'SubscribeToChangingPartitionsResponse': | `component` "SubscribeToChangingPartitionsResponse"
+            'InformAboutChangingPartitionsResponse': | `component` "InformAboutChangingPartitionsResponse"
+            'SubscribeToPartitionContentsResponse': | `component` "SubscribeToPartitionContentsResponse"
+            'UnsubscribeFromPartitionContentsResponse': | `component` "UnsubscribeFromPartitionContentsResponse"
+            'SignOnResponse': | `component` "SignOnResponse"
+            'SignOffResponse': | `component` "SignOffResponse"
+            'ReconnectResponse': | `component` "ReconnectResponse"
+            'GetAvailableIdsResponse': | `component` "GetAvailableIdsResponse"
+            'ListPartitionsResponse': | `component` "ListPartitionsResponse"
+            'ListAndSubscribePartitionsResponse': | `component` "ListAndSubscribePartitionsResponse"
+            'ErrorResponse': | `component` "ErrorResponse"
+        } | `component` "CustomQueryResponse" >
+        'SubscribeToChangingPartitionsRequest': | `object` | `group` < {
+            'creation': < false | `boolean` ~ >
+            'deletion': < false | `boolean` ~ >
+            'queryId': < false | `component` "queryId" >
+            'additionalInfos': < false | `component` "additionalInfos" >
+        } >
+        'SubscribeToChangingPartitionsResponse': | `object` | `group` < {
+            'queryId': < false | `component` "queryId" >
+            'additionalInfos': < false | `component` "additionalInfos" >
+        } >
+        'InformAboutChangingPartitionsRequest': | `object` | `group` < {
+            'creation': < false | `boolean` ~ >
+            'deletion': < false | `boolean` ~ >
+            'depthLimit': < false | `component` "depthLimit" >
+            'queryId': < false | `component` "queryId" >
+            'additionalInfos': < false | `component` "additionalInfos" >
+        } >
+        'InformAboutChangingPartitionsResponse': | `object` | `group` < {
+            'queryId': < false | `component` "queryId" >
+            'additionalInfos': < false | `component` "additionalInfos" >
+        } >
+        'SubscribeToPartitionContentsRequest': | `object` | `group` < {
+            'partition': < false | `component` "targetNode" >
+            'queryId': < false | `component` "queryId" >
+            'additionalInfos': < false | `component` "additionalInfos" >
+        } >
+        'SubscribeToPartitionContentsResponse': | `object` | `group` < {
+            'contents': < false | `component` "DeltaChunk" >
+            'split': < true | `component` "split" >
+            'queryId': < false | `component` "queryId" >
+            'additionalInfos': < false | `component` "additionalInfos" >
+        } >
+        'UnsubscribeFromPartitionContentsRequest': | `object` | `group` < {
+            'partition': < false | `component` "targetNode" >
+            'queryId': < false | `component` "queryId" >
+            'additionalInfos': < false | `component` "additionalInfos" >
+        } >
+        'UnsubscribeFromPartitionContentsResponse': | `object` | `group` < {
+            'queryId': < false | `component` "queryId" >
+            'additionalInfos': < false | `component` "additionalInfos" >
+        } >
+        'SignOnRequest': | `object` | `group` < {
+            'deltaProtocolVersion': < false | `component` "deltaProtocolVersion" >
+            'clientId': < false | `component` "clientId" >
+            'repositoryId': < false | `component` "repositoryId" >
+            'queryId': < false | `component` "queryId" >
+            'additionalInfos': < false | `component` "additionalInfos" >
+        } >
+        'SignOnResponse': | `object` | `group` < {
+            'participationId': < false | `component` "participationId" >
+            'queryId': < false | `component` "queryId" >
+            'additionalInfos': < false | `component` "additionalInfos" >
+        } >
+        'SignOffRequest': | `object` | `group` < {
+            'queryId': < false | `component` "queryId" >
+            'additionalInfos': < false | `component` "additionalInfos" >
+        } >
+        'SignOffResponse': | `object` | `group` < {
+            'queryId': < false | `component` "queryId" >
+            'additionalInfos': < false | `component` "additionalInfos" >
+        } >
+        'ReconnectRequest': | `object` | `group` < {
+            'deltaProtocolVersion': < false | `component` "deltaProtocolVersion" >
+            'clientId': < false | `component` "clientId" >
+            'repositoryId': < false | `component` "repositoryId" >
+            'participationId': < false | `component` "participationId" >
+            'lastReceivedSequenceNumber': < false | `component` "eventSequenceNumber" >
+            'queryId': < false | `component` "queryId" >
+            'additionalInfos': < false | `component` "additionalInfos" >
+        } >
+        'ReconnectResponse': | `object` | `group` < {
+            'lastSentSequenceNumber': < false | `component` "eventSequenceNumber" >
+            'queryId': < false | `component` "queryId" >
+            'additionalInfos': < false | `component` "additionalInfos" >
+        } >
+        'GetAvailableIdsRequest': | `object` | `group` < {
+            'count': < false | `number` | `integer` < * 0 > >
+            'queryId': < false | `component` "queryId" >
+            'additionalInfos': < false | `component` "additionalInfos" >
+        } >
+        'GetAvailableIdsResponse': | `object` | `group` < {
+            'ids': < false | `component` "targetNodes" >
+            'queryId': < false | `component` "queryId" >
+            'additionalInfos': < false | `component` "additionalInfos" >
+        } >
+        'ListPartitionsRequest': | `object` | `group` < {
+            'depthLimit': < false | `component` "depthLimit" >
+            'queryId': < false | `component` "queryId" >
+            'additionalInfos': < false | `component` "additionalInfos" >
+        } >
+        'ListPartitionsResponse': | `object` | `group` < {
+            'partitions': < false | `component` "DeltaChunk" >
+            'split': < true | `component` "split" >
+            'queryId': < false | `component` "queryId" >
+            'additionalInfos': < false | `component` "additionalInfos" >
+        } >
+        'ListAndSubscribePartitionsRequest': | `object` | `group` < {
+            'queryId': < false | `component` "queryId" >
+            'additionalInfos': < false | `component` "additionalInfos" >
+        } >
+        'ListAndSubscribePartitionsResponse': | `object` | `group` < {
+            'partitions': < false | `component` "DeltaChunk" >
+            'split': < true | `component` "split" >
+            'queryId': < false | `component` "queryId" >
+            'additionalInfos': < false | `component` "additionalInfos" >
+        } >
+        'CustomQueryRequest': | `object` | `cycle up` | `group and dictionary mixed` < {
+            'queryId': < false | `component` "queryId" >
+            'additionalInfos': < false | `component` "additionalInfos" >
+        } | `null` ~ >
+        'CustomQueryResponse': | `object` | `cycle up` | `group and dictionary mixed` < {
+            'queryId': < false | `component` "queryId" >
+            'additionalInfos': < false | `component` "additionalInfos" >
+        } | `null` ~ >
+        'ErrorResponse': | `object` | `group` < {
+            'errorCode': < false | `component` "errorCode" >
+            'message': < false | `string` | `text` ~ >
+            'queryId': < false | `component` "queryId" >
+            'additionalInfos': < false | `component` "additionalInfos" >
+        } >
+        'ContinuedQueryResponse': | `object` | `group` < {
+            'chunk': < true | `component` "DeltaChunk" >
+            'continuedChunkCompleted': < false | `component` "continuedChunkCompleted" >
+            'continuedChunkSequenceNumber': < false | `component` "continuedChunkSequenceNumber" >
+            'queryId': < false | `component` "queryId" >
+            'additionalInfos': < false | `component` "additionalInfos" >
+        } >
+        'Commands': | `object` | `cycle up` | `discriminated with fallback` < "messageKind" {
+            'AddPartition': | `component` "AddPartition"
+            'DeletePartition': | `component` "DeletePartition"
+            'ChangeClassifier': | `component` "ChangeClassifier"
+            'AddProperty': | `component` "AddProperty"
+            'DeleteProperty': | `component` "DeleteProperty"
+            'ChangeProperty': | `component` "ChangeProperty"
+            'AddChild': | `component` "AddChild"
+            'DeleteChild': | `component` "DeleteChild"
+            'ReplaceChild': | `component` "ReplaceChild"
+            'MoveChildFromOtherContainment': | `component` "MoveChildFromOtherContainment"
+            'MoveChildFromOtherContainmentInSameParent': | `component` "MoveChildFromOtherContainmentInSameParent"
+            'MoveChildInSameContainment': | `component` "MoveChildInSameContainment"
+            'MoveAndReplaceChildFromOtherContainment': | `component` "MoveAndReplaceChildFromOtherContainment"
+            'MoveAndReplaceChildFromOtherContainmentInSameParent': | `component` "MoveAndReplaceChildFromOtherContainmentInSameParent"
+            'MoveAndReplaceChildInSameContainment': | `component` "MoveAndReplaceChildInSameContainment"
+            'AddAnnotation': | `component` "AddAnnotation"
+            'DeleteAnnotation': | `component` "DeleteAnnotation"
+            'ReplaceAnnotation': | `component` "ReplaceAnnotation"
+            'MoveAnnotationFromOtherParent': | `component` "MoveAnnotationFromOtherParent"
+            'MoveAnnotationInSameParent': | `component` "MoveAnnotationInSameParent"
+            'MoveAndReplaceAnnotationFromOtherParent': | `component` "MoveAndReplaceAnnotationFromOtherParent"
+            'MoveAndReplaceAnnotationInSameParent': | `component` "MoveAndReplaceAnnotationInSameParent"
+            'AddReference': | `component` "AddReference"
+            'DeleteReference': | `component` "DeleteReference"
+            'ChangeReference': | `component` "ChangeReference"
+            'CompositeCommand': | `component` "CompositeCommand"
+            'ContinuedCommand': | `component` "ContinuedCommand"
+        } | `component` "CustomCommand" >
+        'NonContinuedCommands': | `object` | `cycle up` | `discriminated with fallback` < "messageKind" {
+            'AddPartition': | `component` "AddPartition"
+            'DeletePartition': | `component` "DeletePartition"
+            'ChangeClassifier': | `component` "ChangeClassifier"
+            'AddProperty': | `component` "AddProperty"
+            'DeleteProperty': | `component` "DeleteProperty"
+            'ChangeProperty': | `component` "ChangeProperty"
+            'AddChild': | `component` "AddChild"
+            'DeleteChild': | `component` "DeleteChild"
+            'ReplaceChild': | `component` "ReplaceChild"
+            'MoveChildFromOtherContainment': | `component` "MoveChildFromOtherContainment"
+            'MoveChildFromOtherContainmentInSameParent': | `component` "MoveChildFromOtherContainmentInSameParent"
+            'MoveChildInSameContainment': | `component` "MoveChildInSameContainment"
+            'MoveAndReplaceChildFromOtherContainment': | `component` "MoveAndReplaceChildFromOtherContainment"
+            'MoveAndReplaceChildFromOtherContainmentInSameParent': | `component` "MoveAndReplaceChildFromOtherContainmentInSameParent"
+            'MoveAndReplaceChildInSameContainment': | `component` "MoveAndReplaceChildInSameContainment"
+            'AddAnnotation': | `component` "AddAnnotation"
+            'DeleteAnnotation': | `component` "DeleteAnnotation"
+            'ReplaceAnnotation': | `component` "ReplaceAnnotation"
+            'MoveAnnotationFromOtherParent': | `component` "MoveAnnotationFromOtherParent"
+            'MoveAnnotationInSameParent': | `component` "MoveAnnotationInSameParent"
+            'MoveAndReplaceAnnotationFromOtherParent': | `component` "MoveAndReplaceAnnotationFromOtherParent"
+            'MoveAndReplaceAnnotationInSameParent': | `component` "MoveAndReplaceAnnotationInSameParent"
+            'AddReference': | `component` "AddReference"
+            'DeleteReference': | `component` "DeleteReference"
+            'ChangeReference': | `component` "ChangeReference"
+            'CompositeCommand': | `component` "CompositeCommand"
+        } | `component` "CustomCommand" >
+        'AddPartition': | `object` | `group` < {
+            'newPartition': < false | `component` "DeltaChunk" >
+            'split': < true | `component` "split" >
+            'commandId': < false | `component` "commandId" >
+            'additionalInfos': < false | `component` "additionalInfos" >
+        } >
+        'DeletePartition': | `object` | `group` < {
+            'deletedPartition': < false | `component` "targetNode" >
+            'commandId': < false | `component` "commandId" >
+            'additionalInfos': < false | `component` "additionalInfos" >
+        } >
+        'ChangeClassifier': | `object` | `group` < {
+            'node': < false | `component` "targetNode" >
+            'newClassifier': < false | `component` "metaPointer" >
+            'commandId': < false | `component` "commandId" >
+            'additionalInfos': < false | `component` "additionalInfos" >
+        } >
+        'AddProperty': | `object` | `group` < {
+            'node': < false | `component` "targetNode" >
+            'property': < false | `component` "metaPointer" >
+            'newValue': < false | `component` "propertyValue" >
+            'commandId': < false | `component` "commandId" >
+            'additionalInfos': < false | `component` "additionalInfos" >
+        } >
+        'DeleteProperty': | `object` | `group` < {
+            'node': < false | `component` "targetNode" >
+            'property': < false | `component` "metaPointer" >
+            'commandId': < false | `component` "commandId" >
+            'additionalInfos': < false | `component` "additionalInfos" >
+        } >
+        'ChangeProperty': | `object` | `group` < {
+            'node': < false | `component` "targetNode" >
+            'property': < false | `component` "metaPointer" >
+            'newValue': < false | `component` "propertyValue" >
+            'commandId': < false | `component` "commandId" >
+            'additionalInfos': < false | `component` "additionalInfos" >
+        } >
+        'AddChild': | `object` | `group` < {
+            'parent': < false | `component` "targetNode" >
+            'newChild': < false | `component` "DeltaChunk" >
+            'containment': < false | `component` "metaPointer" >
+            'index': < false | `component` "index" >
+            'split': < true | `component` "split" >
+            'commandId': < false | `component` "commandId" >
+            'additionalInfos': < false | `component` "additionalInfos" >
+        } >
+        'DeleteChild': | `object` | `group` < {
+            'parent': < false | `component` "targetNode" >
+            'containment': < false | `component` "metaPointer" >
+            'index': < false | `component` "index" >
+            'deletedChild': < false | `component` "targetNode" >
+            'commandId': < false | `component` "commandId" >
+            'additionalInfos': < false | `component` "additionalInfos" >
+        } >
+        'ReplaceChild': | `object` | `group` < {
+            'parent': < false | `component` "targetNode" >
+            'newChild': < false | `component` "DeltaChunk" >
+            'containment': < false | `component` "metaPointer" >
+            'index': < false | `component` "index" >
+            'replacedChild': < false | `component` "targetNode" >
+            'split': < true | `component` "split" >
+            'commandId': < false | `component` "commandId" >
+            'additionalInfos': < false | `component` "additionalInfos" >
+        } >
+        'MoveChildFromOtherContainment': | `object` | `group` < {
+            'newParent': < false | `component` "targetNode" >
+            'newContainment': < false | `component` "metaPointer" >
+            'newIndex': < false | `component` "index" >
+            'oldParent': < false | `component` "targetNode" >
+            'oldContainment': < false | `component` "metaPointer" >
+            'oldIndex': < false | `component` "index" >
+            'movedChild': < false | `component` "targetNode" >
+            'commandId': < false | `component` "commandId" >
+            'additionalInfos': < false | `component` "additionalInfos" >
+        } >
+        'MoveChildFromOtherContainmentInSameParent': | `object` | `group` < {
+            'parent': < false | `component` "targetNode" >
+            'newContainment': < false | `component` "metaPointer" >
+            'newIndex': < false | `component` "index" >
+            'oldContainment': < false | `component` "metaPointer" >
+            'oldIndex': < false | `component` "index" >
+            'movedChild': < false | `component` "targetNode" >
+            'commandId': < false | `component` "commandId" >
+            'additionalInfos': < false | `component` "additionalInfos" >
+        } >
+        'MoveChildInSameContainment': | `object` | `group` < {
+            'parent': < false | `component` "targetNode" >
+            'containment': < false | `component` "metaPointer" >
+            'oldIndex': < false | `component` "index" >
+            'indexOffset': < false | `component` "indexOffset" >
+            'movedChild': < false | `component` "targetNode" >
+            'commandId': < false | `component` "commandId" >
+            'additionalInfos': < false | `component` "additionalInfos" >
+        } >
+        'MoveAndReplaceChildFromOtherContainment': | `object` | `group` < {
+            'newParent': < false | `component` "targetNode" >
+            'newContainment': < false | `component` "metaPointer" >
+            'newIndex': < false | `component` "index" >
+            'oldParent': < false | `component` "targetNode" >
+            'oldContainment': < false | `component` "metaPointer" >
+            'oldIndex': < false | `component` "index" >
+            'replacedChild': < false | `component` "targetNode" >
+            'movedChild': < false | `component` "targetNode" >
+            'commandId': < false | `component` "commandId" >
+            'additionalInfos': < false | `component` "additionalInfos" >
+        } >
+        'MoveAndReplaceChildFromOtherContainmentInSameParent': | `object` | `group` < {
+            'parent': < false | `component` "targetNode" >
+            'newContainment': < false | `component` "metaPointer" >
+            'newIndex': < false | `component` "index" >
+            'oldContainment': < false | `component` "metaPointer" >
+            'oldIndex': < false | `component` "index" >
+            'replacedChild': < false | `component` "targetNode" >
+            'movedChild': < false | `component` "targetNode" >
+            'commandId': < false | `component` "commandId" >
+            'additionalInfos': < false | `component` "additionalInfos" >
+        } >
+        'MoveAndReplaceChildInSameContainment': | `object` | `group` < {
+            'parent': < false | `component` "targetNode" >
+            'containment': < false | `component` "metaPointer" >
+            'oldIndex': < false | `component` "index" >
+            'indexOffset': < false | `component` "indexOffset" >
+            'replacedChild': < false | `component` "targetNode" >
+            'movedChild': < false | `component` "targetNode" >
+            'commandId': < false | `component` "commandId" >
+            'additionalInfos': < false | `component` "additionalInfos" >
+        } >
+        'AddAnnotation': | `object` | `group` < {
+            'parent': < false | `component` "targetNode" >
+            'newAnnotation': < false | `component` "DeltaChunk" >
+            'index': < false | `component` "index" >
+            'split': < true | `component` "split" >
+            'commandId': < false | `component` "commandId" >
+            'additionalInfos': < false | `component` "additionalInfos" >
+        } >
+        'DeleteAnnotation': | `object` | `group` < {
+            'parent': < false | `component` "targetNode" >
+            'index': < false | `component` "index" >
+            'deletedAnnotation': < false | `component` "targetNode" >
+            'commandId': < false | `component` "commandId" >
+            'additionalInfos': < false | `component` "additionalInfos" >
+        } >
+        'ReplaceAnnotation': | `object` | `group` < {
+            'parent': < false | `component` "targetNode" >
+            'newAnnotation': < false | `component` "DeltaChunk" >
+            'index': < false | `component` "index" >
+            'replacedAnnotation': < false | `component` "targetNode" >
+            'split': < true | `component` "split" >
+            'commandId': < false | `component` "commandId" >
+            'additionalInfos': < false | `component` "additionalInfos" >
+        } >
+        'MoveAnnotationFromOtherParent': | `object` | `group` < {
+            'newParent': < false | `component` "targetNode" >
+            'newIndex': < false | `component` "index" >
+            'oldParent': < false | `component` "targetNode" >
+            'oldIndex': < false | `component` "index" >
+            'movedAnnotation': < false | `component` "targetNode" >
+            'commandId': < false | `component` "commandId" >
+            'additionalInfos': < false | `component` "additionalInfos" >
+        } >
+        'MoveAnnotationInSameParent': | `object` | `group` < {
+            'parent': < false | `component` "targetNode" >
+            'oldIndex': < false | `component` "index" >
+            'indexOffset': < false | `component` "indexOffset" >
+            'movedAnnotation': < false | `component` "targetNode" >
+            'commandId': < false | `component` "commandId" >
+            'additionalInfos': < false | `component` "additionalInfos" >
+        } >
+        'MoveAndReplaceAnnotationFromOtherParent': | `object` | `group` < {
+            'newParent': < false | `component` "targetNode" >
+            'newIndex': < false | `component` "index" >
+            'oldParent': < false | `component` "targetNode" >
+            'oldIndex': < false | `component` "index" >
+            'replacedAnnotation': < false | `component` "targetNode" >
+            'movedAnnotation': < false | `component` "targetNode" >
+            'commandId': < false | `component` "commandId" >
+            'additionalInfos': < false | `component` "additionalInfos" >
+        } >
+        'MoveAndReplaceAnnotationInSameParent': | `object` | `group` < {
+            'parent': < false | `component` "targetNode" >
+            'oldIndex': < false | `component` "index" >
+            'indexOffset': < false | `component` "indexOffset" >
+            'replacedAnnotation': < false | `component` "targetNode" >
+            'movedAnnotation': < false | `component` "targetNode" >
+            'commandId': < false | `component` "commandId" >
+            'additionalInfos': < false | `component` "additionalInfos" >
+        } >
+        'AddReference': | `object` | `group` < {
+            'parent': < false | `component` "targetNode" >
+            'reference': < false | `component` "metaPointer" >
+            'index': < false | `component` "index" >
+            'newReference': < true | `component` "targetNode" >
+            'newResolveInfo': < true | `component` "resolveInfo" >
+            'commandId': < false | `component` "commandId" >
+            'additionalInfos': < false | `component` "additionalInfos" >
+        } >
+        'DeleteReference': | `object` | `group` < {
+            'parent': < false | `component` "targetNode" >
+            'reference': < false | `component` "metaPointer" >
+            'index': < false | `component` "index" >
+            'deletedReference': < true | `component` "targetNode" >
+            'deletedResolveInfo': < true | `component` "resolveInfo" >
+            'commandId': < false | `component` "commandId" >
+            'additionalInfos': < false | `component` "additionalInfos" >
+        } >
+        'ChangeReference': | `object` | `group` < {
+            'parent': < false | `component` "targetNode" >
+            'reference': < false | `component` "metaPointer" >
+            'index': < false | `component` "index" >
+            'oldReference': < true | `component` "targetNode" >
+            'oldResolveInfo': < true | `component` "resolveInfo" >
+            'newReference': < true | `component` "targetNode" >
+            'newResolveInfo': < true | `component` "resolveInfo" >
+            'commandId': < false | `component` "commandId" >
+            'additionalInfos': < false | `component` "additionalInfos" >
+        } >
+        'CompositeCommand': | `object` | `group` < {
+            'parts': < false | `array` | `list` | `component` "NonContinuedCommands" >
+            'commandId': < false | `component` "commandId" >
+            'additionalInfos': < false | `component` "additionalInfos" >
+        } >
+        'ContinuedCommand': | `object` | `group` < {
+            'chunk': < false | `component` "DeltaChunk" >
+            'continuedChunkCompleted': < false | `component` "continuedChunkCompleted" >
+            'continuedChunkSequenceNumber': < false | `component` "continuedChunkSequenceNumber" >
+            'commandId': < false | `component` "commandId" >
+            'additionalInfos': < false | `component` "additionalInfos" >
+        } >
+        'CustomCommand': | `object` | `cycle up` | `group and dictionary mixed` < {
+            'commandId': < false | `component` "commandId" >
+            'additionalInfos': < false | `component` "additionalInfos" >
+        } | `null` ~ >
+        'Events': | `object` | `cycle up` | `discriminated with fallback` < "messageKind" {
+            'PartitionAdded': | `component` "PartitionAdded"
+            'PartitionDeleted': | `component` "PartitionDeleted"
+            'ClassifierChanged': | `component` "ClassifierChanged"
+            'PropertyAdded': | `component` "PropertyAdded"
+            'PropertyDeleted': | `component` "PropertyDeleted"
+            'PropertyChanged': | `component` "PropertyChanged"
+            'ChildAdded': | `component` "ChildAdded"
+            'ChildDeleted': | `component` "ChildDeleted"
+            'ChildReplaced': | `component` "ChildReplaced"
+            'ChildMovedFromOtherContainment': | `component` "ChildMovedFromOtherContainment"
+            'ChildMovedFromOtherContainmentInSameParent': | `component` "ChildMovedFromOtherContainmentInSameParent"
+            'ChildMovedInSameContainment': | `component` "ChildMovedInSameContainment"
+            'ChildMovedAndReplacedFromOtherContainment': | `component` "ChildMovedAndReplacedFromOtherContainment"
+            'ChildMovedAndReplacedFromOtherContainmentInSameParent': | `component` "ChildMovedAndReplacedFromOtherContainmentInSameParent"
+            'ChildMovedAndReplacedInSameContainment': | `component` "ChildMovedAndReplacedInSameContainment"
+            'AnnotationAdded': | `component` "AnnotationAdded"
+            'AnnotationDeleted': | `component` "AnnotationDeleted"
+            'AnnotationReplaced': | `component` "AnnotationReplaced"
+            'AnnotationMovedFromOtherParent': | `component` "AnnotationMovedFromOtherParent"
+            'AnnotationMovedInSameParent': | `component` "AnnotationMovedInSameParent"
+            'AnnotationMovedAndReplacedFromOtherParent': | `component` "AnnotationMovedAndReplacedFromOtherParent"
+            'AnnotationMovedAndReplacedInSameParent': | `component` "AnnotationMovedAndReplacedInSameParent"
+            'ReferenceAdded': | `component` "ReferenceAdded"
+            'ReferenceDeleted': | `component` "ReferenceDeleted"
+            'ReferenceChanged': | `component` "ReferenceChanged"
+            'NoOpEvent': | `component` "NoOpEvent"
+            'CompositeEvent': | `component` "CompositeEvent"
+            'ErrorEvent': | `component` "ErrorEvent"
+            'ContinuedEvent': | `component` "ContinuedEvent"
+        } | `component` "CustomEvent" >
+        'NonContinuedEvents': | `object` | `cycle up` | `discriminated with fallback` < "messageKind" {
+            'PartitionAdded': | `component` "PartitionAdded"
+            'PartitionDeleted': | `component` "PartitionDeleted"
+            'ClassifierChanged': | `component` "ClassifierChanged"
+            'PropertyAdded': | `component` "PropertyAdded"
+            'PropertyDeleted': | `component` "PropertyDeleted"
+            'PropertyChanged': | `component` "PropertyChanged"
+            'ChildAdded': | `component` "ChildAdded"
+            'ChildDeleted': | `component` "ChildDeleted"
+            'ChildReplaced': | `component` "ChildReplaced"
+            'ChildMovedFromOtherContainment': | `component` "ChildMovedFromOtherContainment"
+            'ChildMovedFromOtherContainmentInSameParent': | `component` "ChildMovedFromOtherContainmentInSameParent"
+            'ChildMovedInSameContainment': | `component` "ChildMovedInSameContainment"
+            'ChildMovedAndReplacedFromOtherContainment': | `component` "ChildMovedAndReplacedFromOtherContainment"
+            'ChildMovedAndReplacedFromOtherContainmentInSameParent': | `component` "ChildMovedAndReplacedFromOtherContainmentInSameParent"
+            'ChildMovedAndReplacedInSameContainment': | `component` "ChildMovedAndReplacedInSameContainment"
+            'AnnotationAdded': | `component` "AnnotationAdded"
+            'AnnotationDeleted': | `component` "AnnotationDeleted"
+            'AnnotationReplaced': | `component` "AnnotationReplaced"
+            'AnnotationMovedFromOtherParent': | `component` "AnnotationMovedFromOtherParent"
+            'AnnotationMovedInSameParent': | `component` "AnnotationMovedInSameParent"
+            'AnnotationMovedAndReplacedFromOtherParent': | `component` "AnnotationMovedAndReplacedFromOtherParent"
+            'AnnotationMovedAndReplacedInSameParent': | `component` "AnnotationMovedAndReplacedInSameParent"
+            'ReferenceAdded': | `component` "ReferenceAdded"
+            'ReferenceDeleted': | `component` "ReferenceDeleted"
+            'ReferenceChanged': | `component` "ReferenceChanged"
+            'NoOpEvent': | `component` "NoOpEvent"
+            'CompositeEvent': | `component` "CompositeEvent"
+            'ErrorEvent': | `component` "ErrorEvent"
+        } | `component` "CustomEvent" >
+        'PartitionAdded': | `object` | `group` < {
+            'newPartition': < false | `component` "DeltaChunk" >
+            'split': < true | `component` "split" >
+            'originCommands': < false | `component` "commandSources" >
+            'sequenceNumber': < false | `component` "eventSequenceNumber" >
+            'additionalInfos': < false | `component` "additionalInfos" >
+        } >
+        'PartitionDeleted': | `object` | `group` < {
+            'deletedPartition': < false | `component` "targetNode" >
+            'deletedDescendants': < false | `component` "targetNodes" >
+            'originCommands': < false | `component` "commandSources" >
+            'sequenceNumber': < false | `component` "eventSequenceNumber" >
+            'additionalInfos': < false | `component` "additionalInfos" >
+        } >
+        'ClassifierChanged': | `object` | `group` < {
+            'node': < false | `component` "targetNode" >
+            'newClassifier': < false | `component` "metaPointer" >
+            'oldClassifier': < false | `component` "metaPointer" >
+            'originCommands': < false | `component` "commandSources" >
+            'sequenceNumber': < false | `component` "eventSequenceNumber" >
+            'additionalInfos': < false | `component` "additionalInfos" >
+        } >
+        'PropertyAdded': | `object` | `group` < {
+            'node': < false | `component` "targetNode" >
+            'property': < false | `component` "metaPointer" >
+            'newValue': < false | `component` "propertyValue" >
+            'originCommands': < false | `component` "commandSources" >
+            'sequenceNumber': < false | `component` "eventSequenceNumber" >
+            'additionalInfos': < false | `component` "additionalInfos" >
+        } >
+        'PropertyDeleted': | `object` | `group` < {
+            'node': < false | `component` "targetNode" >
+            'property': < false | `component` "metaPointer" >
+            'oldValue': < false | `component` "propertyValue" >
+            'originCommands': < false | `component` "commandSources" >
+            'sequenceNumber': < false | `component` "eventSequenceNumber" >
+            'additionalInfos': < false | `component` "additionalInfos" >
+        } >
+        'PropertyChanged': | `object` | `group` < {
+            'node': < false | `component` "targetNode" >
+            'property': < false | `component` "metaPointer" >
+            'oldValue': < false | `component` "propertyValue" >
+            'newValue': < false | `component` "propertyValue" >
+            'originCommands': < false | `component` "commandSources" >
+            'sequenceNumber': < false | `component` "eventSequenceNumber" >
+            'additionalInfos': < false | `component` "additionalInfos" >
+        } >
+        'ChildAdded': | `object` | `group` < {
+            'parent': < false | `component` "targetNode" >
+            'newChild': < false | `component` "DeltaChunk" >
+            'containment': < false | `component` "metaPointer" >
+            'index': < false | `component` "index" >
+            'split': < true | `component` "split" >
+            'originCommands': < false | `component` "commandSources" >
+            'sequenceNumber': < false | `component` "eventSequenceNumber" >
+            'additionalInfos': < false | `component` "additionalInfos" >
+        } >
+        'ChildDeleted': | `object` | `group` < {
+            'deletedChild': < false | `component` "targetNode" >
+            'deletedDescendants': < false | `component` "targetNodes" >
+            'parent': < false | `component` "targetNode" >
+            'containment': < false | `component` "metaPointer" >
+            'index': < false | `component` "index" >
+            'originCommands': < false | `component` "commandSources" >
+            'sequenceNumber': < false | `component` "eventSequenceNumber" >
+            'additionalInfos': < false | `component` "additionalInfos" >
+        } >
+        'ChildReplaced': | `object` | `group` < {
+            'newChild': < false | `component` "DeltaChunk" >
+            'replacedChild': < false | `component` "targetNode" >
+            'replacedDescendants': < false | `component` "targetNodes" >
+            'parent': < false | `component` "targetNode" >
+            'containment': < false | `component` "metaPointer" >
+            'index': < false | `component` "index" >
+            'split': < true | `component` "split" >
+            'originCommands': < false | `component` "commandSources" >
+            'sequenceNumber': < false | `component` "eventSequenceNumber" >
+            'additionalInfos': < false | `component` "additionalInfos" >
+        } >
+        'ChildMovedFromOtherContainment': | `object` | `group` < {
+            'newParent': < false | `component` "targetNode" >
+            'newContainment': < false | `component` "metaPointer" >
+            'newIndex': < false | `component` "index" >
+            'movedChild': < false | `component` "targetNode" >
+            'oldParent': < false | `component` "targetNode" >
+            'oldContainment': < false | `component` "metaPointer" >
+            'oldIndex': < false | `component` "index" >
+            'originCommands': < false | `component` "commandSources" >
+            'sequenceNumber': < false | `component` "eventSequenceNumber" >
+            'additionalInfos': < false | `component` "additionalInfos" >
+        } >
+        'ChildMovedFromOtherContainmentInSameParent': | `object` | `group` < {
+            'newContainment': < false | `component` "metaPointer" >
+            'newIndex': < false | `component` "index" >
+            'movedChild': < false | `component` "targetNode" >
+            'parent': < false | `component` "targetNode" >
+            'oldContainment': < false | `component` "metaPointer" >
+            'oldIndex': < false | `component` "index" >
+            'originCommands': < false | `component` "commandSources" >
+            'sequenceNumber': < false | `component` "eventSequenceNumber" >
+            'additionalInfos': < false | `component` "additionalInfos" >
+        } >
+        'ChildMovedInSameContainment': | `object` | `group` < {
+            'movedChild': < false | `component` "targetNode" >
+            'parent': < false | `component` "targetNode" >
+            'containment': < false | `component` "metaPointer" >
+            'oldIndex': < false | `component` "index" >
+            'indexOffset': < false | `component` "indexOffset" >
+            'originCommands': < false | `component` "commandSources" >
+            'sequenceNumber': < false | `component` "eventSequenceNumber" >
+            'additionalInfos': < false | `component` "additionalInfos" >
+        } >
+        'ChildMovedAndReplacedFromOtherContainment': | `object` | `group` < {
+            'newParent': < false | `component` "targetNode" >
+            'newContainment': < false | `component` "metaPointer" >
+            'newIndex': < false | `component` "index" >
+            'movedChild': < false | `component` "targetNode" >
+            'oldParent': < false | `component` "targetNode" >
+            'oldContainment': < false | `component` "metaPointer" >
+            'oldIndex': < false | `component` "index" >
+            'replacedChild': < false | `component` "targetNode" >
+            'replacedDescendants': < false | `component` "targetNodes" >
+            'originCommands': < false | `component` "commandSources" >
+            'sequenceNumber': < false | `component` "eventSequenceNumber" >
+            'additionalInfos': < false | `component` "additionalInfos" >
+        } >
+        'ChildMovedAndReplacedFromOtherContainmentInSameParent': | `object` | `group` < {
+            'newContainment': < false | `component` "metaPointer" >
+            'newIndex': < false | `component` "index" >
+            'movedChild': < false | `component` "targetNode" >
+            'parent': < false | `component` "targetNode" >
+            'oldContainment': < false | `component` "metaPointer" >
+            'oldIndex': < false | `component` "index" >
+            'replacedChild': < false | `component` "targetNode" >
+            'replacedDescendants': < false | `component` "targetNodes" >
+            'originCommands': < false | `component` "commandSources" >
+            'sequenceNumber': < false | `component` "eventSequenceNumber" >
+            'additionalInfos': < false | `component` "additionalInfos" >
+        } >
+        'ChildMovedAndReplacedInSameContainment': | `object` | `group` < {
+            'movedChild': < false | `component` "targetNode" >
+            'parent': < false | `component` "targetNode" >
+            'containment': < false | `component` "metaPointer" >
+            'oldIndex': < false | `component` "index" >
+            'indexOffset': < false | `component` "indexOffset" >
+            'replacedChild': < false | `component` "targetNode" >
+            'replacedDescendants': < false | `component` "targetNodes" >
+            'originCommands': < false | `component` "commandSources" >
+            'sequenceNumber': < false | `component` "eventSequenceNumber" >
+            'additionalInfos': < false | `component` "additionalInfos" >
+        } >
+        'AnnotationAdded': | `object` | `group` < {
+            'parent': < false | `component` "targetNode" >
+            'newAnnotation': < false | `component` "DeltaChunk" >
+            'index': < false | `component` "index" >
+            'split': < true | `component` "split" >
+            'originCommands': < false | `component` "commandSources" >
+            'sequenceNumber': < false | `component` "eventSequenceNumber" >
+            'additionalInfos': < false | `component` "additionalInfos" >
+        } >
+        'AnnotationDeleted': | `object` | `group` < {
+            'parent': < false | `component` "targetNode" >
+            'deletedAnnotation': < false | `component` "targetNode" >
+            'deletedDescendants': < false | `component` "targetNodes" >
+            'index': < false | `component` "index" >
+            'originCommands': < false | `component` "commandSources" >
+            'sequenceNumber': < false | `component` "eventSequenceNumber" >
+            'additionalInfos': < false | `component` "additionalInfos" >
+        } >
+        'AnnotationReplaced': | `object` | `group` < {
+            'newAnnotation': < false | `component` "DeltaChunk" >
+            'replacedAnnotation': < false | `component` "targetNode" >
+            'replacedDescendants': < false | `component` "targetNodes" >
+            'parent': < false | `component` "targetNode" >
+            'index': < false | `component` "index" >
+            'split': < true | `component` "split" >
+            'originCommands': < false | `component` "commandSources" >
+            'sequenceNumber': < false | `component` "eventSequenceNumber" >
+            'additionalInfos': < false | `component` "additionalInfos" >
+        } >
+        'AnnotationMovedFromOtherParent': | `object` | `group` < {
+            'newParent': < false | `component` "targetNode" >
+            'newIndex': < false | `component` "index" >
+            'movedAnnotation': < false | `component` "targetNode" >
+            'oldParent': < false | `component` "targetNode" >
+            'oldIndex': < false | `component` "index" >
+            'originCommands': < false | `component` "commandSources" >
+            'sequenceNumber': < false | `component` "eventSequenceNumber" >
+            'additionalInfos': < false | `component` "additionalInfos" >
+        } >
+        'AnnotationMovedInSameParent': | `object` | `group` < {
+            'movedAnnotation': < false | `component` "targetNode" >
+            'parent': < false | `component` "targetNode" >
+            'oldIndex': < false | `component` "index" >
+            'indexOffset': < false | `component` "indexOffset" >
+            'originCommands': < false | `component` "commandSources" >
+            'sequenceNumber': < false | `component` "eventSequenceNumber" >
+            'additionalInfos': < false | `component` "additionalInfos" >
+        } >
+        'AnnotationMovedAndReplacedFromOtherParent': | `object` | `group` < {
+            'newParent': < false | `component` "targetNode" >
+            'newIndex': < false | `component` "index" >
+            'movedAnnotation': < false | `component` "targetNode" >
+            'oldParent': < false | `component` "targetNode" >
+            'oldIndex': < false | `component` "index" >
+            'replacedAnnotation': < false | `component` "targetNode" >
+            'replacedDescendants': < false | `component` "targetNodes" >
+            'originCommands': < false | `component` "commandSources" >
+            'sequenceNumber': < false | `component` "eventSequenceNumber" >
+            'additionalInfos': < false | `component` "additionalInfos" >
+        } >
+        'AnnotationMovedAndReplacedInSameParent': | `object` | `group` < {
+            'movedAnnotation': < false | `component` "targetNode" >
+            'parent': < false | `component` "targetNode" >
+            'oldIndex': < false | `component` "index" >
+            'indexOffset': < false | `component` "indexOffset" >
+            'replacedAnnotation': < false | `component` "targetNode" >
+            'replacedDescendants': < false | `component` "targetNodes" >
+            'originCommands': < false | `component` "commandSources" >
+            'sequenceNumber': < false | `component` "eventSequenceNumber" >
+            'additionalInfos': < false | `component` "additionalInfos" >
+        } >
+        'ReferenceAdded': | `object` | `group` < {
+            'parent': < false | `component` "targetNode" >
+            'reference': < false | `component` "metaPointer" >
+            'index': < false | `component` "index" >
+            'newReference': < true | `component` "targetNode" >
+            'newResolveInfo': < true | `component` "resolveInfo" >
+            'originCommands': < false | `component` "commandSources" >
+            'sequenceNumber': < false | `component` "eventSequenceNumber" >
+            'additionalInfos': < false | `component` "additionalInfos" >
+        } >
+        'ReferenceDeleted': | `object` | `group` < {
+            'parent': < false | `component` "targetNode" >
+            'reference': < false | `component` "metaPointer" >
+            'index': < false | `component` "index" >
+            'deletedReference': < true | `component` "targetNode" >
+            'deletedResolveInfo': < true | `component` "resolveInfo" >
+            'originCommands': < false | `component` "commandSources" >
+            'sequenceNumber': < false | `component` "eventSequenceNumber" >
+            'additionalInfos': < false | `component` "additionalInfos" >
+        } >
+        'ReferenceChanged': | `object` | `group` < {
+            'parent': < false | `component` "targetNode" >
+            'reference': < false | `component` "metaPointer" >
+            'index': < false | `component` "index" >
+            'newReference': < true | `component` "targetNode" >
+            'newResolveInfo': < true | `component` "resolveInfo" >
+            'oldReference': < true | `component` "targetNode" >
+            'oldResolveInfo': < true | `component` "resolveInfo" >
+            'originCommands': < false | `component` "commandSources" >
+            'sequenceNumber': < false | `component` "eventSequenceNumber" >
+            'additionalInfos': < false | `component` "additionalInfos" >
+        } >
+        'CompositeEvent': | `object` | `group` < {
+            'parts': < false | `array` | `list` | `component` "NonContinuedEvents" >
+            'originCommands': < false | `component` "commandSources" >
+            'sequenceNumber': < false | `component` "eventSequenceNumber" >
+            'additionalInfos': < false | `component` "additionalInfos" >
+        } >
+        'NoOpEvent': | `object` | `group` < {
+            'originCommands': < false | `component` "commandSources" >
+            'sequenceNumber': < false | `component` "eventSequenceNumber" >
+            'additionalInfos': < false | `component` "additionalInfos" >
+        } >
+        'ErrorEvent': | `object` | `group` < {
+            'errorCode': < false | `component` "errorCode" >
+            'message': < false | `string` | `text` ~ >
+            'originCommands': < false | `component` "commandSources" >
+            'sequenceNumber': < false | `component` "eventSequenceNumber" >
+            'additionalInfos': < false | `component` "additionalInfos" >
+        } >
+        'ContinuedEvent': | `object` | `group` < {
+            'chunk': < false | `component` "DeltaChunk" >
+            'continuedChunkCompleted': < false | `component` "continuedChunkCompleted" >
+            'continuedChunkSequenceNumber': < false | `component` "continuedChunkSequenceNumber" >
+            'continuedEventSequenceNumber': < false | `component` "eventSequenceNumber" >
+            'originCommands': < false | `component` "commandSources" >
+            'sequenceNumber': < false | `component` "eventSequenceNumber" >
+            'additionalInfos': < false | `component` "additionalInfos" >
+        } >
+        'CustomEvent': | `object` | `cycle up` | `group and dictionary mixed` < {
+            'originCommands': < false | `component` "commandSources" >
+            'sequenceNumber': < false | `component` "eventSequenceNumber" >
+            'additionalInfos': < false | `component` "additionalInfos" >
+        } | `null` ~ >
+    }
+    `root type`: "Root"
+)
