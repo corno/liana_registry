@@ -1,0 +1,20 @@
+(
+    `terminals`: {
+        'name': ~
+        'string literal': ~
+        'attribute value': ~
+    }
+    `nonterminals`: {
+        'Element': | `phrase` < | `group` < {
+            'open name': < | `literal` < "<" < | `text` "name" > > >
+            'attributes': < | `list` < < | `group` < {
+                'name': < | `literal` < " " < | `text` "name" > > >
+                'value': < | `literal` < "=" < | `text` "attribute value" > > >
+            } > > false * "" > >
+            'content': < | `state` < {
+                'empty': < | `literal` < "/>" < | `nothing` ~ > > >
+                'mixex': < | `nothing` ~ >
+            } > >
+        } > >
+    }
+)

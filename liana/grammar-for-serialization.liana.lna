@@ -1,0 +1,57 @@
+(
+    `schema`: | `schema` (
+        `schema imports`: {}
+        `resolver imports`: {}
+        `globals`: (
+            `complexity`: | `unconstrained` ~
+            `text types`: {
+                'pseudo-reference': < | `single line` ~ | `no` ~ >
+                'string literal': < | `single line` ~ | `no` ~ >
+            }
+            `simple types`: {
+                'boolean': < | `boolean` ~ >
+            }
+        )
+        `modules`: {
+            'Root': < | `group` {
+                'terminals': < _ | `dictionary` < | `nothing` ~ > >
+                'nonterminals': < _ | `dictionary` < | `state` < {
+                    'paragraph': < _ _ | `component` < | `internal acyclic` 'Paragraph' _ > >
+                    'phrase': < _ _ | `component` < | `internal acyclic` 'Phrase' _ > >
+                } _ > > >
+            } >
+            'Paragraph': < | `group` {} >
+            'Phrase': < | `group` {
+                'type': < _ | `state` < {
+                    'component': < _ _ | `text` | `global` 'pseudo-reference' >
+                    'group': < _ _ | `group` {
+                        'properties': < _ | `dictionary` < | `component` < | `internal` 'Phrase' _ > > >
+                    } >
+                    'list': < _ _ | `group` {
+                        'item':  < _ | `component` < | `internal` 'Phrase' _ > >
+                        'indented': < _ | `simple` | `global` 'boolean' >
+                        'separator': < _ | `optional` | `text` | `global` 'string literal' >
+                    } >
+                    'literal': < _ _ | `group` {
+                        'literal': < _ | `text` | `global` 'string literal' >
+                        'phrase': < _ | `component` < | `internal` 'Phrase' _ > >
+                    } >
+                    'nothing': < _ _ | `nothing` ~ >
+                    'optional': < _ _ | `group` {
+                        'not set literal': < _ | `optional` | `text` | `global` 'string literal' >
+                        'set': < _ | `component` < | `internal` 'Phrase' _ > >
+                    } >
+                    'text': < _ _ | `text` | `global` 'pseudo-reference' >
+                    'state': < _ _ | `group` {
+                        'options': < _ | `dictionary` < | `component` < | `internal` 'Phrase' _ > > >
+                    } >
+                } _ > >
+            } >
+        }
+        `complexity`: | `unconstrained` ~
+    )
+    `schema path`: [ ]
+    `complexity`: | `unconstrained` (
+        `module`: "Root"
+    )
+)
